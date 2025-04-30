@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="azul_escuro">#0D214F</color>
+    <color name="vinho">#943951</color>
+    <color name="vinho_claro">#DE4470</color>
+    <color name="azul_claro">#4A5ECE</color>
+    <color name="branco">#FFFFF3</color>
+</resources>
