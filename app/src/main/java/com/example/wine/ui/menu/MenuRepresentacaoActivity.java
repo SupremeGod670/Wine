@@ -1,4 +1,4 @@
-package com.example.wine;
+package com.example.wine.ui.menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 

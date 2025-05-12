@@ -1,9 +1,11 @@
-package com.example.wine;
+package com.example.wine.ui.splash;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.wine.R;
 
 public class SplashActivity extends AppCompatActivity {
 

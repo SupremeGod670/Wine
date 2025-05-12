@@ -1,4 +1,4 @@
-package com.example.wine;
+package com.example.wine.ui.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 

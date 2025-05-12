@@ -19,7 +19,7 @@
         android:theme="@style/Theme.Wine"
         tools:targetApi="31">
         <activity
-            android:name=".SplashActivity"
+            android:name=".ui.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,11 +27,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ApresentacaoActivity"/>
-        <activity android:name=".LoginRepresentantesActivity"/>
-        <activity android:name=".MenuRepresentacaoActivity"/>
-        <activity android:name=".GestaoClientesActivity"/>
-        <activity android:name=".VendasExternasActivity"/>
+        <activity android:name=".ui.apresentacao.ApresentacaoActivity"/>
+        <activity android:name=".ui.login.LoginRepresentantesActivity"/>
+        <activity android:name=".ui.menu.MenuRepresentacaoActivity"/>
+        <activity android:name=".ui.clientes.GestaoClientesActivity"/>
+        <activity android:name=".ui.vendas.VendasExternasActivity"/>
     </application>
 
 </manifest>
