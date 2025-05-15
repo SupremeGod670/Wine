@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Wine</string>
+    <string name="harmonizacoes">Harmonizações</string>
+    <string name="notas_de_degustacao">Notas de Degustação</string>
+    <string name="tipo">Tipo</string>
+    <string name="safra">Safra</string>
+    <string name="nome_do_vinho">Nome Completo do Vinho</string>
+    <string name="sugestoes_de_harmonizacao">Sugestões de Harmonização</string>
+    <string name="casta_e_produtor">Casta e Produtor</string>
+    <string name="teor_alcoolico">Teor Alcoólico</string>
+    <string name="descricao_completa">Descrição Completa:</string>
+    <string name="vinicola">Vinícola</string>
+    <string name="doc">DOC</string>
+    <string name="varietal">Varietal</string>
 </resources>
