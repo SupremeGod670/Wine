@@ -6,7 +6,7 @@ import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.wine.R;
 
-public class WineFormActivity  {
+public class WineFormActivity extends AppCompatActivity {
 /*
     private EditText edtName, edtHarvest, edtType, edtNotes, edtPairing;
     private Button btnSave;

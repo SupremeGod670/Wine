@@ -1,9 +1,10 @@
-package com.example.wine.data.local.dao;
+package com.example.wine.domain.repository;
 
 import android.content.Context;
 import androidx.room.Room;
 
 import com.example.wine.data.local.AppDatabase;
+import com.example.wine.data.local.dao.WineDao;
 import com.example.wine.data.local.entity.WineEntity;
 
 import java.util.List;
