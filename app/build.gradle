@@ -35,6 +35,7 @@ dependencies {
     implementation libs.activity
     implementation libs.constraintlayout
     implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation libs.play.services.location
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
@@ -44,6 +45,10 @@ dependencies {
     // Testes do Room
     testImplementation "androidx.room:room-testing:2.5.0"
     androidTestImplementation "androidx.room:room-testing:2.5.0"
+    def room_version = "2.6.1" // Use a versão que você definiu ou a mais recente
+    implementation "androidx.room:room-runtime:$room_version"
+    // >> CERTIFIQUE-SE QUE ESTA LINHA ESTÁ PRESENTE E CORRETA <<
+    annotationProcessor "androidx.room:room-compiler:$room_version" //
     // JUnit 4
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
