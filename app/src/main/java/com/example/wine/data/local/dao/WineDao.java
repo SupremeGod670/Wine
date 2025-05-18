@@ -7,19 +7,21 @@ import java.util.List;
 
 @Dao
 public interface WineDao {
-
-    @Query("SELECT * FROM wine")
-    List<WineEntity> getAll();
-
+/*
     @Insert
-    void insert(WineEntity wine);
+    long insert(WineEntity wine);
+
+    @Query("SELECT * FROM WineEntity")
+    List<WineEntity> getAllWines();
+
+    @Query("SELECT * FROM WineEntity WHERE id = :id LIMIT 1")
+    WineEntity getWineById(int id);
 
     @Update
-    void update(WineEntity wine);
+    int update(WineEntity wine);
 
     @Delete
-    void delete(WineEntity wine);
+    int delete(WineEntity wine);
 
-    @Query("SELECT * FROM wine WHERE id = :id")
-    WineEntity getById(int id);
+ */
 }
