@@ -11,31 +11,31 @@
 
         <EditText
             android:id="@+id/edtWineryName"
-            android:hint="Nome da Vinícola"
+            android:hint="@string/nome_da_vinicola"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <EditText
             android:id="@+id/edtWineryAddress"
-            android:hint="Endereço"
+            android:hint="@string/endereco"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <EditText
             android:id="@+id/edtWineryCity"
-            android:hint="Cidade"
+            android:hint="@string/cidade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <EditText
             android:id="@+id/edtWineryCountry"
-            android:hint="País"
+            android:hint="@string/pais"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <Button
             android:id="@+id/btnSaveWinery"
-            android:text="Salvar Vinícola"
+            android:text="@string/salvar_vinicola"
             android:layout_marginTop="24dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

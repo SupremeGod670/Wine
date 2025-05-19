@@ -18,6 +18,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
+        android:text="@string/nome_do_representante"
+        android:textSize="25sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@android:drawable/editbox_background"
+        android:hint="@string/exemail" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:text="@string/email"
         android:textSize="25sp" />
 
@@ -52,7 +68,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="@color/white"
-        android:text="@string/entrar"
+        android:text="Criar Representante"
         android:textAlignment="center"
         android:textSize="25sp" />
 

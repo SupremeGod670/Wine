@@ -12,4 +12,20 @@
     <string name="vinicola">Vinícola</string>
     <string name="doc">DOC</string>
     <string name="varietal">Varietal</string>
+    <string name="nome_da_vinicola">Nome da Vinícola</string>
+    <string name="endereco">Endereço</string>
+    <string name="cidade">Cidade</string>
+    <string name="pais">País</string>
+    <string name="salvar_vinicola">Salvar Vinícola</string>
+    <string name="wine">Wine</string>
+    <string name="email">Email:</string>
+    <string name="senha">Senha:</string>
+    <string name="exsenha">123456e</string>
+    <string name="exemail">email@gmail.com</string>
+    <string name="entrar">Entrar\n</string>
+    <string name="criar_conta">Criar Conta</string>
+    <string name="nome_do_representante">Nome do Representante</string>
+    <string name="criar_adm">Criar ADM</string>
+    <string name="forma_de_pagamento">Forma de Pagamento:</string>
+    <string name="salvar_pedido">Salvar Pedido</string>
 </resources>
