@@ -28,4 +28,9 @@
     <string name="criar_adm">Criar ADM</string>
     <string name="forma_de_pagamento">Forma de Pagamento:</string>
     <string name="salvar_pedido">Salvar Pedido</string>
+    <string name="criar_cliente">Criar Cliente</string>
+    <string name="contatos">Contatos</string>
+    <string name="responsavel">Responsável</string>
+    <string name="cnpj_cpf">CNPJ / CPF</string>
+    <string name="nome_do_cliente">Nome do Cliente</string>
 </resources>
