@@ -17,13 +17,44 @@ public class WineListActivity extends AppCompatActivity {
     private WineRepository repository;
     private List<WineEntity> wines;
 
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    ImageButton open;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wine_list);
+        setContentView(R.layout.menu_clientes);
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        open = findViewById(R.id.open);
 
         listView = findViewById(R.id.listWines);
         repository = new WineRepository(this);
+
+        open.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.open();
+            }
+        });
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                int itemId = item.getItemId();
+
+                if (itemId == R.id.vinhos) {
+                    Toast.makeText(WineListActivity.this, "Você já está na tela vinhos", Toast.LENGTH_SHORT).show();
+                }
+
+                drawerLayout.close();
+
+                return false;
+            }
+        });
 
         loadWines();
 

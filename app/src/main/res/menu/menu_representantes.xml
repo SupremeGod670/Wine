@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/visualizar">
+
+        <item
+            android:id="@+id/clientes"
+            android:icon="@drawable/group"
+            android:title="@string/visualizar_clientes" />
+
+    </group>
+
+    <group android:id="@+id/pedidos">
+
+        <item
+            android:id="@+id/pedidosecomissoes"
+            android:icon="@drawable/prancheta"
+            android:title="@string/pedidos_e_comissoes" />
+
+        <item
+            android:id="@+id/emissao"
+            android:icon="@drawable/prancheta"
+            android:title="@string/emissao_de_pedidos" />
+
+    </group>
+
+</menu>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/grupovinho">
+
+        <item
+            android:id="@+id/vinhos"
+            android:icon="@drawable/wine"
+            android:title="@string/apresentacao_de_vinhos" />
+
+    </group>
+
+</menu>

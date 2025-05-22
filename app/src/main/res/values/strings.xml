@@ -33,4 +33,14 @@
     <string name="responsavel">Responsável</string>
     <string name="cnpj_cpf">CNPJ / CPF</string>
     <string name="nome_do_cliente">Nome do Cliente</string>
+    <string name="apresentacao_de_vinhos">Apresentação de Vinhos</string>
+    <string name="visualizar_clientes">Visualizar Clientes</string>
+    <string name="cadastrar_representantes">Cadastrar Representantes</string>
+    <string name="pedidos_e_comissoes">Pedidos e Comissões</string>
+    <string name="emissao_de_pedidos">Emissão de Pedidos</string>
+    <string name="visualizar_representantes">Visualizar Representantes</string>
+    <string name="cadastrar_clientes">Cadastrar Clientes</string>
+    <string name="cadastrar_vinhos">Cadastrar Vinhos</string>
+    <string name="cadastrar_adm">Cadastrar ADM</string>
+    <string name="criar_representante">Criar Representante</string>
 </resources>

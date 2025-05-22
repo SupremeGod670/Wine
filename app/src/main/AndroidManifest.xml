@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -26,6 +26,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.login.LoginAPPActivity"/>
+        <activity android:name=".ui.cadastrar.CadastrarAPPActivity"/>
+        <activity android:name=".ui.cadastrar.CadastrarADMActivity"/>
+        <activity android:name=".ui.cadastrar.CadastrarRepresentatesActivity"/>
+        <activity android:name=".ui.cadastrar.CadastrarClientesActivity"/>
+        <activity android:name=".ui.cadastrar.CadastrarVinhosActivity"/>
+        <activity android:name=".ui.representantes.VisualizarRepresentantesActivity"/>
+        <activity android:name=".ui.clientes.VisualizarClientesActivity"/>
+        <activity android:name=".ui.wine.WineListActivity" />
+        <activity android:name=".ui.wine.EmissaoPedidosActivity"/>
+        <activity android:name=".ui.wine.PedidosComissoesActivity"/>
     </application>
-
 </manifest>

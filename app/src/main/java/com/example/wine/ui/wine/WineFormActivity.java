@@ -1,10 +1,7 @@
 package com.example.wine.ui.wine;
 
 
-import android.os.Bundle;
-import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.wine.R;
 
 public class WineFormActivity extends AppCompatActivity {
 /*
@@ -14,10 +11,18 @@ public class WineFormActivity extends AppCompatActivity {
     private int wineId = -1;
     private WineEntity wine;
 
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    ImageButton open;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wine_form);
+        setContentView(R.layout.menu_clientes1);
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        open = findViewById(R.id.open);
 
         edtName = findViewById(R.id.edtName);
         edtHarvest = findViewById(R.id.edtHarvest);
@@ -26,6 +31,30 @@ public class WineFormActivity extends AppCompatActivity {
         edtPairing = findViewById(R.id.edtPairing);
         btnSave = findViewById(R.id.btnSave);
         repository = new WineRepository(this);
+
+        open.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.open();
+            }
+        });
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                int itemId = item.getItemId();
+
+                if (itemId == R.id.vinhos) {
+                    Intent intent = new Intent(WineFormActivity.this, WineListActivity.class);
+                    startActivity(intent);
+                }
+
+                drawerLayout.close();
+
+                return false;
+            }
+        });
 
         wineId = getIntent().getIntExtra("wine_id", -1);
         if (wineId != -1) {

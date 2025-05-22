@@ -16,7 +16,7 @@ import com.example.wine.R;
 import com.example.wine.ui.representantes.VisualizarRepresentantesActivity;
 import com.google.android.material.navigation.NavigationView;
 
-public class CadastrarADMActivity extends AppCompatActivity {
+public class CadastrarVinhosActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -25,7 +25,7 @@ public class CadastrarADMActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menu_adm);
+        setContentView(R.layout.menu_adm1);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -45,26 +45,26 @@ public class CadastrarADMActivity extends AppCompatActivity {
                 int itemId = item.getItemId();
 
                 if (itemId == R.id.adm) {
-                    Toast.makeText(CadastrarADMActivity.this, "Você já está na tela adm", Toast.LENGTH_SHORT).show();
-                }
-
-                if (itemId == R.id.vinhos) {
-                    Intent intent = new Intent(CadastrarADMActivity.this, CadastrarVinhosActivity.class);
+                    Intent intent = new Intent(CadastrarVinhosActivity.this, CadastrarADMActivity.class);
                     startActivity(intent);
                 }
 
+                if (itemId == R.id.vinhos) {
+                    Toast.makeText(CadastrarVinhosActivity.this, "Você já está na tela vinhos", Toast.LENGTH_SHORT).show();
+                }
+
                 if (itemId == R.id.clientes) {
-                    Intent intent = new Intent(CadastrarADMActivity.this, CadastrarClientesActivity.class);
+                    Intent intent = new Intent(CadastrarVinhosActivity.this, CadastrarClientesActivity.class);
                     startActivity(intent);
                 }
 
                 if (itemId == R.id.representantes) {
-                    Intent intent = new Intent(CadastrarADMActivity.this, CadastrarRepresentatesActivity.class);
+                    Intent intent = new Intent(CadastrarVinhosActivity.this, CadastrarRepresentatesActivity.class);
                     startActivity(intent);
                 }
 
                 if (itemId == R.id.vrepresentantes) {
-                    Intent intent = new Intent(CadastrarADMActivity.this, VisualizarRepresentantesActivity.class);
+                    Intent intent = new Intent(CadastrarVinhosActivity.this, VisualizarRepresentantesActivity.class);
                     startActivity(intent);
                 }
 
@@ -75,4 +75,5 @@ public class CadastrarADMActivity extends AppCompatActivity {
         });
 
     }
+
 }
