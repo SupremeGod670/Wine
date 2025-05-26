@@ -1,45 +1,42 @@
 package com.example.wine.domain.model;
 
+import java.util.UUID;
 
 public class Winery {
-    private int id;
+    private String id;
     private String name;
-    private String address;
-    private String city;
     private String country;
-    private double latitude;
-    private double longitude;
+    private String region;
+    private boolean isSynced;
+    private boolean deleted;
+    private long updatedAt;
 
-    public Winery() { }
-
-    public Winery(int id, String name, String address, String city, String country, double latitude, double longitude) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.city = city;
-        this.country = country;
-        this.latitude = latitude;
-        this.longitude = longitude;
+    public Winery() {
+        this.id = UUID.randomUUID().toString();
+        this.isSynced = false;
+        this.deleted = false;
+        this.updatedAt = System.currentTimeMillis();
     }
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    // Getters e Setters
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    public String getAddress() { return address; }
-    public void setAddress(String address) { this.address = address; }
-
-    public String getCity() { return city; }
-    public void setCity(String city) { this.city = city; }
-
     public String getCountry() { return country; }
     public void setCountry(String country) { this.country = country; }
 
-    public double getLatitude() { return latitude; }
-    public void setLatitude(double latitude) { this.latitude = latitude; }
+    public String getRegion() { return region; }
+    public void setRegion(String region) { this.region = region; }
 
-    public double getLongitude() { return longitude; }
-    public void setLongitude(double longitude) { this.longitude = longitude; }
+    public boolean isSynced() { return isSynced; }
+    public void setSynced(boolean synced) { isSynced = synced; }
+
+    public boolean isDeleted() { return deleted; }
+    public void setDeleted(boolean deleted) { this.deleted = deleted; }
+
+    public long getUpdatedAt() { return updatedAt; }
+    public void setUpdatedAt(long updatedAt) { this.updatedAt = updatedAt; }
 }

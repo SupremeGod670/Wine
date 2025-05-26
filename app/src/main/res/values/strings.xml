@@ -1,4 +1,16 @@
 <resources>
+    <!-- Cadastro de Vinícola -->
+    <string name="label_nome_vinicola">Nome da Vinícola</string>
+    <string name="label_pais">País</string>
+    <string name="label_regiao">Região</string>
+    <string name="hint_nome_vinicola">Digite o nome da vinícola</string>
+    <string name="hint_pais">Digite o país</string>
+    <string name="hint_regiao">Digite a região</string>
+    <string name="btn_salvar_vinicola">Salvar Vinícola</string>
+    <string name="msg_campos_obrigatorios">Por favor, preencha todos os campos obrigatórios.</string>
+    <string name="msg_vinicola_cadastrada_sucesso">Vinícola cadastrada com sucesso!</string>
+
+    <!-- Campos gerais do app (do seu exemplo) -->
     <string name="app_name">Wine</string>
     <string name="harmonizacoes">Harmonizações</string>
     <string name="notas_de_degustacao">Notas de Degustação</string>
@@ -22,7 +34,7 @@
     <string name="senha">Senha:</string>
     <string name="exsenha">123456e</string>
     <string name="exemail">email@gmail.com</string>
-    <string name="entrar">Entrar\n</string>
+    <string name="entrar">Entrar</string>
     <string name="criar_conta">Criar Conta</string>
     <string name="nome_do_representante">Nome do Representante</string>
     <string name="criar_adm">Criar ADM</string>

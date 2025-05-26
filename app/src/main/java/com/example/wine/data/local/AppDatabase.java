@@ -1,20 +1,27 @@
 package com.example.wine.data.local;
 
 import androidx.room.Database;
+import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import android.content.Context;
 
-import com.example.wine.data.local.dao.WineDao;
 import com.example.wine.data.local.dao.WineryDao;
-import com.example.wine.data.local.entity.WineEntity;
 import com.example.wine.data.local.entity.WineryEntity;
 
-@Database(
-        entities = { WineEntity.class, WineryEntity.class },
-        version = 1,
-        exportSchema = false
-)
+@Database(entities = {WineryEntity.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
-    public abstract WineDao wineDao();
+    private static AppDatabase INSTANCE;
+
     public abstract WineryDao wineryDao();
+
+    public static synchronized AppDatabase getInstance(Context context) {
+        if (INSTANCE == null) {
+            INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                            AppDatabase.class, "wine_database")
+                    .fallbackToDestructiveMigration()
+                    .build();
+        }
+        return INSTANCE;
+    }
 }
