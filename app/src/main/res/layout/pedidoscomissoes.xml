@@ -20,7 +20,8 @@
             android:layout_height="wrap_content"
             android:text="@string/codigo"
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:layout_marginStart="5dp"/>
 
         <TextView
             android:id="@+id/nome"
@@ -29,12 +30,14 @@
             android:layout_marginEnd="30dp"
             android:text="@string/nome_da_empresa"
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:layout_marginStart="5dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginStart="5dp">
 
             <TextView
                 android:id="@+id/total"
