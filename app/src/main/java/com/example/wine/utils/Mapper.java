@@ -34,19 +34,6 @@ public class Mapper {
     }
 
     // Winery: Model to Entity
-    public static WineryEntity toEntity(Winery winery) {
-        WineryEntity entity = new WineryEntity();
-        entity.setId(winery.getId());
-        entity.setName(winery.getName());
-        entity.setCountry(winery.getCountry());
-        entity.setRegion(winery.getRegion());
-        entity.setSynced(winery.isSynced());
-        entity.setDeleted(winery.isDeleted());
-        entity.setUpdatedAt(winery.getUpdatedAt());
-        return entity;
-    }
-
-    // Winery: Entity to Model
     public static Winery toDomain(WineryEntity entity) {
         Winery winery = new Winery();
         winery.setId(entity.getId());
@@ -57,5 +44,17 @@ public class Mapper {
         winery.setDeleted(entity.isDeleted());
         winery.setUpdatedAt(entity.getUpdatedAt());
         return winery;
+    }
+
+    public static WineryEntity toEntity(Winery winery) {
+        WineryEntity entity = new WineryEntity();
+        entity.setId(winery.getId());
+        entity.setName(winery.getName());
+        entity.setCountry(winery.getCountry());
+        entity.setRegion(winery.getRegion());
+        entity.setSynced(winery.isSynced());
+        entity.setDeleted(winery.isDeleted());
+        entity.setUpdatedAt(winery.getUpdatedAt());
+        return entity;
     }
 }
