@@ -49,8 +49,8 @@
         android:textSize="25sp" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="306dp"
+        android:layout_height="54dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:background="@android:drawable/editbox_background" />
@@ -64,8 +64,8 @@
         android:textSize="25sp" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="306dp"
+        android:layout_height="54dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:background="@android:drawable/editbox_background" />
@@ -79,8 +79,8 @@
         android:textSize="25sp" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="306dp"
+        android:layout_height="54dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:background="@android:drawable/editbox_background" />
@@ -94,8 +94,8 @@
         android:textSize="25sp" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="306dp"
+        android:layout_height="54dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:background="@android:drawable/editbox_background" />
@@ -109,8 +109,8 @@
         android:textSize="25sp" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="306dp"
+        android:layout_height="54dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:background="@android:drawable/editbox_background" />
