@@ -8,20 +8,26 @@
 
     <EditText
         android:id="@+id/etWineryName"
+        style="@style/EDITTEXT"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="54dp"
+        android:background="@android:drawable/editbox_background"
         android:hint="@string/hint_nome_vinicola" />
 
     <EditText
         android:id="@+id/etWineryCountry"
+        style="@style/EDITTEXT"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="54dp"
+        android:background="@android:drawable/editbox_background"
         android:hint="@string/hint_pais" />
 
     <EditText
         android:id="@+id/etWineryRegion"
+        style="@style/EDITTEXT"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="54dp"
+        android:background="@android:drawable/editbox_background"
         android:hint="@string/hint_regiao" />
 
     <Button

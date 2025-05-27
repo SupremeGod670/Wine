@@ -9,5 +9,10 @@
         <item name="android:background">@color/vinho_claro</item>
     </style>
 
+    <style name="EDITTEXT">
+        <item name="android:backgroundTint">@color/black</item>
+        <item name="android:textColorHint">@color/white</item>
+    </style>
+
     <style name="Theme.Wine" parent="Base.Theme.Wine" />
 </resources>
