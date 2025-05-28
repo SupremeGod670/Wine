@@ -19,7 +19,7 @@
         android:theme="@style/Theme.Wine"
         tools:targetApi="31">
         <activity
-            android:name="com.example.wine.ui.winery.WineryFormActivity"
+            android:name=".ui.wine.form.WineFormActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

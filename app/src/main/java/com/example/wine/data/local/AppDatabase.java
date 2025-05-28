@@ -6,14 +6,17 @@ import androidx.room.RoomDatabase;
 import android.content.Context;
 
 import com.example.wine.data.local.dao.WineryDao;
+import com.example.wine.data.local.dao.WineDao;
 import com.example.wine.data.local.entity.WineryEntity;
+import com.example.wine.data.local.entity.WineEntity;
 
-@Database(entities = {WineryEntity.class}, version = 1)
+@Database(entities = {WineryEntity.class, WineEntity.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
 
     public abstract WineryDao wineryDao();
+    public abstract WineDao wineDao();
 
     public static synchronized AppDatabase getInstance(Context context) {
         if (INSTANCE == null) {
