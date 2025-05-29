@@ -19,7 +19,7 @@
         android:theme="@style/Theme.Wine"
         tools:targetApi="31">
         <activity
-            android:name="com.example.wine.ui.winery.WineryFormActivity"
+            android:name=".ui.wine.form.WineFormActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,6 +34,7 @@
         <activity android:name=".ui.cadastrar.CadastrarVinhosActivity"/>
         <activity android:name=".ui.representantes.VisualizarRepresentantesActivity"/>
         <activity android:name=".ui.clientes.VisualizarClientesActivity"/>
+        <activity android:name=".ui.wine.VinicolasActivity"/>
         <activity android:name=".ui.wine.WineListActivity" />
         <activity android:name=".ui.wine.EmissaoPedidosActivity"/>
         <activity android:name=".ui.wine.PedidosComissoesActivity"/>

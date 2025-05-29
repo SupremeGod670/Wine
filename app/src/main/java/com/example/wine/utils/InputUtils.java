@@ -45,4 +45,20 @@ public class InputUtils {
             return false;
         }
     }
+
+    public static int safeParseInt(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    public static double safeParseDouble(String value) {
+        try {
+            return Double.parseDouble(value);
+        } catch (Exception e) {
+            return 0.0;
+        }
+    }
 }

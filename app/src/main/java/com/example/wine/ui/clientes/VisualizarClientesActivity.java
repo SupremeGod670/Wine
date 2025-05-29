@@ -15,6 +15,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.wine.R;
 import com.example.wine.ui.wine.EmissaoPedidosActivity;
 import com.example.wine.ui.wine.PedidosComissoesActivity;
+import com.example.wine.ui.wine.VinicolasActivity;
 import com.google.android.material.navigation.NavigationView;
 
 public class VisualizarClientesActivity extends AppCompatActivity {
@@ -56,6 +57,11 @@ public class VisualizarClientesActivity extends AppCompatActivity {
 
                 if (itemId == R.id.emissao) {
                     Intent intent = new Intent(VisualizarClientesActivity.this, EmissaoPedidosActivity.class);
+                    startActivity(intent);
+                }
+
+                if (itemId == R.id.vinicola) {
+                    Intent intent = new Intent(VisualizarClientesActivity.this, VinicolasActivity.class);
                     startActivity(intent);
                 }
 

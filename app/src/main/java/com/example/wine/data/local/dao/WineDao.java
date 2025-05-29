@@ -1,27 +1,26 @@
 package com.example.wine.data.local.dao;
 
-
-import androidx.room.*;
+import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.Query;
+import androidx.room.Update;
 import com.example.wine.data.local.entity.WineEntity;
 import java.util.List;
 
 @Dao
 public interface WineDao {
-/*
+    @Query("SELECT * FROM wine WHERE deleted = 0 ORDER BY name ASC")
+    List<WineEntity> getAll();
+
+    @Query("SELECT * FROM wine WHERE id = :id AND deleted = 0 LIMIT 1")
+    WineEntity getById(String id);
+
     @Insert
-    long insert(WineEntity wine);
-
-    @Query("SELECT * FROM WineEntity")
-    List<WineEntity> getAllWines();
-
-    @Query("SELECT * FROM WineEntity WHERE id = :id LIMIT 1")
-    WineEntity getWineById(int id);
+    void insert(WineEntity wine);
 
     @Update
-    int update(WineEntity wine);
+    void update(WineEntity wine);
 
-    @Delete
-    int delete(WineEntity wine);
-
- */
+    @Query("UPDATE wine SET deleted = 1 WHERE id = :id")
+    void softDelete(String id);
 }

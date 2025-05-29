@@ -59,5 +59,14 @@
     <string name="nome_da_empresa">Nome da Empresa</string>
     <string name="total">Total</string>
     <string name="comissao">Comissão</string>
-    <string name="criar_vinho">Criar Vinho</string>
+    <string name="vinicolas">Vinícolas</string>
+    <string name="preco">Preço</string>
+    <string name="wine_saved_success">Vinho salvo com sucesso\n</string>
+    <string name="salvar_vinho">Salvar Vinho</string>
+    <string name="categoria_comercial">Categoria comercial</string>
+    <string name="acidez">Acidez</string>
+    <string name="temperatura_de_servi_o">Temperatura de serviço</string>
+    <string name="tempo_de_guarda">Tempo de guarda</string>
+    <string name="avalia_o">Avaliação</string>
+    <string name="estoque">Estoque</string>
 </resources>
