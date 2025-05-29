@@ -24,4 +24,13 @@
 
     </group>
 
+    <group android:id="@+id/vinicolas">
+
+        <item
+            android:id="@+id/vinicola"
+            android:icon="@drawable/wine"
+            android:title="@string/vinicolas" />
+
+    </group>
+
 </menu>

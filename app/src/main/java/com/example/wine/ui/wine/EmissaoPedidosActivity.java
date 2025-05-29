@@ -63,6 +63,11 @@ public class EmissaoPedidosActivity extends AppCompatActivity {
                     Toast.makeText(EmissaoPedidosActivity.this, "Você já está na tela emissao", Toast.LENGTH_SHORT).show();
                 }
 
+                if (itemId == R.id.vinicola) {
+                    Intent intent = new Intent(EmissaoPedidosActivity.this, VinicolasActivity.class);
+                    startActivity(intent);
+                }
+
                 drawerLayout.close();
 
                 return false;

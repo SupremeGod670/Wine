@@ -21,7 +21,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-public class PedidosComissoesActivity extends AppCompatActivity {
+public class VinicolasActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -31,7 +31,7 @@ public class PedidosComissoesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menu_representacao1);
+        setContentView(R.layout.menu_representacao3);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -53,22 +53,22 @@ public class PedidosComissoesActivity extends AppCompatActivity {
                 int itemId = item.getItemId();
 
                 if (itemId == R.id.clientes) {
-                    Intent intent = new Intent(PedidosComissoesActivity.this, VisualizarClientesActivity.class);
+                    Intent intent = new Intent(VinicolasActivity.this, VisualizarClientesActivity.class);
                     startActivity(intent);
                 }
 
                 if (itemId == R.id.pedidosecomissoes) {
-                    Toast.makeText(PedidosComissoesActivity.this, "Você já está na tela pedidos e comissoes", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(VinicolasActivity.this, PedidosComissoesActivity.class);
+                    startActivity(intent);
                 }
 
                 if (itemId == R.id.emissao) {
-                    Intent intent = new Intent(PedidosComissoesActivity.this, EmissaoPedidosActivity.class);
+                    Intent intent = new Intent(VinicolasActivity.this, EmissaoPedidosActivity.class);
                     startActivity(intent);
                 }
 
                 if (itemId == R.id.vinicola) {
-                    Intent intent = new Intent(PedidosComissoesActivity.this, VinicolasActivity.class);
-                    startActivity(intent);
+                    Toast.makeText(VinicolasActivity.this, "Você já está na tela vinicolas", Toast.LENGTH_SHORT).show();
                 }
 
                 drawerLayout.close();
