@@ -1,12 +1,12 @@
 package com.example.wine.ui.wine.form;
 
-import com.example.wine.data.datasource.WineLocalDataSource;
-import com.example.wine.data.datasource.WineRemoteDataSource;
+import com.example.wine.data.datasource.wine.WineLocalDataSource;
+import com.example.wine.data.datasource.wine.WineRemoteDataSource;
 import com.example.wine.data.local.AppDatabase;
 import com.example.wine.data.local.dao.WineDao;
 import com.example.wine.domain.model.Wine;
-import com.example.wine.domain.repository.WineRepository;
-import com.example.wine.domain.repository.WineRepositoryImpl;
+import com.example.wine.domain.repository.wine.WineRepository;
+import com.example.wine.domain.repository.wine.WineRepositoryImpl;
 import com.example.wine.utils.InputUtils;
 
 public class WineFormController {
