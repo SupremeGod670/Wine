@@ -46,7 +46,7 @@
             <EditText
                 android:id="@+id/editTextWineName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="54dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@android:drawable/editbox_background" />
@@ -62,7 +62,7 @@
             <EditText
                 android:id="@+id/editTextWineYear"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="54dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@android:drawable/editbox_background"
@@ -79,7 +79,7 @@
             <EditText
                 android:id="@+id/editTextWineCategory"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="54dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@android:drawable/editbox_background" />
@@ -95,7 +95,7 @@
             <EditText
                 android:id="@+id/editTextWineTastingNotes"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="54dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@android:drawable/editbox_background" />
@@ -111,7 +111,7 @@
             <EditText
                 android:id="@+id/editTextWinePairing"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="54dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@android:drawable/editbox_background" />
@@ -127,7 +127,7 @@
             <EditText
                 android:id="@+id/editTextWineGrape"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="54dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@android:drawable/editbox_background" />
@@ -143,7 +143,7 @@
             <EditText
                 android:id="@+id/editTextWineAlcohol"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="54dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@android:drawable/editbox_background"
@@ -160,7 +160,7 @@
             <EditText
                 android:id="@+id/editTextWinePrice"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="54dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@android:drawable/editbox_background"
@@ -171,13 +171,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:text="Estoque"
+                android:text="@string/estoque"
                 android:textSize="25sp" />
 
             <EditText
                 android:id="@+id/editTextWineStock"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="54dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@android:drawable/editbox_background"
@@ -188,13 +188,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:text="Avaliação"
+                android:text="@string/avalia_o"
                 android:textSize="25sp" />
 
             <EditText
                 android:id="@+id/editTextWineRating"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="54dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@android:drawable/editbox_background"
@@ -205,13 +205,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:text="Tempo de guarda"
+                android:text="@string/tempo_de_guarda"
                 android:textSize="25sp" />
 
             <EditText
                 android:id="@+id/editTextWineAging"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="54dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@android:drawable/editbox_background" />
@@ -221,13 +221,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:text="Temperatura de serviço"
+                android:text="@string/temperatura_de_servi_o"
                 android:textSize="25sp" />
 
             <EditText
                 android:id="@+id/editTextWineTemp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="54dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@android:drawable/editbox_background" />
@@ -237,13 +237,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:text="Acidez"
+                android:text="@string/acidez"
                 android:textSize="25sp" />
 
             <EditText
                 android:id="@+id/editTextWineAcidity"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="54dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@android:drawable/editbox_background" />
@@ -253,13 +253,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:text="Categoria comercial"
+                android:text="@string/categoria_comercial"
                 android:textSize="25sp" />
 
             <EditText
                 android:id="@+id/editTextWineCommercialCategory"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="54dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@android:drawable/editbox_background" />
@@ -268,8 +268,12 @@
                 android:id="@+id/buttonSaveWine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="25dp"
-                android:text="Salvar Vinho" />
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp"
+                android:backgroundTint="@color/white"
+                android:text="@string/salvar_vinho" />
 
         </LinearLayout>
     </ScrollView>

@@ -77,15 +77,6 @@ public class VinicolasActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<PedidoComissaoModel> listPedidoComissao = new ArrayList<>();
-        listPedidoComissao.add(new PedidoComissaoModel("#0101", "Vinho Tinto", "2.000,00", "1.000,00"));
-        listPedidoComissao.add(new PedidoComissaoModel("#0102", "Vinho Branco", "2.000,00", "1.000,00"));
-        listPedidoComissao.add(new PedidoComissaoModel("#0103", "Vinho Rosé", "2.000,00", "1.000,00"));
-        listPedidoComissao.add(new PedidoComissaoModel("#0104", "Vinho Chardonay", "2.000,00", "1.000,00"));
-
-        PedidoComissaoAdapter adapter = new PedidoComissaoAdapter(this, listPedidoComissao);
-        lista.setAdapter(adapter);
-
     }
 
 }
