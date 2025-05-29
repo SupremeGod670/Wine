@@ -1,10 +1,11 @@
 package com.example.wine.ui.wine.form;
 
+import com.example.wine.data.datasource.WineLocalDataSource;
+import com.example.wine.data.datasource.WineRemoteDataSource;
+import com.example.wine.data.local.AppDatabase;
+import com.example.wine.data.local.dao.WineDao;
 import com.example.wine.domain.model.Wine;
 import com.example.wine.domain.repository.WineRepository;
-import com.example.wine.data.datasource.WineLocalDataSource;
-import com.example.wine.data.local.dao.WineDao;
-import com.example.wine.data.local.AppDatabase;
 import com.example.wine.domain.repository.WineRepositoryImpl;
 import com.example.wine.utils.InputUtils;
 
@@ -15,8 +16,9 @@ public class WineFormController {
     public WineFormController(WineFormActivity activity) {
         this.activity = activity;
         WineDao wineDao = AppDatabase.getInstance(activity.getApplicationContext()).wineDao();
-        WineLocalDataSource dataSource = new WineLocalDataSource(wineDao);
-        this.repository = new WineRepositoryImpl(dataSource);
+        WineLocalDataSource localDataSource = new WineLocalDataSource(wineDao);
+        WineRemoteDataSource remoteDataSource = new WineRemoteDataSource();
+        this.repository = new WineRepositoryImpl(localDataSource, remoteDataSource, activity.getApplicationContext());
     }
 
     public void saveWine(Wine wine) {
@@ -50,7 +52,6 @@ public class WineFormController {
             return;
         }
 
-        // Insere em background thread
         new Thread(() -> {
             repository.insert(wine);
             activity.runOnUiThread(activity::showSuccessMessage);

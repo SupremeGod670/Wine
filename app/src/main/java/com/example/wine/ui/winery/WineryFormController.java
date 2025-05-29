@@ -19,13 +19,11 @@ public class WineryFormController {
         this.view = view;
 
         // Inicializa o repository conforme o padrão do projeto
-        AppDatabase db = AppDatabase.getInstance(view.getApplicationContext());
-        WineryDao wineryDao = db.wineryDao();
+        WineryDao wineryDao = AppDatabase.getInstance(view.getApplicationContext()).wineryDao();
+        WineryLocalDataSource localDataSource = new WineryLocalDataSource(wineryDao);
+        WineryRemoteDataSource remoteDataSource = new WineryRemoteDataSource();
 
-        WineryDataSource localDataSource = new WineryLocalDataSource(wineryDao);
-        WineryDataSource remoteDataSource = new WineryRemoteDataSource();
-
-        this.wineryRepository = new WineryRepositoryImpl(localDataSource, remoteDataSource);
+        this.wineryRepository = new WineryRepositoryImpl(localDataSource, remoteDataSource, view.getApplicationContext());
     }
 
     public void onSaveClicked(String name, String country, String region) {
@@ -40,16 +38,8 @@ public class WineryFormController {
         winery.setRegion(region);
 
         new Thread(() -> {
-            wineryRepository.insertWinery(winery, new WineryRepository.RepositoryCallback() {
-                @Override
-                public void onSuccess() {
-                    view.runOnUiThread(() -> view.showSuccess("Vinícola cadastrada com sucesso!"));
-                }
-                @Override
-                public void onError(Throwable error) {
-                    view.runOnUiThread(() -> view.showError("Erro ao salvar: " + error.getMessage()));
-                }
-            });
+            wineryRepository.insert(winery);
+            view.runOnUiThread(() -> view.showSuccess("Vinícola cadastrada com sucesso!"));
         }).start();
     }
 }

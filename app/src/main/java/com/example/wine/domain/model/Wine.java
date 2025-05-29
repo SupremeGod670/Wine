@@ -70,7 +70,7 @@ public class Wine {
     public void setCommercialCategory(String commercialCategory) { this.commercialCategory = commercialCategory; }
 
     public boolean isSynced() { return isSynced; }
-    public void setSynced(boolean synced) { isSynced = synced; }
+    public void setSynced(boolean synced) { this.isSynced = synced; }
 
     public long getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(long updatedAt) { this.updatedAt = updatedAt; }
