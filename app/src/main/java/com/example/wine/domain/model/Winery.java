@@ -32,7 +32,7 @@ public class Winery {
     public void setRegion(String region) { this.region = region; }
 
     public boolean isSynced() { return isSynced; }
-    public void setSynced(boolean synced) { isSynced = synced; }
+    public void setSynced(boolean synced) { this.isSynced = synced; }
 
     public boolean isDeleted() { return deleted; }
     public void setDeleted(boolean deleted) { this.deleted = deleted; }

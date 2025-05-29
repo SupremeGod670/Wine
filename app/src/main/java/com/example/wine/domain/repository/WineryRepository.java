@@ -4,24 +4,10 @@ import com.example.wine.domain.model.Winery;
 import java.util.List;
 
 public interface WineryRepository {
-    void insertWinery(Winery winery, RepositoryCallback callback);
-    void updateWinery(Winery winery, RepositoryCallback callback);
-    void softDeleteWinery(String id, RepositoryCallback callback);
-    void getAllActiveWineries(GetAllWineriesCallback callback);
-    void getWineryById(String id, GetWineryCallback callback);
+    void insert(Winery winery);
+    void update(Winery winery);
+    void softDelete(String id);
+    Winery getById(String id);
+    List<Winery> getAll();
 
-    interface RepositoryCallback {
-        void onSuccess();
-        void onError(Throwable error);
-    }
-
-    interface GetWineryCallback {
-        void onSuccess(Winery winery);
-        void onError(Throwable error);
-    }
-
-    interface GetAllWineriesCallback {
-        void onSuccess(List<Winery> wineries);
-        void onError(Throwable error);
-    }
 }

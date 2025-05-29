@@ -5,7 +5,6 @@ import com.example.wine.data.local.entity.WineEntity;
 import com.example.wine.domain.datasource.WineDataSource;
 import com.example.wine.domain.model.Wine;
 import com.example.wine.utils.Mapper;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,5 +44,18 @@ public class WineLocalDataSource implements WineDataSource {
     @Override
     public void softDelete(String id) {
         wineDao.softDelete(id);
+    }
+
+    public List<Wine> getAllNotSynced() {
+        List<WineEntity> entities = wineDao.getAllNotSynced();
+        List<Wine> wines = new ArrayList<>();
+        for (WineEntity entity : entities) {
+            wines.add(Mapper.toModel(entity));
+        }
+        return wines;
+    }
+
+    public void updateSyncStatus(String id, boolean isSynced) {
+        wineDao.updateSyncStatus(id, isSynced);
     }
 }

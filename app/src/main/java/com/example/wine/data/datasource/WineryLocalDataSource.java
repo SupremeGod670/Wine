@@ -1,72 +1,55 @@
 package com.example.wine.data.datasource;
 
-import com.example.wine.domain.datasource.WineryDataSource;
-import com.example.wine.domain.model.Winery;
 import com.example.wine.data.local.dao.WineryDao;
 import com.example.wine.data.local.entity.WineryEntity;
+import com.example.wine.domain.model.Winery;
 import com.example.wine.utils.Mapper;
-
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class WineryLocalDataSource implements WineryDataSource {
+public class WineryLocalDataSource {
     private final WineryDao wineryDao;
 
     public WineryLocalDataSource(WineryDao wineryDao) {
         this.wineryDao = wineryDao;
     }
 
-    @Override
-    public void insertWinery(Winery winery, Callback callback) {
-        try {
-            WineryEntity entity = Mapper.toEntity(winery);
-            wineryDao.insertWinery(entity);
-            callback.onSuccess();
-        } catch (Exception e) {
-            callback.onError(e);
-        }
+    public void insert(Winery winery) {
+        wineryDao.insert(Mapper.toEntity(winery));
     }
 
-    @Override
-    public void updateWinery(Winery winery, Callback callback) {
-        try {
-            WineryEntity entity = Mapper.toEntity(winery);
-            wineryDao.updateWinery(entity);
-            callback.onSuccess();
-        } catch (Exception e) {
-            callback.onError(e);
-        }
+    public void update(Winery winery) {
+        wineryDao.update(Mapper.toEntity(winery));
     }
 
-    @Override
-    public void deleteWinery(String id, Callback callback) {
-        try {
-            wineryDao.softDeleteWinery(id, System.currentTimeMillis());
-            callback.onSuccess();
-        } catch (Exception e) {
-            callback.onError(e);
-        }
+    public void updateSyncStatus(String id, boolean isSynced) {
+        wineryDao.updateSyncStatus(id, isSynced);
     }
 
-    @Override
-    public void getWineryById(String id, GetWineryCallback callback) {
-        try {
-            WineryEntity entity = wineryDao.getWineryById(id);
-            callback.onSuccess(Mapper.toDomain(entity));
-        } catch (Exception e) {
-            callback.onError(e);
-        }
+    public void softDelete(String id) {
+        wineryDao.softDelete(id);
     }
 
-    @Override
-    public void getAllWineries(GetAllWineriesCallback callback) {
-        try {
-            List<Winery> list = wineryDao.getAllActiveWineries().stream()
-                    .map(Mapper::toDomain)
-                    .collect(Collectors.toList());
-            callback.onSuccess(list);
-        } catch (Exception e) {
-            callback.onError(e);
+    public List<Winery> getAll() {
+        List<WineryEntity> entities = wineryDao.getAll();
+        List<Winery> wineries = new ArrayList<>();
+        for (WineryEntity entity : entities) {
+            wineries.add(Mapper.toDomain(entity));
         }
+        return wineries;
+    }
+
+    public Winery getById(String id) {
+        WineryEntity entity = wineryDao.getById(id);
+        return entity != null ? Mapper.toDomain(entity) : null;
+    }
+
+    public List<Winery> getAllNotSynced() {
+        List<WineryEntity> entities = wineryDao.getAllNotSynced();
+        List<Winery> wineries = new ArrayList<>();
+        for (WineryEntity entity : entities) {
+            wineries.add(Mapper.toDomain(entity));
+        }
+        return wineries;
     }
 }

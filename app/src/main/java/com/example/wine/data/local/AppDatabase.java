@@ -10,7 +10,7 @@ import com.example.wine.data.local.dao.WineDao;
 import com.example.wine.data.local.entity.WineryEntity;
 import com.example.wine.data.local.entity.WineEntity;
 
-@Database(entities = {WineryEntity.class, WineEntity.class}, version = 2)
+@Database(entities = {WineryEntity.class, WineEntity.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;

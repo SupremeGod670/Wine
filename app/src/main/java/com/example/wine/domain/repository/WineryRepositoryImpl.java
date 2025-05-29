@@ -1,89 +1,88 @@
 package com.example.wine.domain.repository;
 
-import com.example.wine.domain.datasource.WineryDataSource;
+import android.content.Context;
+import com.example.wine.data.datasource.WineryLocalDataSource;
+import com.example.wine.data.datasource.WineryRemoteDataSource;
 import com.example.wine.domain.model.Winery;
+import com.example.wine.utils.NetworkUtils;
+
 import java.util.List;
 
 public class WineryRepositoryImpl implements WineryRepository {
+    private final WineryLocalDataSource localDataSource;
+    private final WineryRemoteDataSource remoteDataSource;
+    private final Context context;
 
-    private final WineryDataSource localDataSource;
-    private final WineryDataSource remoteDataSource;
-
-    public WineryRepositoryImpl(WineryDataSource localDataSource, WineryDataSource remoteDataSource) {
+    public WineryRepositoryImpl(WineryLocalDataSource localDataSource, WineryRemoteDataSource remoteDataSource, Context context) {
         this.localDataSource = localDataSource;
         this.remoteDataSource = remoteDataSource;
+        this.context = context;
     }
 
     @Override
-    public void insertWinery(Winery winery, RepositoryCallback callback) {
-        localDataSource.insertWinery(winery, new WineryDataSource.Callback() {
-            @Override
-            public void onSuccess() {
-                // Futuro: sincronizar remoto aqui
-                callback.onSuccess();
+    public void insert(Winery winery) {
+        winery.setSynced(false);
+        localDataSource.insert(winery);
+        if (NetworkUtils.hasInternet(context)) {
+            try {
+                remoteDataSource.insert(winery);
+                localDataSource.updateSyncStatus(winery.getId(), true);
+            } catch (Exception e) {
+                // Continua como não sincronizado
             }
-            @Override
-            public void onError(Throwable error) {
-                callback.onError(error);
-            }
-        });
+        }
     }
 
     @Override
-    public void updateWinery(Winery winery, RepositoryCallback callback) {
-        localDataSource.updateWinery(winery, new WineryDataSource.Callback() {
-            @Override
-            public void onSuccess() {
-                // Futuro: sincronizar remoto aqui
-                callback.onSuccess();
-            }
-            @Override
-            public void onError(Throwable error) {
-                callback.onError(error);
-            }
-        });
+    public List<Winery> getAll() {
+        return localDataSource.getAll();
     }
 
     @Override
-    public void softDeleteWinery(String id, RepositoryCallback callback) {
-        localDataSource.deleteWinery(id, new WineryDataSource.Callback() {
-            @Override
-            public void onSuccess() {
-                // Futuro: sincronizar remoto aqui
-                callback.onSuccess();
-            }
-            @Override
-            public void onError(Throwable error) {
-                callback.onError(error);
-            }
-        });
+    public Winery getById(String id) {
+        return localDataSource.getById(id);
     }
 
     @Override
-    public void getAllActiveWineries(GetAllWineriesCallback callback) {
-        localDataSource.getAllWineries(new WineryDataSource.GetAllWineriesCallback() {
-            @Override
-            public void onSuccess(List<Winery> wineries) {
-                callback.onSuccess(wineries);
+    public void update(Winery winery) {
+        localDataSource.update(winery);
+        if (NetworkUtils.hasInternet(context)) {
+            try {
+                remoteDataSource.update(winery);
+                localDataSource.updateSyncStatus(winery.getId(), true);
+            } catch (Exception e) {
+                localDataSource.updateSyncStatus(winery.getId(), false);
             }
-            @Override
-            public void onError(Throwable error) {
-                callback.onError(error);
-            }
-        });
+        } else {
+            localDataSource.updateSyncStatus(winery.getId(), false);
+        }
     }
 
     @Override
-    public void getWineryById(String id, GetWineryCallback callback) {
-        localDataSource.getWineryById(id, new WineryDataSource.GetWineryCallback() {
-            @Override
-            public void onSuccess(Winery winery) {
-                callback.onSuccess(winery);
+    public void softDelete(String id) {
+        localDataSource.softDelete(id);
+        if (NetworkUtils.hasInternet(context)) {
+            try {
+                remoteDataSource.softDelete(id);
+                localDataSource.updateSyncStatus(id, true);
+            } catch (Exception e) {
+                localDataSource.updateSyncStatus(id, false);
             }
-            @Override
-            public void onError(Throwable error) {
-                callback.onError(error);
+        } else {
+            localDataSource.updateSyncStatus(id, false);
+        }
+    }
+
+    // Método extra para sincronizar pendências, se quiser usar
+    public void syncPending() {
+        List<Winery> pendentes = localDataSource.getAllNotSynced();
+        for (Winery winery : pendentes) {
+            if (NetworkUtils.hasInternet(context)) {
+                try {
+                    remoteDataSource.insert(winery);
+                    localDataSource.updateSyncStatus(winery.getId(), true);
+                } catch (Exception e) {}
             }
-        });
+        }
     }
 }

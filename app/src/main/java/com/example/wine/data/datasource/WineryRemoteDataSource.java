@@ -1,34 +1,22 @@
 package com.example.wine.data.datasource;
 
-import com.example.wine.domain.datasource.WineryDataSource;
 import com.example.wine.domain.model.Winery;
-import java.util.ArrayList;
 import java.util.List;
 
-public class WineryRemoteDataSource implements WineryDataSource {
-    @Override
-    public void insertWinery(Winery winery, Callback callback) {
-        // Futuro: chamada API/Retrofit
-        callback.onSuccess();
+public class WineryRemoteDataSource {
+    public void insert(Winery winery) {
+        throw new UnsupportedOperationException("Não implementado ainda.");
     }
-
-    @Override
-    public void updateWinery(Winery winery, Callback callback) {
-        callback.onSuccess();
+    public void update(Winery winery) {
+        throw new UnsupportedOperationException("Não implementado ainda.");
     }
-
-    @Override
-    public void deleteWinery(String id, Callback callback) {
-        callback.onSuccess();
+    public void softDelete(String id) {
+        throw new UnsupportedOperationException("Não implementado ainda.");
     }
-
-    @Override
-    public void getWineryById(String id, GetWineryCallback callback) {
-        callback.onSuccess(null);
+    public List<Winery> getAll() {
+        throw new UnsupportedOperationException("Não implementado ainda.");
     }
-
-    @Override
-    public void getAllWineries(GetAllWineriesCallback callback) {
-        callback.onSuccess(new ArrayList<>());
+    public Winery getById(String id) {
+        throw new UnsupportedOperationException("Não implementado ainda.");
     }
 }

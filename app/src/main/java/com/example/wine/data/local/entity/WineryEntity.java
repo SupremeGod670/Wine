@@ -3,7 +3,7 @@ package com.example.wine.data.local.entity;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
+import androidx.room.ColumnInfo;
 import java.util.UUID;
 
 @Entity(tableName = "winery")
@@ -14,7 +14,10 @@ public class WineryEntity {
     private String name;
     private String country;
     private String region;
+
+    @ColumnInfo(name = "is_synced")
     private boolean isSynced;
+
     private boolean deleted;
     private long updatedAt;
 
@@ -25,7 +28,6 @@ public class WineryEntity {
         this.updatedAt = System.currentTimeMillis();
     }
 
-    // Getters e Setters
     @NonNull
     public String getId() { return id; }
     public void setId(@NonNull String id) { this.id = id; }
