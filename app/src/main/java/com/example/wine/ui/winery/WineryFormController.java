@@ -3,12 +3,11 @@ package com.example.wine.ui.winery;
 import android.text.TextUtils;
 import com.example.wine.data.local.AppDatabase;
 import com.example.wine.data.local.dao.WineryDao;
-import com.example.wine.data.datasource.WineryLocalDataSource;
-import com.example.wine.data.datasource.WineryRemoteDataSource;
-import com.example.wine.domain.datasource.WineryDataSource;
+import com.example.wine.data.datasource.winery.WineryLocalDataSource;
+import com.example.wine.data.datasource.winery.WineryRemoteDataSource;
 import com.example.wine.domain.model.Winery;
-import com.example.wine.domain.repository.WineryRepository;
-import com.example.wine.domain.repository.WineryRepositoryImpl;
+import com.example.wine.domain.repository.winery.WineryRepository;
+import com.example.wine.domain.repository.winery.WineryRepositoryImpl;
 
 public class WineryFormController {
 

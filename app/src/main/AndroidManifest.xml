@@ -34,8 +34,6 @@
         <activity android:name=".ui.cadastrar.CadastrarVinhosActivity"/>
         <activity android:name=".ui.representantes.VisualizarRepresentantesActivity"/>
         <activity android:name=".ui.clientes.VisualizarClientesActivity"/>
-        <activity android:name=".ui.wine.VinicolasActivity"/>
-        <activity android:name=".ui.wine.WineListActivity" />
         <activity android:name=".ui.wine.EmissaoPedidosActivity"/>
         <activity android:name=".ui.wine.PedidosComissoesActivity"/>
     </application>
