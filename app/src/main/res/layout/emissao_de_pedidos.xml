@@ -49,11 +49,12 @@
         android:textSize="25sp" />
 
     <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/EDITTEXT"
+        android:layout_width="306dp"
+        android:layout_height="54dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@android:drawable/editbox_background"/>
+        android:background="@android:drawable/editbox_background" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -64,20 +65,21 @@
         android:textSize="25sp" />
 
     <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/EDITTEXT"
+        android:layout_width="306dp"
+        android:layout_height="54dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@android:drawable/editbox_background"/>
+        android:background="@android:drawable/editbox_background" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/salvar_pedido"
-        android:textSize="25sp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="@color/white"
-        android:layout_marginTop="30dp"/>
+        android:text="@string/salvar_pedido"
+        android:textSize="25sp" />
 
 </LinearLayout>
