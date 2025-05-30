@@ -1,4 +1,4 @@
-package com.example.wine.domain.repository.winery;
+package com.example.wine.domain.repository;
 
 import com.example.wine.domain.model.Winery;
 import java.util.List;

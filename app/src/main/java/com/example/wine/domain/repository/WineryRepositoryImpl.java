@@ -1,8 +1,8 @@
-package com.example.wine.domain.repository.winery;
+package com.example.wine.domain.repository;
 
 import android.content.Context;
-import com.example.wine.data.datasource.winery.WineryLocalDataSource;
-import com.example.wine.data.datasource.winery.WineryRemoteDataSource;
+import com.example.wine.data.datasource.WineryLocalDataSource;
+import com.example.wine.data.datasource.WineryRemoteDataSource;
 import com.example.wine.domain.model.Winery;
 import com.example.wine.utils.NetworkUtils;
 
@@ -73,7 +73,7 @@ public class WineryRepositoryImpl implements WineryRepository {
         }
     }
 
-    // Método extra para sincronizar pendências
+    // Método extra para sincronizar pendências, se quiser usar
     public void syncPending() {
         List<Winery> pendentes = localDataSource.getAllNotSynced();
         for (Winery winery : pendentes) {
