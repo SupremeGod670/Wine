@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.wine.R;
 import com.example.wine.domain.model.Wine;
 import com.example.wine.utils.InputUtils;
+import com.example.wine.utils.ToastUtils;
+
 import java.util.UUID;
 
 public class WineFormActivity extends AppCompatActivity {
@@ -61,11 +63,11 @@ public class WineFormActivity extends AppCompatActivity {
     }
 
     public void showSuccessMessage() {
-        Toast.makeText(this, getString(R.string.wine_saved_success), Toast.LENGTH_LONG).show();
+        ToastUtils.showShort(this,  getString(R.string.wine_saved_success));
         finish();
     }
 
     public void showErrorMessage(String error) {
-        Toast.makeText(this, error, Toast.LENGTH_LONG).show();
+        ToastUtils.showShort(this,  error);
     }
 }

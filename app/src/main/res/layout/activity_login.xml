@@ -56,17 +56,20 @@
         android:backgroundTint="@color/white"
         android:text="@string/entrar"
         android:textAlignment="center"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:id="@+id/buttonLogin"/>
 
-    <TextView
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:text="@string/criar_conta"
+        android:id="@+id/buttonRegister"
         android:textAlignment="center"
         android:textColor="@color/azul_claro"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+       />
 
 </LinearLayout>

@@ -18,25 +18,42 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Wine"
         tools:targetApi="31">
+
+
         <activity
-            android:name=".ui.wine.form.WineFormActivity"
+            android:name=".ui.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.login.LoginAPPActivity"/>
-        <activity android:name=".ui.cadastrar.CadastrarAPPActivity"/>
-        <activity android:name=".ui.cadastrar.CadastrarADMActivity"/>
-        <activity android:name=".ui.cadastrar.CadastrarRepresentatesActivity"/>
-        <activity android:name=".ui.cadastrar.CadastrarClientesActivity"/>
-        <activity android:name=".ui.cadastrar.CadastrarVinhosActivity"/>
-        <activity android:name=".ui.representantes.VisualizarRepresentantesActivity"/>
-        <activity android:name=".ui.clientes.VisualizarClientesActivity"/>
-        <activity android:name=".ui.wine.VinicolasActivity"/>
-        <activity android:name=".ui.wine.WineListActivity" />
-        <activity android:name=".ui.wine.EmissaoPedidosActivity"/>
-        <activity android:name=".ui.wine.PedidosComissoesActivity"/>
+
+
+        <!-- Telas de navegação principal pós-login -->
+        <activity android:name=".ui.admin.AdminDashboardActivity" /> <!-- Tela inicial do Administrador -->
+        <activity android:name=".ui.representative.RepresentativeDashboardActivity" /> <!-- Tela inicial do Representante -->
+        <activity android:name=".ui.publicaccess.PublicHomeActivity" /> <!-- Tela inicial do Usuário Público -->
+
+        <!-- Telas de autenticação -->
+        <activity android:name=".ui.login.LoginActivity"/> <!-- Tela de Login -->
+
+        <!-- Telas de cadastro (Acesso conforme permissão) -->
+        <activity android:name=".ui.cadastrar.CadastrarAPPActivity"/> <!-- Cadastro geral -->
+        <activity android:name=".ui.cadastrar.CadastrarADMActivity"/> <!-- Cadastro de Administrador -->
+        <activity android:name=".ui.cadastrar.CadastrarRepresentatesActivity"/> <!-- Cadastro de Representante -->
+        <activity android:name=".ui.client.ClientRegisterActivity"/><!-- Cadastro de Cliente -->
+        <activity android:name=".ui.cadastrar.CadastrarVinhosActivity"/> <!-- Cadastro de Vinho -->
+
+        <!-- Telas de visualização/listagem -->
+        <activity android:name=".ui.publicaccess.PublicHomeActivity"/> <!-- Listagem de Clientes -->
+        <activity android:name=".ui.wine.VinicolasActivity"/> <!-- Listagem de Vinícolas -->
+        <activity android:name=".ui.wine.WineListActivity" /> <!-- Listagem de Vinhos -->
+
+        <!-- Telas de pedidos e comissões -->
+        <activity android:name=".ui.wine.EmissaoPedidosActivity"/> <!-- Emissão de Pedidos -->
+        <activity android:name=".ui.wine.PedidosComissoesActivity"/> <!-- Visualização de Pedidos e Comissões -->
+
+
     </application>
 </manifest>

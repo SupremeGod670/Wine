@@ -13,8 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.wine.R;
-import com.example.wine.ui.representantes.VisualizarRepresentantesActivity;
+import com.example.wine.ui.representative.RepresentativeDashboardActivity;
 import com.google.android.material.navigation.NavigationView;
+import com.example.wine.ui.client.ClientRegisterActivity;
 
 public class CadastrarADMActivity extends AppCompatActivity {
 
@@ -54,7 +55,7 @@ public class CadastrarADMActivity extends AppCompatActivity {
                 }
 
                 if (itemId == R.id.clientes) {
-                    Intent intent = new Intent(CadastrarADMActivity.this, CadastrarClientesActivity.class);
+                    Intent intent = new Intent(CadastrarADMActivity.this, ClientRegisterActivity.class);
                     startActivity(intent);
                 }
 
@@ -64,7 +65,7 @@ public class CadastrarADMActivity extends AppCompatActivity {
                 }
 
                 if (itemId == R.id.vrepresentantes) {
-                    Intent intent = new Intent(CadastrarADMActivity.this, VisualizarRepresentantesActivity.class);
+                    Intent intent = new Intent(CadastrarADMActivity.this, RepresentativeDashboardActivity.class);
                     startActivity(intent);
                 }
 
