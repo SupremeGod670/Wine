@@ -10,7 +10,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.wine.R;
 import com.example.wine.ui.client.ClientRegisterActivity;
 import com.example.wine.ui.wine.list.WineListActivity;
-// Importe aqui outras Activities quando criar
+import com.example.wine.ui.wine.form.WineFormActivity;
+// Importe outras Activities quando criar
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -21,42 +22,38 @@ import java.util.Set;
 
 public class NavigationUtils {
 
-    // Mapa de item do menu para Activity de destino
+    // Mapeamento do menu para Activity
     private static final Map<Integer, Class<? extends Activity>> MENU_ACTIVITY_MAP = new HashMap<>();
     static {
-        MENU_ACTIVITY_MAP.put(R.id.vinhos, WineListActivity.class);
-        MENU_ACTIVITY_MAP.put(R.id.clientes, ClientRegisterActivity.class);
-        // MENU_ACTIVITY_MAP.put(R.id.adm, CadastrarADMActivity.class); // Apenas admin
-        // MENU_ACTIVITY_MAP.put(R.id.representantes, CadastrarRepresentanteActivity.class); // Apenas admin
-        // MENU_ACTIVITY_MAP.put(R.id.vrepresentantes, VisualizarRepresentantesActivity.class);
-        // MENU_ACTIVITY_MAP.put(R.id.pedidosecomissoes, PedidosComissoesActivity.class);
-        // MENU_ACTIVITY_MAP.put(R.id.emissao, EmissaoPedidosActivity.class);
-        // MENU_ACTIVITY_MAP.put(R.id.vinicola, VinicolasActivity.class);
+        MENU_ACTIVITY_MAP.put(R.id.vinhos, WineFormActivity.class);              // Cadastrar Vinhos
+        MENU_ACTIVITY_MAP.put(R.id.adm, WineListActivity.class);                 // Substitua pelo correto quando implementar (ex: CadastrarADMActivity.class)
+        MENU_ACTIVITY_MAP.put(R.id.clientes, ClientRegisterActivity.class);      // Cadastrar Clientes
+        // MENU_ACTIVITY_MAP.put(R.id.representantes, CadastrarRepresentantesActivity.class); // Implemente depois
+        // MENU_ACTIVITY_MAP.put(R.id.vrepresentantes, VisualizarRepresentantesActivity.class); // Implemente depois
     }
 
-    // Mapa de permissões de acesso (por perfil) para cada item
+    // Permissões de acesso por item do menu
     private static final Map<Integer, Set<String>> MENU_ACCESS_MAP = new HashMap<>();
     static {
-        // Só ADMIN pode cadastrar outros ADMs
+        // Só ADMIN pode cadastrar ADMs
         Set<String> admPerm = new HashSet<>();
         admPerm.add("ADMIN");
         MENU_ACCESS_MAP.put(R.id.adm, admPerm);
 
         // Só ADMIN pode cadastrar representantes
-        Set<String> repCadPerm = new HashSet<>();
-        repCadPerm.add("ADMIN");
-        MENU_ACCESS_MAP.put(R.id.representantes, repCadPerm);
+        Set<String> repPerm = new HashSet<>();
+        repPerm.add("ADMIN");
+        MENU_ACCESS_MAP.put(R.id.representantes, repPerm);
 
         // Só REPRESENTANTE pode cadastrar/aprovar clientes
         Set<String> cliPerm = new HashSet<>();
         cliPerm.add("REPRESENTATIVE");
         MENU_ACCESS_MAP.put(R.id.clientes, cliPerm);
 
-        // Todos podem acessar vinhos (ajuste se quiser restrição)
+        // ADMIN e REPRESENTATIVE podem cadastrar vinhos
         Set<String> vinhosPerm = new HashSet<>();
         vinhosPerm.add("ADMIN");
         vinhosPerm.add("REPRESENTATIVE");
-        vinhosPerm.add("CLIENT");
         MENU_ACCESS_MAP.put(R.id.vinhos, vinhosPerm);
 
         // Adicione para os outros menus conforme necessidade
