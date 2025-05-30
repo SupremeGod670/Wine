@@ -1,8 +1,8 @@
-package com.example.wine.domain.repository;
+package com.example.wine.domain.repository.winery;
 
 import android.content.Context;
-import com.example.wine.data.datasource.WineryLocalDataSource;
-import com.example.wine.data.datasource.WineryRemoteDataSource;
+import com.example.wine.data.datasource.winery.WineryLocalDataSource;
+import com.example.wine.data.datasource.winery.WineryRemoteDataSource;
 import com.example.wine.domain.model.Winery;
 import com.example.wine.utils.NetworkUtils;
 

@@ -1,4 +1,4 @@
-package com.example.wine.data.datasource;
+package com.example.wine.data.datasource.winery;
 
 import com.example.wine.domain.model.Winery;
 import java.util.List;

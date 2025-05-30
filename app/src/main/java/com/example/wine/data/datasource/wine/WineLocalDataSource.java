@@ -1,4 +1,4 @@
-package com.example.wine.data.datasource;
+package com.example.wine.data.datasource.wine;
 
 import com.example.wine.data.local.dao.WineDao;
 import com.example.wine.data.local.entity.WineEntity;
