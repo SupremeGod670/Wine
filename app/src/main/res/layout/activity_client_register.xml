@@ -129,6 +129,7 @@
         android:backgroundTint="@color/white"
         android:text="@string/criar_cliente"
         android:textAlignment="center"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:id="@+id/buttonFinishRegister"/>
 
 </LinearLayout>

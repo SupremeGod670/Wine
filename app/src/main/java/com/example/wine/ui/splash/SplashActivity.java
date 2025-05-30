@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.wine.R;
-import com.example.wine.ui.login.LoginAPPActivity;
+import com.example.wine.ui.login.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -32,7 +32,7 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent intent = new Intent(SplashActivity.this, LoginAPPActivity.class);
+                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
 

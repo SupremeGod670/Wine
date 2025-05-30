@@ -16,7 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.wine.R;
 import com.example.wine.adapter.PedidoComissaoAdapter;
 import com.example.wine.adapter.PedidoComissaoModel;
-import com.example.wine.ui.clientes.VisualizarClientesActivity;
+import com.example.wine.ui.publicaccess.PublicHomeActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -53,7 +53,7 @@ public class PedidosComissoesActivity extends AppCompatActivity {
                 int itemId = item.getItemId();
 
                 if (itemId == R.id.clientes) {
-                    Intent intent = new Intent(PedidosComissoesActivity.this, VisualizarClientesActivity.class);
+                    Intent intent = new Intent(PedidosComissoesActivity.this, PublicHomeActivity.class);
                     startActivity(intent);
                 }
 

@@ -13,12 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.wine.R;
-import com.example.wine.ui.cadastrar.CadastrarADMActivity;
-import com.example.wine.ui.cadastrar.CadastrarClientesActivity;
-import com.example.wine.ui.cadastrar.CadastrarRepresentatesActivity;
-import com.example.wine.ui.cadastrar.CadastrarVinhosActivity;
-import com.example.wine.ui.clientes.VisualizarClientesActivity;
-import com.example.wine.ui.representantes.VisualizarRepresentantesActivity;
+import com.example.wine.ui.publicaccess.PublicHomeActivity;
+import com.example.wine.ui.representative.RepresentativeDashboardActivity;
 import com.google.android.material.navigation.NavigationView;
 
 public class EmissaoPedidosActivity extends AppCompatActivity {
@@ -50,7 +46,7 @@ public class EmissaoPedidosActivity extends AppCompatActivity {
                 int itemId = item.getItemId();
 
                 if (itemId == R.id.clientes) {
-                    Intent intent = new Intent(EmissaoPedidosActivity.this, VisualizarClientesActivity.class);
+                    Intent intent = new Intent(EmissaoPedidosActivity.this, PublicHomeActivity.class);
                     startActivity(intent);
                 }
 
