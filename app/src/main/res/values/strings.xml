@@ -72,6 +72,6 @@
     <string name="nao_pode_abrir_tela_repetida">Você já está nesta tela!</string>
     <string name="acesso_nao_disponivel">Acesso não disponível para este perfil.</string>
     <string name="erro_abrir_menu">Erro ao abrir o menu!</string>
-
+    <string name="funcao_em_desenvolvimento">Função em desenvolvimento.</string>
 
 </resources>
