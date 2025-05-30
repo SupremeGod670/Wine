@@ -73,7 +73,7 @@ public class WineryRepositoryImpl implements WineryRepository {
         }
     }
 
-    // Método extra para sincronizar pendências
+    // Método extra para sincronizar pendências, se quiser usar
     public void syncPending() {
         List<Winery> pendentes = localDataSource.getAllNotSynced();
         for (Winery winery : pendentes) {
