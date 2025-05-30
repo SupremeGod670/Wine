@@ -69,4 +69,9 @@
     <string name="tempo_de_guarda">Tempo de guarda</string>
     <string name="avalia_o">Avaliação</string>
     <string name="estoque">Estoque</string>
+    <string name="nao_pode_abrir_tela_repetida">Você já está nesta tela!</string>
+    <string name="acesso_nao_disponivel">Acesso não disponível para este perfil.</string>
+    <string name="erro_abrir_menu">Erro ao abrir o menu!</string>
+
+
 </resources>

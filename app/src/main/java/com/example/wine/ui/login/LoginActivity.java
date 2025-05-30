@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.wine.R;
 import com.example.wine.ui.admin.AdminDashboardActivity;
 import com.example.wine.ui.representative.RepresentativeDashboardActivity;
-import com.example.wine.ui.publicaccess.PublicHomeActivity;
 import com.example.wine.ui.client.ClientRegisterActivity;
+import com.example.wine.ui.wine.list.WineListActivity;
 import com.example.wine.utils.ToastUtils;
 
 public class LoginActivity extends AppCompatActivity {
@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Simula autenticação e nível de acesso
-                String userRole = "ADMIN"; // Altere para "REPRESENTATIVE" ou "ADMIN" para testar
+                String userRole = "PUBLIC"; // Altere para "REPRESENTATIVE" ou "ADMIN" para testar
 
                 Intent intent;
                 switch (userRole) {
@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
                         break;
                     case "PUBLIC":
                     default:
-                        intent = new Intent(LoginActivity.this, PublicHomeActivity.class);
+                        intent = new Intent(LoginActivity.this, WineListActivity.class);
                         ToastUtils.showShort(LoginActivity.this, "Bem-vindo!");
                         break;
                 }

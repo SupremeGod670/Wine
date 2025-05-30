@@ -14,6 +14,6 @@ public class AccessUtils {
 
     public static String getUserRole(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        return prefs.getString(KEY_ROLE, "ADMIN"); // Valor padrão modificar para quando tiver usuarios cadastrados
+        return prefs.getString(KEY_ROLE, "PUBLIC"); // Valor padrão modificar para quando tiver usuarios cadastrados
     }
 }

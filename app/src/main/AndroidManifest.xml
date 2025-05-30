@@ -46,13 +46,7 @@
         <activity android:name=".ui.cadastrar.CadastrarVinhosActivity"/> <!-- Cadastro de Vinho -->
 
         <!-- Telas de visualização/listagem -->
-        <activity android:name=".ui.publicaccess.PublicHomeActivity"/> <!-- Listagem de Clientes -->
-        <activity android:name=".ui.wine.VinicolasActivity"/> <!-- Listagem de Vinícolas -->
-        <activity android:name=".ui.wine.WineListActivity" /> <!-- Listagem de Vinhos -->
-
-        <!-- Telas de pedidos e comissões -->
-        <activity android:name=".ui.wine.EmissaoPedidosActivity"/> <!-- Emissão de Pedidos -->
-        <activity android:name=".ui.wine.PedidosComissoesActivity"/> <!-- Visualização de Pedidos e Comissões -->
+        <activity android:name=".ui.wine.list.WineListActivity" /> <!-- Listagem de Vinhos -->
 
 
     </application>

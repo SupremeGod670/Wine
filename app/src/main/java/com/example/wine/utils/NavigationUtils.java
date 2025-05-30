@@ -3,78 +3,60 @@ package com.example.wine.utils;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.MenuItem;
-import com.example.wine.ui.cadastrar.CadastrarADMActivity;
-import com.example.wine.ui.client.ClientRegisterActivity;
-import com.example.wine.ui.cadastrar.CadastrarRepresentatesActivity;
-import com.example.wine.ui.cadastrar.CadastrarVinhosActivity;
-import com.example.wine.R;
 import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.wine.R;
+import com.example.wine.ui.client.ClientRegisterActivity;
+import com.example.wine.ui.wine.list.WineListActivity;
+// Importe suas outras Activities aqui
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class NavigationUtils {
 
+    private static final Map<Integer, Class<? extends Activity>> MENU_ACTIVITY_MAP = new HashMap<>();
+    static {
+        MENU_ACTIVITY_MAP.put(R.id.vinhos, WineListActivity.class);
+        MENU_ACTIVITY_MAP.put(R.id.clientes, ClientRegisterActivity.class);
+        // MENU_ACTIVITY_MAP.put(R.id.adm, CadastrarADMActivity.class); // Descomente e crie caso exista
+        // MENU_ACTIVITY_MAP.put(R.id.representantes, SuaActivityDeRepresentantes.class);
+        // MENU_ACTIVITY_MAP.put(R.id.vrepresentantes, VisualizarRepresentantesActivity.class);
+        // MENU_ACTIVITY_MAP.put(R.id.pedidosecomissoes, PedidosComissoesActivity.class);
+        // MENU_ACTIVITY_MAP.put(R.id.emissao, EmissaoPedidosActivity.class);
+        // MENU_ACTIVITY_MAP.put(R.id.vinicola, VinicolasActivity.class);
+    }
+
     public static void setupNavigation(final Activity activity, NavigationView navigationView, final DrawerLayout drawerLayout) {
-        String userRole = AccessUtils.getUserRole(activity); // "ADMIN", "REPRESENTATIVE", "PUBLIC"
+        String userRole = AccessUtils.getUserRole(activity);
 
-        // Controle de visibilidade dos itens do menu de acordo com o papel do usuário, com checagem de null
-        MenuItem admItem = navigationView.getMenu().findItem(R.id.adm);
-        if (admItem != null && !"ADMIN".equals(userRole)) {
-            admItem.setVisible(false); // Só admin vê o cadastro de admin
-        }
+        if (navigationView.getMenu().findItem(R.id.adm) != null)
+            navigationView.getMenu().findItem(R.id.adm).setVisible("ADMIN".equals(userRole));
 
-        MenuItem representantesItem = navigationView.getMenu().findItem(R.id.representantes);
-        if (representantesItem != null && !"REPRESENTATIVE".equals(userRole) && !"ADMIN".equals(userRole)) {
-            representantesItem.setVisible(false); // Só representante ou admin
-        }
-
-        MenuItem vinhosItem = navigationView.getMenu().findItem(R.id.vinhos);
-        if (vinhosItem != null) {
-            // Se quiser restringir visibilidade para esse item, faça aqui
-            // Exemplo: vinhosItem.setVisible("ADMIN".equals(userRole));
-        }
-
-        MenuItem clientesItem = navigationView.getMenu().findItem(R.id.clientes);
-        if (clientesItem != null) {
-            // Ajuste conforme necessário
-        }
-
-        MenuItem vRepresentantesItem = navigationView.getMenu().findItem(R.id.vrepresentantes);
-        if (vRepresentantesItem != null) {
-            // Ajuste conforme necessário
-        }
-
-        // Adicione outros itens do menu conforme sua necessidade, sempre checando null
+        if (navigationView.getMenu().findItem(R.id.representantes) != null)
+            navigationView.getMenu().findItem(R.id.representantes).setVisible("REPRESENTATIVE".equals(userRole) || "ADMIN".equals(userRole));
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                String role = AccessUtils.getUserRole(activity);
                 int itemId = item.getItemId();
+                Class<? extends Activity> targetActivity = MENU_ACTIVITY_MAP.get(itemId);
 
-                if (itemId == R.id.adm) {
-                    if (!"ADMIN".equals(role)) {
-                        ToastUtils.showLong(activity, "Acesso restrito ao administrador.");
+                if (targetActivity != null) {
+                    if (!targetActivity.isInstance(activity)) {
+                        activity.startActivity(new Intent(activity, targetActivity));
                     } else {
-                        activity.startActivity(new Intent(activity, CadastrarADMActivity.class));
+                        ToastUtils.showShort(activity, activity.getString(R.string.nao_pode_abrir_tela_repetida));
                     }
-                } else if (itemId == R.id.vinhos) {
-                    activity.startActivity(new Intent(activity, CadastrarVinhosActivity.class));
-                } else if (itemId == R.id.clientes) {
-                    activity.startActivity(new Intent(activity, ClientRegisterActivity.class));
-                } else if (itemId == R.id.representantes) {
-                    if (!"REPRESENTATIVE".equals(role) && !"ADMIN".equals(role)) {
-                        ToastUtils.showLong(activity, "Acesso restrito aos representantes.");
-                    } else {
-                        activity.startActivity(new Intent(activity, CadastrarRepresentatesActivity.class));
-                    }
-                } else if (itemId == R.id.vrepresentantes) {
-                    ToastUtils.showShort(activity, "Você já está na tela representantes");
+                } else {
+                    ToastUtils.showShort(activity, activity.getString(R.string.acesso_nao_disponivel));
                 }
-                // Fechar o drawer sempre após clicar
-                drawerLayout.close();
-                return false;
+
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
             }
         });
     }
