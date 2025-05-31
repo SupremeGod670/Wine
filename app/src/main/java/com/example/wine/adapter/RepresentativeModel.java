@@ -1,12 +1,12 @@
 package com.example.wine.adapter;
 
-public class RepresentanteModel {
+public class RepresentativeModel {
 
     private String conta;
     private String nome;
     private String email;
 
-    public RepresentanteModel(String conta, String nome, String email) {
+    public RepresentativeModel(String conta, String nome, String email) {
         this.conta = conta;
         this.nome = nome;
         this.email = email;

@@ -1,13 +1,13 @@
 package com.example.wine.adapter;
 
-public class PedidoComissaoModel {
+public class RequestCommissionModel {
 
     private String codigo;
     private String nome;
     private String total;
     private String comissao;
 
-    public PedidoComissaoModel(String codigo, String nome, String total, String comissao) {
+    public RequestCommissionModel(String codigo, String nome, String total, String comissao) {
         this.codigo = codigo;
         this.nome = nome;
         this.total = total;

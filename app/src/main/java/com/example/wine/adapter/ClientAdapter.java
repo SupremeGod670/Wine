@@ -11,24 +11,24 @@ import com.example.wine.R;
 
 import java.util.ArrayList;
 
-public class RepresentanteAdapter extends BaseAdapter {
+public class ClientAdapter extends BaseAdapter {
 
-    private ArrayList<RepresentanteModel> listRepresentante;
+    private ArrayList<ClientModel> listCliente;
     private Activity activity;
 
-    public RepresentanteAdapter(Activity activity, ArrayList<RepresentanteModel> listRepresentante) {
+    public ClientAdapter(Activity activity, ArrayList<ClientModel> listCliente) {
         this.activity = activity;
-        this.listRepresentante = listRepresentante;
+        this.listCliente = listCliente;
     }
 
     @Override
     public int getCount() {
-        return listRepresentante.size();
+        return listCliente.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return listRepresentante.get(position);
+        return listCliente.get(position);
     }
 
     @Override
@@ -40,16 +40,16 @@ public class RepresentanteAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
 
         if (view == null) {
-            view = activity.getLayoutInflater().inflate(R.layout.representatives, viewGroup, false);
+            view = activity.getLayoutInflater().inflate(R.layout.customers, viewGroup, false);
         }
 
-        RepresentanteModel representante = listRepresentante.get(position);
+        ClientModel cliente = listCliente.get(position);
         ImageView conta = view.findViewById(R.id.conta);
         TextView nome = view.findViewById(R.id.nome);
-        TextView email = view.findViewById(R.id.email);
+        TextView responsavel = view.findViewById(R.id.responsavel);
 
-        nome.setText(representante.getNome());
-        email.setText(representante.getEmail());
+        nome.setText(cliente.getNome());
+        responsavel.setText(cliente.getResponsavel());
 
         return view;
     }

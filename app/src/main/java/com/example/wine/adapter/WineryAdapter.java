@@ -10,12 +10,12 @@ import com.example.wine.R;
 
 import java.util.ArrayList;
 
-public class VinicolaAdapter extends BaseAdapter {
+public class WineryAdapter extends BaseAdapter {
 
-    private ArrayList<VinicolaModel> listVinicola;
+    private ArrayList<WineryModel> listVinicola;
     private Activity activity;
 
-    public VinicolaAdapter(Activity activity, ArrayList<VinicolaModel> listVinicola) {
+    public WineryAdapter(Activity activity, ArrayList<WineryModel> listVinicola) {
         this.activity = activity;
         this.listVinicola = listVinicola;
     }
@@ -42,7 +42,7 @@ public class VinicolaAdapter extends BaseAdapter {
             view = activity.getLayoutInflater().inflate(R.layout.winery, viewGroup, false);
         }
 
-        VinicolaModel vinicola = listVinicola.get(position);
+        WineryModel vinicola = listVinicola.get(position);
         TextView nome = view.findViewById(R.id.nome);
         TextView pais = view.findViewById(R.id.pais);
         TextView endereco = view.findViewById(R.id.endereco);

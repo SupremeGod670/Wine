@@ -10,12 +10,12 @@ import com.example.wine.R;
 
 import java.util.ArrayList;
 
-public class PedidoComissaoAdapter extends BaseAdapter {
+public class RequestCommissionAdapter extends BaseAdapter {
 
-    private ArrayList<PedidoComissaoModel> listPedidoComissao;
+    private ArrayList<RequestCommissionModel> listPedidoComissao;
     private Activity activity;
 
-    public PedidoComissaoAdapter(Activity activity, ArrayList<PedidoComissaoModel> listPedidoComissao) {
+    public RequestCommissionAdapter(Activity activity, ArrayList<RequestCommissionModel> listPedidoComissao) {
         this.activity = activity;
         this.listPedidoComissao = listPedidoComissao;
     }
@@ -42,7 +42,7 @@ public class PedidoComissaoAdapter extends BaseAdapter {
             view = activity.getLayoutInflater().inflate(R.layout.commission_requests, viewGroup, false);
         }
 
-        PedidoComissaoModel pedidoComissao = listPedidoComissao.get(position);
+        RequestCommissionModel pedidoComissao = listPedidoComissao.get(position);
         TextView codigo = view.findViewById(R.id.codigo);
         TextView nome = view.findViewById(R.id.nome);
         TextView total = view.findViewById(R.id.total);
