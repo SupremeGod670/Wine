@@ -7,6 +7,10 @@
             android:id="@+id/clientes"
             android:icon="@drawable/group"
             android:title="@string/visualizar_clientes" />
+        <item
+            android:id="@+id/vinhos"
+            android:icon="@drawable/wine"
+            android:title="@string/cadastrar_vinhos" />
 
     </group>
 
