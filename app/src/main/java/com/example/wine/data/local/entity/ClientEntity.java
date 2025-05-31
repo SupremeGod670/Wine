@@ -1,0 +1,189 @@
+// Caminho: com.example.wine.data.local.entity/ClientEntity.java
+package com.example.wine.data.local.entity;
+
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "client",
+        foreignKeys = {
+                @ForeignKey(entity = AppUserEntity.class,
+                        parentColumns = "id",
+                        childColumns = "approved_by",
+                        onDelete = ForeignKey.SET_NULL),
+                @ForeignKey(entity = RegionEntity.class, // NOVA CHAVE ESTRANGEIRA
+                        parentColumns = "idregiao", // A PK de RegionEntity é 'idregiao'
+                        childColumns = "id_regiao", // Coluna na tabela client
+                        onDelete = ForeignKey.SET_NULL) // Se a região for deletada, o id_regiao do cliente vira NULL.
+        })
+public class ClientEntity {
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "id")
+    private String id;
+
+    @ColumnInfo(name = "name")
+    private String name;
+
+    @ColumnInfo(name = "phone")
+    private String phone;
+
+    @ColumnInfo(name = "email")
+    private String email;
+
+    @ColumnInfo(name = "city")
+    private String city;
+
+    @ColumnInfo(name = "id_regiao", index = true) // NOVO: idregiao, com índice
+    private String regionId;
+
+    @ColumnInfo(name = "latitude") // NOVO
+    private double latitude;
+
+    @ColumnInfo(name = "longitude") // NOVO
+    private double longitude;
+
+    @ColumnInfo(name = "observation")
+    private String observation;
+
+    @ColumnInfo(name = "is_approved")
+    private boolean isApproved;
+
+    @ColumnInfo(name = "approved_by", index = true)
+    private String approvedBy;
+
+    @ColumnInfo(name = "approved_at")
+    private Long approvedAt;
+
+    @ColumnInfo(name = "is_synced")
+    private boolean isSynced;
+
+    @ColumnInfo(name = "updated_at")
+    private long updatedAt;
+
+    @ColumnInfo(name = "deleted")
+    private boolean deleted;
+
+    // Getters e Setters
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getRegionId() { // NOVO GETTER
+        return regionId;
+    }
+
+    public void setRegionId(String regionId) { // NOVO SETTER
+        this.regionId = regionId;
+    }
+
+    public double getLatitude() { // NOVO GETTER
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) { // NOVO SETTER
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() { // NOVO GETTER
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) { // NOVO SETTER
+        this.longitude = longitude;
+    }
+
+    public String getObservation() {
+        return observation;
+    }
+
+    public void setObservation(String observation) {
+        this.observation = observation;
+    }
+
+    public boolean isApproved() {
+        return isApproved;
+    }
+
+    public void setApproved(boolean approved) {
+        isApproved = approved;
+    }
+
+    public String getApprovedBy() {
+        return approvedBy;
+    }
+
+    public void setApprovedBy(String approvedBy) {
+        this.approvedBy = approvedBy;
+    }
+
+    public Long getApprovedAt() {
+        return approvedAt;
+    }
+
+    public void setApprovedAt(Long approvedAt) {
+        this.approvedAt = approvedAt;
+    }
+
+    public boolean isSynced() {
+        return isSynced;
+    }
+
+    public void setSynced(boolean synced) {
+        isSynced = synced;
+    }
+
+    public long getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(long updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+}
