@@ -39,7 +39,7 @@ public class VinicolaAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
 
         if (view == null) {
-            view = activity.getLayoutInflater().inflate(R.layout.vinicola, viewGroup, false);
+            view = activity.getLayoutInflater().inflate(R.layout.winery, viewGroup, false);
         }
 
         VinicolaModel vinicola = listVinicola.get(position);

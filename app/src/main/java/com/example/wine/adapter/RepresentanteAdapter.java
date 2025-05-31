@@ -40,7 +40,7 @@ public class RepresentanteAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
 
         if (view == null) {
-            view = activity.getLayoutInflater().inflate(R.layout.representantes, viewGroup, false);
+            view = activity.getLayoutInflater().inflate(R.layout.representatives, viewGroup, false);
         }
 
         RepresentanteModel representante = listRepresentante.get(position);

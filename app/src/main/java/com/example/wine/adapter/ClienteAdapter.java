@@ -40,7 +40,7 @@ public class ClienteAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
 
         if (view == null) {
-            view = activity.getLayoutInflater().inflate(R.layout.clientes, viewGroup, false);
+            view = activity.getLayoutInflater().inflate(R.layout.customers, viewGroup, false);
         }
 
         ClienteModel cliente = listCliente.get(position);

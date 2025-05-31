@@ -39,7 +39,7 @@ public class PedidoComissaoAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
 
         if (view == null) {
-            view = activity.getLayoutInflater().inflate(R.layout.pedidoscomissoes, viewGroup, false);
+            view = activity.getLayoutInflater().inflate(R.layout.commission_requests, viewGroup, false);
         }
 
         PedidoComissaoModel pedidoComissao = listPedidoComissao.get(position);
