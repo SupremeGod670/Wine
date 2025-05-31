@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:openDrawer="start">
 
-    <include layout="@layout/view_customers" />
+    <include layout="@layout/wineries" />
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
@@ -19,6 +19,6 @@
         app:headerLayout="@layout/menu_header"
         app:itemIconPadding="20dp"
         app:itemIconSize="80dp"
-        app:menu="@menu/menu_representantes" />
+        app:menu="@menu/menu_representation" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

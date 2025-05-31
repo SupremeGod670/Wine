@@ -40,10 +40,10 @@ public class WineListActivity extends AppCompatActivity {
             navigationView.inflateMenu(R.menu.menu_adm);
         } else if ("REPRESENTATIVE".equals(userRole)) {
             navigationView.getMenu().clear();
-            navigationView.inflateMenu(R.menu.menu_representantes);
+            navigationView.inflateMenu(R.menu.menu_representation);
         } else if ("CLIENT".equals(userRole)) {
             navigationView.getMenu().clear();
-            navigationView.inflateMenu(R.menu.menu_clientes);
+            navigationView.inflateMenu(R.menu.menu_clients);
         }
 
         // Inicializa o controller (passando o drawer se necessário)
