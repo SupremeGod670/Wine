@@ -1,31 +1,29 @@
 package com.example.wine.data.local.dao;
 
-
-import androidx.room.Dao;
-import androidx.room.Insert;
-import androidx.room.Query;
-import androidx.room.Update;
-import androidx.room.Delete;
-
+import androidx.room.*;
 import com.example.wine.data.local.entity.WineryEntity;
-
 import java.util.List;
 
 @Dao
 public interface WineryDao {
-
-    @Insert
-    long insert(WineryEntity winery);
-
-    @Query("SELECT * FROM wineries")
-    List<WineryEntity> getAllWineries();
-
-    @Query("SELECT * FROM wineries WHERE id = :id LIMIT 1")
-    WineryEntity getById(int id);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(WineryEntity winery);
 
     @Update
-    int update(WineryEntity winery);
+    void update(WineryEntity winery);
 
-    @Delete
-    int delete(WineryEntity winery);
+    @Query("UPDATE winery SET is_synced = :isSynced WHERE id = :id")
+    void updateSyncStatus(String id, boolean isSynced);
+
+    @Query("UPDATE winery SET deleted = 1 WHERE id = :id")
+    void softDelete(String id);
+
+    @Query("SELECT * FROM winery WHERE is_synced = 0")
+    List<WineryEntity> getAllNotSynced();
+
+    @Query("SELECT * FROM winery")
+    List<WineryEntity> getAll();
+
+    @Query("SELECT * FROM winery WHERE id = :id")
+    WineryEntity getById(String id);
 }

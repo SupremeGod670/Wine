@@ -9,4 +9,9 @@
         <item name="android:background">@color/vinho</item>
     </style>
 
+    <style name="EDITTEXT">
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:textColorHint">@color/black</item>
+    </style>
+
 </resources>
