@@ -17,6 +17,7 @@
             android:background="@android:color/transparent"
             android:padding="5dp"
             android:src="@drawable/menu" />
+
     </androidx.appcompat.widget.Toolbar>
 
     <ImageView
@@ -44,12 +45,13 @@
                 android:textSize="25sp" />
 
             <EditText
-                android:id="@+id/editTextWineName"
+                android:id="@+id/edit_text_nome_vinho"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textCapWords" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -60,9 +62,9 @@
                 android:textSize="25sp" />
 
             <EditText
-                android:id="@+id/editTextWineYear"
+                android:id="@+id/edit_text_safra"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@android:drawable/editbox_background"
@@ -77,12 +79,13 @@
                 android:textSize="25sp" />
 
             <EditText
-                android:id="@+id/editTextWineCategory"
+                android:id="@+id/edit_text_tipo"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textCapWords" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -93,12 +96,15 @@
                 android:textSize="25sp" />
 
             <EditText
-                android:id="@+id/editTextWineTastingNotes"
+                android:id="@+id/edit_text_notas_degustacao"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:gravity="top|start" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -109,12 +115,15 @@
                 android:textSize="25sp" />
 
             <EditText
-                android:id="@+id/editTextWinePairing"
+                android:id="@+id/edit_text_harmonizacoes"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:gravity="top|start" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -125,12 +134,47 @@
                 android:textSize="25sp" />
 
             <EditText
-                android:id="@+id/editTextWineGrape"
+                android:id="@+id/edit_text_varietal"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textCapWords" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/doc"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/edit_text_doc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textCapWords" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/vinicola"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/edit_text_vinicola"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textCapWords" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -141,9 +185,9 @@
                 android:textSize="25sp" />
 
             <EditText
-                android:id="@+id/editTextWineAlcohol"
+                android:id="@+id/edit_text_teor_alcoolico"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@android:drawable/editbox_background"
@@ -154,13 +198,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:text="@string/preco"
+                android:text="@string/price"
                 android:textSize="25sp" />
 
             <EditText
-                android:id="@+id/editTextWinePrice"
+                android:id="@+id/edit_text_price"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@android:drawable/editbox_background"
@@ -171,13 +215,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:text="@string/estoque"
+                android:text="@string/stock"
                 android:textSize="25sp" />
 
             <EditText
-                android:id="@+id/editTextWineStock"
+                android:id="@+id/edit_text_stock"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@android:drawable/editbox_background"
@@ -188,13 +232,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:text="@string/avalia_o"
+                android:text="@string/rating"
                 android:textSize="25sp" />
 
             <EditText
-                android:id="@+id/editTextWineRating"
+                android:id="@+id/edit_text_rating"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@android:drawable/editbox_background"
@@ -205,76 +249,63 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:text="@string/tempo_de_guarda"
+                android:text="@string/aging_time"
                 android:textSize="25sp" />
 
             <EditText
-                android:id="@+id/editTextWineAging"
+                android:id="@+id/edit_text_aging_time"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textCapWords" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:text="@string/temperatura_de_servi_o"
+                android:text="@string/serving_temperature"
                 android:textSize="25sp" />
 
             <EditText
-                android:id="@+id/editTextWineTemp"
+                android:id="@+id/edit_text_serving_temperature"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
+                android:background="@android:drawable/editbox_background"
+                android:inputType="text" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:text="@string/acidez"
+                android:text="@string/acidity"
                 android:textSize="25sp" />
 
             <EditText
-                android:id="@+id/editTextWineAcidity"
+                android:id="@+id/edit_text_acidity"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="15dp"
-                android:text="@string/categoria_comercial"
-                android:textSize="25sp" />
-
-            <EditText
-                android:id="@+id/editTextWineCommercialCategory"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textCapWords" />
 
             <Button
-                android:id="@+id/buttonSaveWine"
-                android:layout_width="match_parent"
+                android:id="@+id/button_salvar_vinho"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="5dp"
-                android:backgroundTint="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
                 android:text="@string/salvar_vinho" />
 
         </LinearLayout>
+
     </ScrollView>
+
 </LinearLayout>

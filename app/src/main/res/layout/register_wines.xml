@@ -33,7 +33,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -45,11 +45,13 @@
                 android:textSize="25sp" />
 
             <EditText
+                android:id="@+id/edit_text_nome_vinho"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textCapWords" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -60,11 +62,13 @@
                 android:textSize="25sp" />
 
             <EditText
+                android:id="@+id/edit_text_safra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
+                android:background="@android:drawable/editbox_background"
+                android:inputType="number" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -75,11 +79,13 @@
                 android:textSize="25sp" />
 
             <EditText
+                android:id="@+id/edit_text_tipo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textCapWords" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -90,11 +96,15 @@
                 android:textSize="25sp" />
 
             <EditText
+                android:id="@+id/edit_text_notas_degustacao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:gravity="top|start" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -105,11 +115,15 @@
                 android:textSize="25sp" />
 
             <EditText
+                android:id="@+id/edit_text_harmonizacoes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:gravity="top|start" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -120,11 +134,13 @@
                 android:textSize="25sp" />
 
             <EditText
+                android:id="@+id/edit_text_varietal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textCapWords" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -135,26 +151,13 @@
                 android:textSize="25sp" />
 
             <EditText
+                android:id="@+id/edit_text_doc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="15dp"
-                android:text="@string/safra"
-                android:textSize="25sp" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textCapWords" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -165,11 +168,13 @@
                 android:textSize="25sp" />
 
             <EditText
+                android:id="@+id/edit_text_vinicola"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textCapWords" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -180,11 +185,13 @@
                 android:textSize="25sp" />
 
             <EditText
+                android:id="@+id/edit_text_teor_alcoolico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
+                android:background="@android:drawable/editbox_background"
+                android:inputType="numberDecimal" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -195,11 +202,13 @@
                 android:textSize="25sp" />
 
             <EditText
+                android:id="@+id/edit_text_casta_produtor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textCapWords" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -210,11 +219,24 @@
                 android:textSize="25sp" />
 
             <EditText
+                android:id="@+id/edit_text_sugestoes_harmonizacao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@android:drawable/editbox_background" />
+                android:background="@android:drawable/editbox_background"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:gravity="top|start" />
+
+            <Button
+                android:id="@+id/button_salvar_vinho"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:text="@string/salvar_vinho" />
 
         </LinearLayout>
 

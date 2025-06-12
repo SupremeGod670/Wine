@@ -73,5 +73,10 @@
     <string name="acesso_nao_disponivel">Acesso não disponível para este perfil.</string>
     <string name="erro_abrir_menu">Erro ao abrir o menu!</string>
     <string name="funcao_em_desenvolvimento">Função em desenvolvimento.</string>
-
+    <string name="price">Preço:</string>
+    <string name="stock">Estoque:</string>
+    <string name="rating">Avaliação:</string>
+    <string name="aging_time">Tempo de Envelhecimento:</string>
+    <string name="serving_temperature">Temperatura de Serviço:</string>
+    <string name="acidity">Acidez:</string>
 </resources>
