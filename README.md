@@ -46,3 +46,41 @@ Sincronização Offline/Online
 Integração com Mapas (Google Maps/Mapbox)
 
 Sistema de permissões por perfil (Admin, Representante, Público)
+
+📱 Telas dos clientes
+menu_clients_activity_wine_list.xml É o menu da tela activity_wine_list.xml que lista os vinhos.
+
+menu_clients_activity_wine_form.xml É o menu da tela activity_wine_form.xml que cadastra um vinho.
+
+📱 Telas dos representantes
+menu_representation_isssuing_orders.xml É o menu da tela issuing_orders.xml que faz o pedido.
+
+menu_representation_orders_and_commissions.xml É o menu da tela orders_and_commissions.xml que mostra os pedidos e comissões.
+
+menu_representation_register_wines.xml É o menu da tela register_wines.xml que cadastra os vinhos.
+
+menu_representation_view_customers.xml É o menu da tela view_customers.xml que mostra os clientes.
+
+menu_representation_wineries.xml É o menu da tela wineries.xml que mostra as vinícolas.
+
+📱 Telas dos administradores
+menu_adm_activity_client_register.xml É o menu da tela activity_client_register.xml que cadastra um cliente.
+
+menu_adm_activity_wine_form.xml É o menu da tela activity_wine_form.xml que cadastra um vinho.
+
+menu_adm_register_adm.xml É o menu da tela register_adm.xml que cadastra um administrador.
+
+menu_adm_register_representatives.xml É o menu da tela register_representatives.xml que cadastra um representante.
+
+menu_adm_view_representatives.xml É o menu da tela view_representatives.xml que mostra os representantes.
+
+📱 Telas dos adapters (listas)
+commission_requests.xml É a tela individual que mostra as comissões.
+
+customers.xml É a tela individual que mostra os clientes.
+
+representatives.xml É a tela individual que mostra os representantes.
+
+wine.xml É a tela individual que mostra os vinhos.
+
+winerys.xml É a tela individual que mostra as vinícolas.
