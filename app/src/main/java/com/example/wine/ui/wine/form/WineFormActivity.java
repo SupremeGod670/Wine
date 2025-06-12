@@ -8,66 +8,98 @@ import com.example.wine.domain.model.Wine;
 import com.example.wine.utils.InputUtils;
 import com.example.wine.utils.ToastUtils;
 
-import java.util.UUID;
-
 public class WineFormActivity extends AppCompatActivity {
-    private EditText nameEditText, yearEditText, grapeEditText, categoryEditText, alcoholEditText, priceEditText, stockEditText, tastingNotesEditText, ratingEditText, agingEditText, tempEditText, acidityEditText, pairingEditText, commercialCategoryEditText;
-    private Button saveButton;
+    // Declaração de todos os EditTexts com os IDs do XML
+    private EditText nameEditText, yearEditText, grapeEditText, categoryEditText,
+            alcoholEditText, priceEditText, stockEditText, tastingNotesEditText,
+            ratingEditText, agingEditText, tempEditText, acidityEditText,
+            pairingEditText, commercialCategoryEditText, wineryIdEditText;
 
+    private Button saveButton;
     private WineFormController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wine_form);
+        setContentView(R.layout.activity_wine_form); // Certifique-se que o nome do layout está correto
 
-        nameEditText = findViewById(R.id.editTextWineName);
-        yearEditText = findViewById(R.id.editTextWineYear);
-        grapeEditText = findViewById(R.id.editTextWineGrape);
-        categoryEditText = findViewById(R.id.editTextWineCategory);
-        alcoholEditText = findViewById(R.id.editTextWineAlcohol);
-        priceEditText = findViewById(R.id.editTextWinePrice);
-        stockEditText = findViewById(R.id.editTextWineStock);
-        tastingNotesEditText = findViewById(R.id.editTextWineTastingNotes);
-        ratingEditText = findViewById(R.id.editTextWineRating);
-        agingEditText = findViewById(R.id.editTextWineAging);
-        tempEditText = findViewById(R.id.editTextWineTemp);
-        acidityEditText = findViewById(R.id.editTextWineAcidity);
-        pairingEditText = findViewById(R.id.editTextWinePairing);
-        commercialCategoryEditText = findViewById(R.id.editTextWineCommercialCategory);
-
-        saveButton = findViewById(R.id.buttonSaveWine);
-
+        // Inicializar o controller
         controller = new WineFormController(this);
 
-        saveButton.setOnClickListener(view -> {
-            Wine wine = new Wine();
-            wine.setId(UUID.randomUUID().toString()); // Gera um UUID como ID
-            wine.setName(nameEditText.getText().toString());
-            wine.setYear(InputUtils.safeParseInt(yearEditText.getText().toString()));
-            wine.setGrape(grapeEditText.getText().toString());
-            wine.setCategory(categoryEditText.getText().toString());
-            wine.setAlcoholPercentage(InputUtils.safeParseDouble(alcoholEditText.getText().toString()));
-            wine.setPrice(InputUtils.safeParseDouble(priceEditText.getText().toString()));
-            wine.setStock(InputUtils.safeParseInt(stockEditText.getText().toString()));
-            wine.setTastingNotes(tastingNotesEditText.getText().toString());
-            wine.setRating(InputUtils.safeParseDouble(ratingEditText.getText().toString()));
-            wine.setAgingTime(agingEditText.getText().toString());
-            wine.setServingTemperature(tempEditText.getText().toString());
-            wine.setAcidity(acidityEditText.getText().toString());
-            wine.setPairing(pairingEditText.getText().toString());
-            wine.setCommercialCategory(commercialCategoryEditText.getText().toString());
+        // Inicializar os elementos da UI com os IDs atualizados do XML
+        nameEditText = findViewById(R.id.edit_text_nome_vinho);
+        yearEditText = findViewById(R.id.edit_text_safra);
+        grapeEditText = findViewById(R.id.edit_text_varietal); // Mapeado para varietal
+        categoryEditText = findViewById(R.id.edit_text_tipo);
+        alcoholEditText = findViewById(R.id.edit_text_teor_alcoolico);
+        priceEditText = findViewById(R.id.edit_text_price);
+        stockEditText = findViewById(R.id.edit_text_stock);
+        tastingNotesEditText = findViewById(R.id.edit_text_notas_degustacao);
+        ratingEditText = findViewById(R.id.edit_text_rating);
+        agingEditText = findViewById(R.id.edit_text_aging_time);
+        tempEditText = findViewById(R.id.edit_text_serving_temperature);
+        acidityEditText = findViewById(R.id.edit_text_acidity);
+        pairingEditText = findViewById(R.id.edit_text_harmonizacoes);
+        commercialCategoryEditText = findViewById(R.id.edit_text_doc); // Mapeado para doc
+        wineryIdEditText = findViewById(R.id.edit_text_vinicola); // Mapeado para vinícola
+
+        saveButton = findViewById(R.id.button_salvar_vinho); // ID do botão salvar
+
+        saveButton.setOnClickListener(v -> {
+            // Coletar dados dos EditTexts
+            String name = nameEditText.getText().toString();
+            int year = InputUtils.safeParseInt(yearEditText.getText().toString());
+            String grape = grapeEditText.getText().toString(); // Varietal
+            String category = categoryEditText.getText().toString();
+            double alcoholPercentage = InputUtils.safeParseDouble(alcoholEditText.getText().toString());
+            double price = InputUtils.safeParseDouble(priceEditText.getText().toString());
+            int stock = InputUtils.safeParseInt(stockEditText.getText().toString());
+            String tastingNotes = tastingNotesEditText.getText().toString();
+            double rating = InputUtils.safeParseDouble(ratingEditText.getText().toString());
+            String agingTime = agingEditText.getText().toString();
+            String servingTemperature = tempEditText.getText().toString();
+            String acidity = acidityEditText.getText().toString();
+            String pairing = pairingEditText.getText().toString();
+            String commercialCategory = commercialCategoryEditText.getText().toString(); // DOC
+            String wineryId = wineryIdEditText.getText().toString(); // Vinícola
+
+            // TODO: Adicionar validações de campos obrigatórios e formato aqui
+
+            // Criar um objeto Wine usando o construtor completo do modelo de domínio
+            // O ID será gerado automaticamente pelo construtor do Wine se for um novo vinho (null).
+            // isSynced e updatedAt também serão tratados pelo construtor.
+            Wine wine = new Wine(
+                    null, // ID nulo para um novo vinho, será gerado no construtor de Wine
+                    wineryId,
+                    name,
+                    year,
+                    grape,
+                    category,
+                    alcoholPercentage,
+                    price,
+                    stock,
+                    tastingNotes,
+                    rating,
+                    agingTime,
+                    servingTemperature,
+                    acidity,
+                    pairing,
+                    commercialCategory,
+                    false, // isSynced
+                    System.currentTimeMillis(), // updatedAt
+                    false // deleted
+            );
 
             controller.saveWine(wine);
         });
     }
 
     public void showSuccessMessage() {
-        ToastUtils.showShort(this,  getString(R.string.wine_saved_success));
-        finish();
+        ToastUtils.showShort(this, getString(R.string.wine_saved_success));
+        finish(); // Fechar a Activity após salvar
     }
 
     public void showErrorMessage(String error) {
-        ToastUtils.showShort(this,  error);
+        ToastUtils.showShort(this, error);
     }
 }

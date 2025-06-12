@@ -19,6 +19,8 @@ import com.example.wine.domain.model.Region;
 import com.example.wine.data.local.entity.WineStockEntity;
 import com.example.wine.domain.model.WineStock;
 
+import java.util.UUID;
+
 public class Mapper {
 
     // Wine: Entity to Model
@@ -47,27 +49,33 @@ public class Mapper {
     }
 
     // Wine: Model to Entity
-    public static WineEntity toEntity(Wine model) {
+    public static WineEntity toEntity(Wine wine) {
         WineEntity entity = new WineEntity();
-        entity.setId(model.getId());
-        entity.setWineryId(model.getWineryId());
-        entity.setName(model.getName());
-        entity.setYear(model.getYear());
-        entity.setGrape(model.getGrape());
-        entity.setCategory(model.getCategory());
-        entity.setAlcoholPercentage(model.getAlcoholPercentage());
-        entity.setPrice(model.getPrice());
-        entity.setStock(model.getStock());
-        entity.setTastingNotes(model.getTastingNotes());
-        entity.setRating(model.getRating());
-        entity.setAgingTime(model.getAgingTime());
-        entity.setServingTemperature(model.getServingTemperature());
-        entity.setAcidity(model.getAcidity());
-        entity.setPairing(model.getPairing());
-        entity.setCommercialCategory(model.getCommercialCategory());
-        entity.setSynced(model.isSynced());
-        entity.setUpdatedAt(model.getUpdatedAt());
-        entity.setDeleted(model.isDeleted());
+        // Se o ID for nulo (novo vinho), o WineEntity irá gerar um UUID.
+        // Caso contrário, usa o ID existente para atualizações.
+        if (wine.getId() != null && !wine.getId().isEmpty()) {
+            entity.setId(wine.getId());
+        } else {
+            entity.setId(UUID.randomUUID().toString()); // Garante que um ID é gerado se o modelo não tiver um
+        }
+        entity.setWineryId(wine.getWineryId());
+        entity.setName(wine.getName());
+        entity.setYear(wine.getYear());
+        entity.setGrape(wine.getGrape());
+        entity.setCategory(wine.getCategory());
+        entity.setAlcoholPercentage(wine.getAlcoholPercentage());
+        entity.setPrice(wine.getPrice());
+        entity.setStock(wine.getStock());
+        entity.setTastingNotes(wine.getTastingNotes());
+        entity.setRating(wine.getRating());
+        entity.setAgingTime(wine.getAgingTime());
+        entity.setServingTemperature(wine.getServingTemperature());
+        entity.setAcidity(wine.getAcidity());
+        entity.setPairing(wine.getPairing());
+        entity.setCommercialCategory(wine.getCommercialCategory());
+        entity.setSynced(wine.isSynced());
+        entity.setUpdatedAt(wine.getUpdatedAt());
+        entity.setDeleted(wine.isDeleted());
         return entity;
     }
 

@@ -16,7 +16,7 @@ public class WineFormController {
 
     public WineFormController(WineFormActivity activity) {
         this.activity = activity;
-        WineDao wineDao = AppDatabase.getInstance(activity.getApplicationContext()).wineDao();
+        WineDao wineDao = AppDatabase.getDatabase(activity.getApplicationContext()).wineDao();
         WineLocalDataSource localDataSource = new WineLocalDataSource(wineDao);
         WineRemoteDataSource remoteDataSource = new WineRemoteDataSource();
         this.repository = new WineRepositoryImpl(localDataSource, remoteDataSource, activity.getApplicationContext());

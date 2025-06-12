@@ -42,7 +42,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract RegionDao regionDao();
     public abstract WineStockDao wineStockDao(); // NOVO MÉTODO
 
-    public static synchronized AppDatabase getInstance(Context context) {
+    public static synchronized AppDatabase getDatabase(Context context) {
         if (INSTANCE == null) {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             AppDatabase.class, "wine_database")
