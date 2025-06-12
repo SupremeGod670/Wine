@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.wine.R;
-import com.example.wine.ui.representative.RepresentativeDashboardActivity;
 import com.example.wine.ui.client.ClientRegisterActivity;
 import com.example.wine.ui.wine.list.WineListActivity;
 import com.example.wine.utils.ToastUtils;

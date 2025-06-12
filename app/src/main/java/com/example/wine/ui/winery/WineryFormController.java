@@ -18,7 +18,7 @@ public class WineryFormController {
         this.view = view;
 
         // Inicializa o repository conforme o padrão do projeto
-        WineryDao wineryDao = AppDatabase.getInstance(view.getApplicationContext()).wineryDao();
+        WineryDao wineryDao = AppDatabase.getDatabase(view.getApplicationContext()).wineryDao();
         WineryLocalDataSource localDataSource = new WineryLocalDataSource(wineryDao);
         WineryRemoteDataSource remoteDataSource = new WineryRemoteDataSource();
 
