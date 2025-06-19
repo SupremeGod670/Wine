@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.wine">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -19,7 +20,7 @@
         android:theme="@style/Theme.Wine"
         tools:targetApi="31">
 
-
+        <!-- Tela inicial -->
         <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true">
@@ -29,22 +30,18 @@
             </intent-filter>
         </activity>
 
-
-      
-
         <!-- Telas de autenticação -->
-        <activity android:name=".ui.login.LoginActivity"/> <!-- Tela de Login -->
+        <activity android:name=".ui.login.LoginActivity" />
 
         <!-- Telas de cadastro (Acesso conforme permissão) -->
-        <activity android:name=".ui.client.ClientRegisterActivity"/><!-- Cadastro de Cliente -->
-        <activity android:name=".ui.wine.form.WineFormActivity" /><!-- Cadastro de Vinho -->
-        <activity android:name=".ui.register.RegisterWineActivity"
-            android:exported="true">
-        </activity>
+        <activity android:name=".ui.client.ClientRegisterActivity" />
+        <activity android:name=".ui.wine.form.WineFormActivity" />
+        <activity
+            android:name=".ui.admin.RegisterAdminActivity"
+            android:exported="true" />
 
         <!-- Telas de visualização/listagem -->
-        <activity android:name=".ui.wine.list.WineListActivity" /> <!-- Listagem de Vinhos -->
-
+        <activity android:name=".ui.wine.list.WineListActivity" />
 
     </application>
 </manifest>

@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Simula autenticação e nível de acesso
-                String userRole = "REPRESENTATIVE"; // Altere para "REPRESENTATIVE" ou "ADMIN" para testar
+                String userRole = "ADMIN"; // Altere para "REPRESENTATIVE" ou "ADMIN" para testar
 
                 Intent intent;
                 switch (userRole) {
