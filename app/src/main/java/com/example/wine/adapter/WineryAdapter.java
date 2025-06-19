@@ -5,15 +5,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
 import com.example.wine.R;
 
 import java.util.ArrayList;
 
 public class WineryAdapter extends BaseAdapter {
-
-    private ArrayList<WineryModel> listVinicola;
-    private Activity activity;
+    private final ArrayList<WineryModel> listVinicola;
+    private final Activity activity;
 
     public WineryAdapter(Activity activity, ArrayList<WineryModel> listVinicola) {
         this.activity = activity;

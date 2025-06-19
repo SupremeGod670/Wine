@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 public class WineAdapter extends BaseAdapter {
 
-    private ArrayList<WineModel> listWine;
-    private Activity activity;
+    private final ArrayList<WineModel> listWine;
+    private final Activity activity;
 
     public WineAdapter(Activity activity, ArrayList<WineModel> listWine) {
         this.activity = activity;
@@ -33,28 +33,30 @@ public class WineAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
-
         if (view == null) {
             view = activity.getLayoutInflater().inflate(R.layout.wine, viewGroup, false);
         }
 
         WineModel wine = listWine.get(position);
-        ImageView iwine = view.findViewById(R.id.wine);
+
+        ImageView imageWine = view.findViewById(R.id.wine);
         TextView nome = view.findViewById(R.id.nome);
         TextView varietal = view.findViewById(R.id.varietal);
         TextView doc = view.findViewById(R.id.doc);
         TextView safra = view.findViewById(R.id.safra);
+        TextView vinicola = view.findViewById(R.id.vinicola);
 
         nome.setText(wine.getNome());
         varietal.setText(wine.getVarietal());
         doc.setText(wine.getDoc());
         safra.setText(wine.getSafra());
+        vinicola.setText(wine.getVinicola());
 
-        return null;
+        return view;
     }
 }
