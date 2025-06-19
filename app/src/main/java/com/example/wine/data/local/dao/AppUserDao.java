@@ -1,4 +1,3 @@
-// Caminho: com.example.wine.data.local.dao/AppUserDao.java
 package com.example.wine.data.local.dao;
 
 import androidx.room.Dao;
@@ -7,10 +6,12 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 import com.example.wine.data.local.entity.AppUserEntity;
+
 import java.util.List;
 
 @Dao
 public interface AppUserDao {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(AppUserEntity user);
 
@@ -34,4 +35,10 @@ public interface AppUserDao {
 
     @Query("UPDATE app_user SET deleted = 1 WHERE id = :id")
     void softDelete(String id);
+
+    @Query("SELECT * FROM app_user WHERE role = 'ADMIN'")
+    List<AppUserEntity> getAllAdmins();
+
+    @Query("SELECT * FROM app_user WHERE email = :email AND password_hash = :passwordHash LIMIT 1")
+    AppUserEntity login(String email, String passwordHash);
 }
