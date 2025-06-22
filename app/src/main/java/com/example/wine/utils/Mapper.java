@@ -6,6 +6,7 @@ import com.example.wine.ui.SaleCreateDisplay.ClientSpinnerModel;
 import com.example.wine.ui.SaleCreateDisplay.RepresentativeSpinnerModel;
 import com.example.wine.ui.SaleDisplay.SaleDisplayModel;
 import com.example.wine.ui.representative.RepresentativeDisplayModel;
+import com.example.wine.ui.adminDisplay.AdminDisplayModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,9 +20,14 @@ public class Mapper {
         return new ClientSpinnerModel(client.getId(), client.getName());
     }
 
+    public static AdminDisplayModel toAdminDisplayModel(AppUser appUser) {
+        if (appUser == null) return null;
+        return new AdminDisplayModel(appUser.getId(), appUser.getName(), appUser.getEmail(), appUser.getRole());
+    }
+
     public static RepresentativeSpinnerModel toRepresentativeSpinnerModel(Representative representative) {
         if (representative == null) return null;
-        return new RepresentativeSpinnerModel(representative.getId(), "Rep. " + representative.getUserId().substring(0,4));
+        return new RepresentativeSpinnerModel(representative.getId(), "Rep. " + representative.getUserId().substring(0, 4));
     }
 
     public static RepresentativeDisplayModel toRepresentativeDisplayModel(Representative representative, AppUser appUser) {
@@ -55,20 +61,6 @@ public class Mapper {
         return wine;
     }
 
-    public static SaleDisplayModel toSaleDisplayModel(Sale sale, Client client) {
-        if (sale == null || client == null) return null;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-        String formattedDate = dateFormat.format(new Date(sale.getSaleDate()));
-        return new SaleDisplayModel(
-                sale.getId(),
-                client.getName(),
-                formattedDate,
-                sale.getTotal(),
-                client.getLatitude(),
-                client.getLongitude()
-        );
-    }
-
     public static WineEntity toEntity(Wine wine) {
         WineEntity entity = new WineEntity();
         entity.setId(wine.getId() != null && !wine.getId().isEmpty() ? wine.getId() : UUID.randomUUID().toString());
@@ -91,6 +83,20 @@ public class Mapper {
         entity.setUpdatedAt(wine.getUpdatedAt());
         entity.setDeleted(wine.isDeleted());
         return entity;
+    }
+
+    public static SaleDisplayModel toSaleDisplayModel(Sale sale, Client client) {
+        if (sale == null || client == null) return null;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String formattedDate = dateFormat.format(new Date(sale.getSaleDate()));
+        return new SaleDisplayModel(
+                sale.getId(),
+                client.getName(),
+                formattedDate,
+                sale.getTotal(),
+                client.getLatitude(),
+                client.getLongitude()
+        );
     }
 
     public static Winery toDomain(WineryEntity entity) {
@@ -195,7 +201,7 @@ public class Mapper {
         if (model == null) return null;
         ClientEntity entity = new ClientEntity();
         entity.setId(model.getId());
-        entity.setUserId(model.getUserId()); // ✅ ESSENCIAL: resolver erro de NOT NULL
+        entity.setUserId(model.getUserId()); // Corrigido: garantir userId
         entity.setName(model.getName());
         entity.setPhone(model.getPhone());
         entity.setEmail(model.getEmail());

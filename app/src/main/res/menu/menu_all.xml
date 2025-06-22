@@ -62,4 +62,14 @@
 
     </group>
 
+    <group android:id="@+id/rotas">
+
+        <item android:id="@+id/otimizaRota"
+            android:title="@string/otimizar_rota"
+            android:icon="@drawable/group"/>
+
+    </group>
+
+
+
 </menu>
