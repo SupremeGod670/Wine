@@ -41,4 +41,5 @@ public interface AppUserDao {
 
     @Query("SELECT * FROM app_user WHERE email = :email AND password_hash = :passwordHash LIMIT 1")
     AppUserEntity login(String email, String passwordHash);
+
 }

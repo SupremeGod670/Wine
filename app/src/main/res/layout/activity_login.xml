@@ -23,6 +23,7 @@
 
     <EditText
         style="@style/EDITTEXT"
+        android:id="@+id/editTextEmail"
         android:layout_width="306dp"
         android:layout_height="54dp"
         android:layout_marginStart="20dp"
@@ -40,6 +41,7 @@
 
     <EditText
         style="@style/EDITTEXT"
+        android:id="@+id/editTextPassword"
         android:layout_width="306dp"
         android:layout_height="54dp"
         android:layout_marginStart="20dp"

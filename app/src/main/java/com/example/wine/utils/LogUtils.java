@@ -6,7 +6,7 @@ import android.util.Log;
 import com.example.wine.data.local.entity.WineryEntity;
 import com.example.wine.domain.model.AppUser;
 import com.example.wine.domain.model.Wine;
-
+import com.example.wine.data.local.entity.AppUserEntity;
 import java.util.List;
 
 public class LogUtils {
@@ -66,5 +66,24 @@ public class LogUtils {
                 + " | Sincronizado: " + user.isSynced()
                 + " | Deletado: " + user.isDeleted()
                 + " | Atualizado em: " + user.getUpdatedAt());
+    }
+
+    public static void logAppUserEntities(List<AppUserEntity> users) {
+        Log.d("LOG_AppUserEntity", "---- Listando todos os usuários locais ----");
+        if (users == null || users.isEmpty()) {
+            Log.d("LOG_AppUserEntity", "Nenhum usuário encontrado.");
+        } else {
+            for (AppUserEntity user : users) {
+                Log.d("LOG_AppUserEntity", "ID: " + user.getId()
+                        + " | Nome: " + user.getName()
+                        + " | Email: " + user.getEmail()
+                        + " | SenhaHash: " + user.getPasswordHash()
+                        + " | Papel: " + user.getRole()
+                        + " | Sincronizado: " + user.isSynced()
+                        + " | Deletado: " + user.isDeleted()
+                        + " | Atualizado em: " + user.getUpdatedAt());
+            }
+        }
+        Log.d("LOG_AppUserEntity", "-------------------------------------------");
     }
 }

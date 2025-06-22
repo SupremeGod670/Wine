@@ -9,7 +9,9 @@ import com.example.wine.data.local.AppDatabaseProvider;
 import com.example.wine.data.local.dao.AppUserDao;
 import com.example.wine.domain.model.AppUser;
 import com.example.wine.utils.ToastUtils;
+import com.example.wine.utils.HashUtils;
 import com.example.wine.utils.LogUtils;
+
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -38,7 +40,7 @@ public class RegisterAdminController {
                 user.setId(UUID.randomUUID().toString());
                 user.setName(name);
                 user.setEmail(email);
-                user.setPasswordHash(String.valueOf(password.hashCode())); // SHA-256 futuramente
+                user.setPasswordHash(HashUtils.sha256(password)); // ✅ SHA-256 aplicado
                 user.setRole("ADMIN");
                 user.setSynced(false);
                 user.setUpdatedAt(System.currentTimeMillis());
@@ -46,10 +48,10 @@ public class RegisterAdminController {
 
                 dataSource.insert(user);
 
-                // Loga os dados no Logcat
+                // Log opcional
                 //LogUtils.logAppUser(user);
 
-                // Toast na thread principal
+                // Notifica na thread principal
                 uiHandler.post(() ->
                         ToastUtils.showShort(context, "Administrador cadastrado com sucesso!")
                 );
