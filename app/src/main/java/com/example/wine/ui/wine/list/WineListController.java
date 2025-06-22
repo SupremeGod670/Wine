@@ -43,7 +43,7 @@ public class WineListController {
     public WineAdapter getAdapter() {
         return adapter;
     }
-    private void loadWines() {
+    public void loadWines() {
         Executors.newSingleThreadExecutor().execute(() -> {
             List<Wine> wineList = dataSource.getAll();
 
