@@ -9,31 +9,31 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.wine.R;
 import com.example.wine.utils.ToastUtils;
 
-public class RegisterAdminActivity extends AppCompatActivity {
+public class RegisterClientByAdminActivity extends AppCompatActivity {
 
     private EditText editTextName, editTextEmail, editTextPassword;
-    private Button buttonFinishRegister;
-    private RegisterAdminController controller;
+    private Button buttonRegister;
+    private RegisterClientByAdminController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register_adm);
+        setContentView(R.layout.activity_client_register);
 
         editTextName = findViewById(R.id.editTextName);
         editTextEmail = findViewById(R.id.editTextEmail);
-        editTextPassword = findViewById(R.id.editTextPassword);
-        buttonFinishRegister = findViewById(R.id.buttonSave);
+        editTextPassword = findViewById(R.id.etClientPassword);
+        buttonRegister = findViewById(R.id.buttonFinishRegister);
 
-        controller = new RegisterAdminController(this);
+        controller = new RegisterClientByAdminController(this);
 
-        buttonFinishRegister.setOnClickListener(v -> {
+        buttonRegister.setOnClickListener(v -> {
             String name = editTextName.getText().toString().trim();
             String email = editTextEmail.getText().toString().trim();
             String password = editTextPassword.getText().toString().trim();
 
             if (controller.validateInput(name, email, password)) {
-                controller.registerAdmin(name, email, password);
+                controller.registerClient(name, email, password);
             } else {
                 ToastUtils.showShort(this, "Preencha todos os campos corretamente.");
             }

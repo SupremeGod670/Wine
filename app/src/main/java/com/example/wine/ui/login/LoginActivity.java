@@ -12,6 +12,7 @@ import com.example.wine.R;
 import com.example.wine.data.local.AppDatabaseProvider;
 import com.example.wine.data.local.dao.AppUserDao;
 import com.example.wine.data.local.entity.AppUserEntity;
+import com.example.wine.ui.client.ClientRegisterActivity;
 import com.example.wine.ui.wine.list.WineListActivity;
 import com.example.wine.utils.AccessUtils;
 import com.example.wine.utils.HashUtils;
@@ -76,7 +77,8 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         registerButton.setOnClickListener(v -> {
-            ToastUtils.showShort(this, "Cadastro de cliente ainda não implementado.");
+            Intent intent = new Intent(this, ClientRegisterActivity.class);
+            startActivity(intent);
         });
     }
 
