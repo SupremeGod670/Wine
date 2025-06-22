@@ -1,5 +1,6 @@
 package com.example.wine.ui.wine.list;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.ImageButton;
@@ -9,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.wine.R;
+import com.example.wine.adapter.WineModel;
+import com.example.wine.ui.wine.detail.WineDetailActivity;
 import com.example.wine.utils.AccessUtils;
 import com.example.wine.utils.NavigationUtils;
 import com.google.android.material.navigation.NavigationView;
@@ -51,6 +54,16 @@ public class WineListActivity extends AppCompatActivity {
 
         // Botão de abrir menu
         menuButton.setOnClickListener(view -> controller.openMenu());
+
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            WineModel wine = (WineModel) parent.getItemAtPosition(position);
+
+            Intent intent = new Intent(WineListActivity.this, WineDetailActivity.class);
+            intent.putExtra("wine", wine); // <-- Envia o objeto inteiro
+            startActivity(intent);
+        });
+
+
 
         // Configuração do comportamento dos cliques no menu
         NavigationUtils.setupNavigation(this, navigationView, drawerLayout);
