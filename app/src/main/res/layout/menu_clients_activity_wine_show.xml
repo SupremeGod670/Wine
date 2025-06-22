@@ -8,7 +8,6 @@
     android:layout_height="match_parent"
     tools:openDrawer="start">
 
-    <include layout="@layout/activity_wine_show"/>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"

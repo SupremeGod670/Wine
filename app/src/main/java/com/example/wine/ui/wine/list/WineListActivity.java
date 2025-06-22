@@ -1,5 +1,6 @@
 package com.example.wine.ui.wine.list;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -35,7 +36,7 @@ public class WineListActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
 
-        // Carrega o menu completo, o controle de visibilidade será feito pelo NavigationUtils
+        // Carrega o menu completo, controle de visibilidade será feito pelo NavigationUtils
         navigationView.getMenu().clear();
         navigationView.inflateMenu(R.menu.menu_all);
 
@@ -56,10 +57,10 @@ public class WineListActivity extends AppCompatActivity {
             }
         });
 
-        // Botão para abrir menu
+        // Botão para abrir menu lateral
         menuButton.setOnClickListener(view -> controller.openMenu());
 
-        // Ao clicar em um vinho da lista
+        // Clique curto: ver detalhes do vinho
         listView.setOnItemClickListener((parent, view, position, id) -> {
             WineModel wine = (WineModel) parent.getItemAtPosition(position);
             Intent intent = new Intent(WineListActivity.this, WineDetailActivity.class);
@@ -67,7 +68,27 @@ public class WineListActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Aplica o controle de permissão e comportamento do menu lateral
+        // Clique longo: excluir vinho
+        listView.setOnItemLongClickListener((parent, view, position, id) -> {
+            WineModel wine = (WineModel) parent.getItemAtPosition(position);
+
+            new AlertDialog.Builder(WineListActivity.this)
+                    .setTitle("Excluir Vinho")
+                    .setMessage("Deseja excluir o vinho \"" + wine.getNome() + "\"?")
+                    .setPositiveButton("Sim", (dialog, which) -> controller.deleteWine(wine))
+                    .setNegativeButton("Cancelar", null)
+                    .show();
+
+            return true;
+        });
+
+        // Configura o comportamento dos cliques no menu e visibilidade por permissão
         NavigationUtils.setupNavigation(this, navigationView, drawerLayout);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        controller.loadWines();
     }
 }
