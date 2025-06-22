@@ -43,6 +43,7 @@
         <activity android:name=".ui.wine.form.WineFormActivity" /><!-- Cadastro de Vinho -->
         <activity android:name=".ui.admin.RegisterRepresentativeActivity" />
         <activity android:name=".ui.winery.form.WineryFormActivity"/>
+        <activity android:name=".ui.SaleCreateDisplay.CreateSaleActivity"/>
         <!-- Telas de visualização/listagem -->
         <activity android:name=".ui.wine.list.WineListActivity" /> <!-- Listagem de Vinhos -->
         <activity android:name=".ui.wine.detail.WineDetailActivity" />
