@@ -18,10 +18,49 @@ import com.example.wine.data.local.entity.RegionEntity;
 import com.example.wine.domain.model.Region;
 import com.example.wine.data.local.entity.WineStockEntity;
 import com.example.wine.domain.model.WineStock;
+import com.example.wine.ui.SaleDisplay.SaleDisplayModel;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import com.example.wine.data.local.entity.*;
+import com.example.wine.domain.model.*;
+import com.example.wine.ui.SaleCreateDisplay.ClientSpinnerModel; // NOVO IMPORT
+import com.example.wine.ui.SaleCreateDisplay.RepresentativeSpinnerModel; // NOVO IMPORT
+import com.example.wine.ui.SaleCreateDisplay.WineSaleItemModel;
 
 import java.util.UUID;
 
 public class Mapper {
+
+    public static ClientSpinnerModel toClientSpinnerModel(Client client) {
+        if (client == null) return null;
+        return new ClientSpinnerModel(client.getId(), client.getName());
+    }
+
+    // NOVO: Mapear Representative para RepresentativeSpinnerModel
+    // Nota: Assumo que o nome do representante virá do AppUser,
+    // mas aqui mapeio o ID para um nome simples por enquanto.
+    // Se precisar do nome real do AppUser, o ViewModel precisaria buscar o AppUser e passar aqui.
+    public static RepresentativeSpinnerModel toRepresentativeSpinnerModel(Representative representative) {
+        if (representative == null) return null;
+        // Adapte esta linha se tiver o nome real do AppUser
+        return new RepresentativeSpinnerModel(representative.getId(), "Rep. " + representative.getUserId().substring(0,4));
+    }
+
+    // (Mantenha o toSaleDisplayModel existente)
+//    public static SaleDisplayModel toSaleDisplayModel(Sale sale, Client client) {
+//        if (sale == null || client == null) return null;
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+//        String formattedDate = dateFormat.format(new Date(sale.getSaleDate()));
+//        return new SaleDisplayModel(
+//                sale.getId(),
+//                client.getName(),
+//                formattedDate,
+//                sale.getTotal(),
+//                client.getLatitude(),
+//                client.getLongitude()
+//        );
+//    }
 
     // Wine: Entity to Model
     public static Wine toModel(WineEntity entity) {
@@ -46,6 +85,23 @@ public class Mapper {
         wine.setUpdatedAt(entity.getUpdatedAt());
         wine.setDeleted(entity.isDeleted());
         return wine;
+    }
+
+    public static SaleDisplayModel toSaleDisplayModel(Sale sale, Client client) {
+        if (sale == null || client == null) return null;
+
+        // Formata a data para exibição (ex: DD/MM/AAAA)
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String formattedDate = dateFormat.format(new Date(sale.getSaleDate()));
+
+        return new SaleDisplayModel(
+                sale.getId(),
+                client.getName(),
+                formattedDate,
+                sale.getTotal(),
+                client.getLatitude(),
+                client.getLongitude()
+        );
     }
 
     // Wine: Model to Entity
