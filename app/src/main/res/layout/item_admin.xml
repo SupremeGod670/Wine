@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="@drawable/item_background_rounded"
+    android:layout_marginBottom="8dp"
+    android:elevation="2dp">
+
+    <TextView
+        android:id="@+id/textViewAdminName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nome do Administrador"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewAdminEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Email: admin@email.com"
+        android:textSize="14sp"
+        android:textColor="@color/text_color_dark" />
+
+    <TextView
+        android:id="@+id/textViewAdminRole"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Função: ADMIN"
+        android:textSize="14sp"
+        android:textColor="@color/text_color_dark" />
+
+</LinearLayout>
