@@ -54,13 +54,8 @@ public class LoginActivity extends AppCompatActivity {
             String hashed = HashUtils.sha256(password);
 
             Executors.newSingleThreadExecutor().execute(() -> {
-                Log.d("LOGIN_DEBUG", "Tentando login com:");
-                Log.d("LOGIN_DEBUG", "Email: " + email);
-                Log.d("LOGIN_DEBUG", "Senha original: " + password);
-                Log.d("LOGIN_DEBUG", "Hash gerado: " + hashed);
-
-                List<AppUserEntity> allUsers = userDao.getAll();
-                //LogUtils.logAppUserEntities(allUsers);
+                /*List<AppUserEntity> allUsers = userDao.getAll();
+                LogUtils.logAppUserEntities(allUsers);*/
 
                 AppUserEntity user = userDao.login(email, hashed);
 

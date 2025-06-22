@@ -37,10 +37,12 @@
         <activity android:name=".ui.login.LoginActivity"/> <!-- Tela de Login -->
         <activity
             android:name=".ui.admin.RegisterAdminActivity"/>
+
         <!-- Telas de cadastro (Acesso conforme permissão) -->
         <activity android:name=".ui.client.ClientRegisterActivity"/><!-- Cadastro de Cliente -->
         <activity android:name=".ui.wine.form.WineFormActivity" /><!-- Cadastro de Vinho -->
         <activity android:name=".ui.admin.RegisterRepresentativeActivity" />
+        <activity android:name=".ui.winery.form.WineryFormActivity"/>
         <!-- Telas de visualização/listagem -->
         <activity android:name=".ui.wine.list.WineListActivity" /> <!-- Listagem de Vinhos -->
         <activity android:name=".ui.wine.detail.WineDetailActivity" />

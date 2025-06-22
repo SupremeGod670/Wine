@@ -23,6 +23,6 @@
     </style>
 
     <!-- Exemplo de como você pode ter um drawable/menu.xml -->
-    <drawable name="menu">@android:drawable/ic_menu_sort_by_size</drawable>
+    <drawable name="menu_icon">@android:drawable/ic_menu_sort_by_size</drawable>
     <!-- Você precisará substituir com o seu drawable real para o ícone de menu -->
 </resources>

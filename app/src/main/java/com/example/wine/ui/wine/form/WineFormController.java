@@ -56,8 +56,8 @@ public class WineFormController {
         new Thread(() -> {
             repository.insert(wine);
             activity.runOnUiThread(activity::showSuccessMessage);
-            List<Wine> wines = repository.getAll();
-            com.example.wine.utils.LogUtils.logWines(wines);
+            /*List<Wine> wines = repository.getAll();
+            com.example.wine.utils.LogUtils.logWines(wines);*/
         }).start();
     }
 }
