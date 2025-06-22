@@ -1,5 +1,6 @@
 package com.example.wine.ui.wine.list;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -79,6 +80,22 @@ public class WineListActivity extends AppCompatActivity {
             intent.putExtra("wine", wine); // <-- Envia o objeto inteiro
             startActivity(intent);
         });
+
+        listView.setOnItemLongClickListener((parent, view, position, id) -> {
+            WineModel wine = (WineModel) parent.getItemAtPosition(position);
+
+            new AlertDialog.Builder(WineListActivity.this)
+                    .setTitle("Excluir Vinho")
+                    .setMessage("Deseja excluir o vinho \"" + wine.getNome() + "\"?")
+                    .setPositiveButton("Sim", (dialog, which) -> {
+                        controller.deleteWine(wine);
+                    })
+                    .setNegativeButton("Cancelar", null)
+                    .show();
+
+            return true;
+        });
+
 
 
 
