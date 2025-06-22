@@ -34,7 +34,8 @@
 
         <!-- Telas de autenticação -->
         <activity android:name=".ui.login.LoginActivity"/> <!-- Tela de Login -->
-
+        <activity
+            android:name=".ui.admin.RegisterAdminActivity"/>
         <!-- Telas de cadastro (Acesso conforme permissão) -->
         <activity android:name=".ui.client.ClientRegisterActivity"/><!-- Cadastro de Cliente -->
         <activity android:name=".ui.wine.form.WineFormActivity" /><!-- Cadastro de Vinho -->
