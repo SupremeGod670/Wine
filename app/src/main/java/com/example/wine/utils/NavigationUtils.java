@@ -11,11 +11,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.wine.R;
 import com.example.wine.ui.SaleCreateDisplay.CreateSaleActivity;
 import com.example.wine.ui.admin.RegisterAdminActivity;
+import com.example.wine.ui.admin.RegisterClientByAdminActivity;
 import com.example.wine.ui.admin.RegisterRepresentativeActivity;
 import com.example.wine.ui.client.ClientRegisterActivity;
 import com.example.wine.ui.wine.form.WineFormActivity;
 import com.example.wine.ui.wine.list.WineListActivity;
-
 import com.example.wine.ui.winery.form.WineryFormActivity;
 import com.example.wine.ui.winery.list.WineryListActivity;
 import com.google.android.material.navigation.NavigationView;
@@ -30,11 +30,11 @@ public class NavigationUtils {
     // Mapeamento dos itens do menu para suas respectivas Activities
     private static final Map<Integer, Class<? extends Activity>> MENU_ACTIVITY_MAP = new HashMap<>();
     static {
-        MENU_ACTIVITY_MAP.put(R.id.vinhos, WineFormActivity.class);                          // Cadastro de vinhos
-        MENU_ACTIVITY_MAP.put(R.id.adm, RegisterAdminActivity.class);                       // Cadastro de administradores
-        MENU_ACTIVITY_MAP.put(R.id.clientes, ClientRegisterActivity.class);                 // Cadastro de clientes
-        MENU_ACTIVITY_MAP.put(R.id.representantes, RegisterRepresentativeActivity.class);   // Cadastro de representantes
-        MENU_ACTIVITY_MAP.put(R.id.CadastrarPedido, CreateSaleActivity.class);  // Cadastro Pedido
+        MENU_ACTIVITY_MAP.put(R.id.vinhos, WineFormActivity.class);
+        MENU_ACTIVITY_MAP.put(R.id.adm, RegisterAdminActivity.class);
+        MENU_ACTIVITY_MAP.put(R.id.clientes, RegisterClientByAdminActivity.class);
+        MENU_ACTIVITY_MAP.put(R.id.representantes, RegisterRepresentativeActivity.class);
+        MENU_ACTIVITY_MAP.put(R.id.CadastrarPedido, CreateSaleActivity.class);
         MENU_ACTIVITY_MAP.put(R.id.cadastro_vinicola, WineryFormActivity.class);
         MENU_ACTIVITY_MAP.put(R.id.lista_vinicola, WineryListActivity.class);
     }
@@ -56,9 +56,7 @@ public class NavigationUtils {
         MENU_ACCESS_MAP.put(R.id.adm, adminOnly);
         MENU_ACCESS_MAP.put(R.id.representantes, adminOnly);
         MENU_ACCESS_MAP.put(R.id.vrepresentantes, adminOnly);
-
-        // Acesso exclusivo do representante
-        MENU_ACCESS_MAP.put(R.id.clientes, repOnly);
+        MENU_ACCESS_MAP.put(R.id.clientes, adminOnly);
 
         // Acesso compartilhado
         MENU_ACCESS_MAP.put(R.id.vinhos, both);
