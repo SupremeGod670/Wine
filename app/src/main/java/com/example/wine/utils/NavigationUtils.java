@@ -10,16 +10,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.wine.R;
 import com.example.wine.ui.SaleCreateDisplay.CreateSaleActivity;
-import com.example.wine.ui.admin.RegisterAdminActivity;
-import com.example.wine.ui.admin.RegisterClientByAdminActivity;
-import com.example.wine.ui.admin.RegisterRepresentativeActivity;
-import com.example.wine.ui.client.ClientRegisterActivity;
+import com.example.wine.ui.Users.Admin.RegisterAdminActivity;
+import com.example.wine.ui.Users.Client.RegisterClientByAdminActivity;
+import com.example.wine.ui.Users.Representative.RegisterRepresentativeActivity;
 import com.example.wine.ui.wine.form.WineFormActivity;
-import com.example.wine.ui.wine.list.WineListActivity;
 import com.example.wine.ui.winery.form.WineryFormActivity;
 import com.example.wine.ui.winery.list.WineryListActivity;
 import com.google.android.material.navigation.NavigationView;
-
+import com.example.wine.ui.representative.RepresentativeListActivity;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -37,6 +35,7 @@ public class NavigationUtils {
         MENU_ACTIVITY_MAP.put(R.id.CadastrarPedido, CreateSaleActivity.class);
         MENU_ACTIVITY_MAP.put(R.id.cadastro_vinicola, WineryFormActivity.class);
         MENU_ACTIVITY_MAP.put(R.id.lista_vinicola, WineryListActivity.class);
+        MENU_ACTIVITY_MAP.put(R.id.vrepresentantes, RepresentativeListActivity.class);
     }
 
     // Controle de acesso por perfil de usuário

@@ -1,34 +1,15 @@
 package com.example.wine.utils;
 
-import com.example.wine.data.local.entity.WineEntity;
-import com.example.wine.domain.model.Wine;
-import com.example.wine.data.local.entity.WineryEntity;
-import com.example.wine.domain.model.Winery;
-import com.example.wine.data.local.entity.AppUserEntity;
-import com.example.wine.domain.model.AppUser;
-import com.example.wine.data.local.entity.RepresentativeEntity;
-import com.example.wine.domain.model.Representative;
-import com.example.wine.data.local.entity.ClientEntity;
-import com.example.wine.domain.model.Client;
-import com.example.wine.data.local.entity.SaleEntity;
-import com.example.wine.domain.model.Sale;
-import com.example.wine.data.local.entity.SaleItemEntity;
-import com.example.wine.domain.model.SaleItem;
-import com.example.wine.data.local.entity.RegionEntity;
-import com.example.wine.domain.model.Region;
-import com.example.wine.data.local.entity.WineStockEntity;
-import com.example.wine.domain.model.WineStock;
+import com.example.wine.data.local.entity.*;
+import com.example.wine.domain.model.*;
+import com.example.wine.ui.SaleCreateDisplay.ClientSpinnerModel;
+import com.example.wine.ui.SaleCreateDisplay.RepresentativeSpinnerModel;
 import com.example.wine.ui.SaleDisplay.SaleDisplayModel;
+import com.example.wine.ui.representative.RepresentativeDisplayModel;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import com.example.wine.data.local.entity.*;
-import com.example.wine.domain.model.*;
-import com.example.wine.ui.SaleCreateDisplay.ClientSpinnerModel; // NOVO IMPORT
-import com.example.wine.ui.SaleCreateDisplay.RepresentativeSpinnerModel; // NOVO IMPORT
-import com.example.wine.ui.SaleCreateDisplay.WineSaleItemModel;
-import com.example.wine.ui.representative.RepresentativeDisplayModel;
-
 import java.util.UUID;
 
 public class Mapper {
@@ -38,32 +19,10 @@ public class Mapper {
         return new ClientSpinnerModel(client.getId(), client.getName());
     }
 
-    // NOVO: Mapear Representative para RepresentativeSpinnerModel
-    // Nota: Assumo que o nome do representante virá do AppUser,
-    // mas aqui mapeio o ID para um nome simples por enquanto.
-    // Se precisar do nome real do AppUser, o ViewModel precisaria buscar o AppUser e passar aqui.
     public static RepresentativeSpinnerModel toRepresentativeSpinnerModel(Representative representative) {
         if (representative == null) return null;
-        // Adapte esta linha se tiver o nome real do AppUser
         return new RepresentativeSpinnerModel(representative.getId(), "Rep. " + representative.getUserId().substring(0,4));
     }
-
-    // (Mantenha o toSaleDisplayModel existente)
-//    public static SaleDisplayModel toSaleDisplayModel(Sale sale, Client client) {
-//        if (sale == null || client == null) return null;
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-//        String formattedDate = dateFormat.format(new Date(sale.getSaleDate()));
-//        return new SaleDisplayModel(
-//                sale.getId(),
-//                client.getName(),
-//                formattedDate,
-//                sale.getTotal(),
-//                client.getLatitude(),
-//                client.getLongitude()
-//        );
-//    }
-
-    // Wine: Entity to Model
 
     public static RepresentativeDisplayModel toRepresentativeDisplayModel(Representative representative, AppUser appUser) {
         if (representative == null) return null;
@@ -98,11 +57,8 @@ public class Mapper {
 
     public static SaleDisplayModel toSaleDisplayModel(Sale sale, Client client) {
         if (sale == null || client == null) return null;
-
-        // Formata a data para exibição (ex: DD/MM/AAAA)
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         String formattedDate = dateFormat.format(new Date(sale.getSaleDate()));
-
         return new SaleDisplayModel(
                 sale.getId(),
                 client.getName(),
@@ -113,16 +69,9 @@ public class Mapper {
         );
     }
 
-    // Wine: Model to Entity
     public static WineEntity toEntity(Wine wine) {
         WineEntity entity = new WineEntity();
-        // Se o ID for nulo (novo vinho), o WineEntity irá gerar um UUID.
-        // Caso contrário, usa o ID existente para atualizações.
-        if (wine.getId() != null && !wine.getId().isEmpty()) {
-            entity.setId(wine.getId());
-        } else {
-            entity.setId(UUID.randomUUID().toString()); // Garante que um ID é gerado se o modelo não tiver um
-        }
+        entity.setId(wine.getId() != null && !wine.getId().isEmpty() ? wine.getId() : UUID.randomUUID().toString());
         entity.setWineryId(wine.getWineryId());
         entity.setName(wine.getName());
         entity.setYear(wine.getYear());
@@ -144,7 +93,6 @@ public class Mapper {
         return entity;
     }
 
-    // Winery: Entity to Model
     public static Winery toDomain(WineryEntity entity) {
         Winery winery = new Winery();
         winery.setId(entity.getId());
@@ -157,7 +105,6 @@ public class Mapper {
         return winery;
     }
 
-    // Winery: Model to Entity
     public static WineryEntity toEntity(Winery winery) {
         WineryEntity entity = new WineryEntity();
         entity.setId(winery.getId());
@@ -226,13 +173,14 @@ public class Mapper {
         if (entity == null) return null;
         Client model = new Client();
         model.setId(entity.getId());
+        model.setUserId(entity.getUserId());
         model.setName(entity.getName());
         model.setPhone(entity.getPhone());
         model.setEmail(entity.getEmail());
         model.setCity(entity.getCity());
-        model.setRegionId(entity.getRegionId()); // NOVO
-        model.setLatitude(entity.getLatitude()); // NOVO
-        model.setLongitude(entity.getLongitude()); // NOVO
+        model.setRegionId(entity.getRegionId());
+        model.setLatitude(entity.getLatitude());
+        model.setLongitude(entity.getLongitude());
         model.setObservation(entity.getObservation());
         model.setApproved(entity.isApproved());
         model.setApprovedBy(entity.getApprovedBy());
@@ -247,13 +195,14 @@ public class Mapper {
         if (model == null) return null;
         ClientEntity entity = new ClientEntity();
         entity.setId(model.getId());
+        entity.setUserId(model.getUserId()); // ✅ ESSENCIAL: resolver erro de NOT NULL
         entity.setName(model.getName());
         entity.setPhone(model.getPhone());
         entity.setEmail(model.getEmail());
         entity.setCity(model.getCity());
-        entity.setRegionId(model.getRegionId()); // NOVO
-        entity.setLatitude(model.getLatitude()); // NOVO
-        entity.setLongitude(model.getLongitude()); // NOVO
+        entity.setRegionId(model.getRegionId());
+        entity.setLatitude(model.getLatitude());
+        entity.setLongitude(model.getLongitude());
         entity.setObservation(model.getObservation());
         entity.setApproved(model.isApproved());
         entity.setApprovedBy(model.getApprovedBy());
@@ -365,6 +314,4 @@ public class Mapper {
         entity.setDeleted(model.isDeleted());
         return entity;
     }
-
-
 }
