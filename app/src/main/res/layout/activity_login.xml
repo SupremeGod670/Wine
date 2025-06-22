@@ -47,6 +47,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:background="@android:drawable/editbox_background"
+        android:inputType="textPassword"
         android:hint="@string/exsenha" />
 
     <Button
