@@ -1,5 +1,7 @@
 package com.example.wine.ui.viewmodel;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -91,6 +93,7 @@ public class CreateSaleViewModel extends ViewModel {
                 // Por agora, vou usar o ID ou um placeholder
                 representativeModels.add(new RepresentativeSpinnerModel(rep.getId(), "Rep. " + rep.getUserId().substring(0,4))); // Placeholder
             }
+            Log.d("CreateSaleVM", "Modelos de Representantes para o Spinner: " + representativeModels.size());
             _representatives.postValue(representativeModels);
 
             // Carrega vinhos disponíveis

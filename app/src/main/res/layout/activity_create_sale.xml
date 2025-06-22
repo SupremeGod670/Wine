@@ -25,7 +25,8 @@
                 android:background="@android:color/transparent"
                 android:padding="5dp"
                 android:src="@drawable/arrow_back_icon"
-                android:contentDescription="Voltar" /> </androidx.appcompat.widget.Toolbar>
+                android:contentDescription="Voltar"
+                android:minHeight="48dp"/>/> </androidx.appcompat.widget.Toolbar>
 
         <TextView
             android:layout_width="0dp"
@@ -53,7 +54,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/editbox_background"
-        android:spinnerMode="dropdown"/>
+        android:spinnerMode="dropdown"
+        android:minHeight="48dp"/>/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -67,7 +69,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/editbox_background"
-        android:spinnerMode="dropdown"/>
+        android:spinnerMode="dropdown"
+        android:minHeight="48dp"/>/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -82,7 +85,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
-        android:hint="0.00"/>
+        android:hint="0.00"
+        android:minHeight="48dp"/>/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -96,7 +100,8 @@
         style="@style/EDITTEXT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ex: Correios, Retirada"/>
+        android:hint="Ex: Correios, Retirada"
+        android:minHeight="48dp"/>/>
 
     <TextView
         android:layout_width="wrap_content"
