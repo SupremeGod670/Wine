@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.ImageButton;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -51,6 +52,22 @@ public class WineListActivity extends AppCompatActivity {
 
         // Inicializa o controller (passando o drawer se necessário)
         controller = new WineListController(this, listView, drawerLayout);
+
+        SearchView searchView = findViewById(R.id.searchView);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                controller.getAdapter().getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                controller.getAdapter().getFilter().filter(newText);
+                return false;
+            }
+        });
 
         // Botão de abrir menu
         menuButton.setOnClickListener(view -> controller.openMenu());

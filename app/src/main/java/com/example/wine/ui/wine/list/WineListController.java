@@ -38,6 +38,11 @@ public class WineListController {
         loadWines();
     }
 
+    private WineAdapter adapter;
+
+    public WineAdapter getAdapter() {
+        return adapter;
+    }
     private void loadWines() {
         Executors.newSingleThreadExecutor().execute(() -> {
             List<Wine> wineList = dataSource.getAll();
@@ -55,7 +60,7 @@ public class WineListController {
             }
 
             ((WineListActivity) context).runOnUiThread(() -> {
-                WineAdapter adapter = new WineAdapter((WineListActivity) context, wineModels);
+                adapter = new WineAdapter((WineListActivity) context, wineModels);
                 listView.setAdapter(adapter);
             });
         });
@@ -68,4 +73,8 @@ public class WineListController {
             ToastUtils.showShort(context, context.getString(R.string.erro_abrir_menu));
         }
     }
+
+
+
+
 }
