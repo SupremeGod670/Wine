@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/cadastrar">
+
+        <item
+            android:id="@+id/adm"
+            android:icon="@drawable/person"
+            android:title="@string/cadastrar_adm" />
+
+        <item
+            android:id="@+id/clientes"
+            android:icon="@drawable/group"
+            android:title="@string/cadastrar_clientes" />
+
+        <item
+            android:id="@+id/representantes"
+            android:icon="@drawable/group"
+            android:title="@string/cadastrar_representantes" />
+
+        <item
+            android:id="@+id/vinhos"
+            android:icon="@drawable/wine"
+            android:title="@string/cadastrar_vinhos" />
+
+        <item
+            android:id="@+id/CadastrarVinicula"
+            android:icon="@drawable/wine"
+            android:title="@string/cadastrar_vinicula" />
+
+        <item
+            android:id="@+id/CadastrarPedido"
+            android:icon="@drawable/wine"
+            android:title="@string/cadastrar_Pedido" />
+
+    </group>
+
+    <group android:id="@+id/visualizar">
+
+        <item
+            android:id="@+id/vrepresentantes"
+            android:icon="@drawable/group"
+            android:title="@string/visualizar_representantes" />
+        <item
+            android:id="@+id/vadm"
+            android:icon="@drawable/group"
+            android:title="@string/visualizar_ADM" />
+        <item
+            android:id="@+id/vvinhos"
+            android:icon="@drawable/group"
+            android:title="@string/visualizar_vinhos" />
+        <item
+            android:id="@+id/vpedido"
+            android:icon="@drawable/group"
+            android:title="@string/visualizar_pedidos" />
+
+    </group>
+
+</menu>

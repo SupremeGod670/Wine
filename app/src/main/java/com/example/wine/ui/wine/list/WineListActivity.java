@@ -23,7 +23,6 @@ public class WineListActivity extends AppCompatActivity {
     private ImageButton menuButton;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    private String userRole;
     private WineListController controller;
 
     @Override
@@ -36,25 +35,13 @@ public class WineListActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
 
-        userRole = AccessUtils.getUserRole(this);
+        // Carrega o menu completo, o controle de visibilidade será feito pelo NavigationUtils
+        navigationView.getMenu().clear();
+        navigationView.inflateMenu(R.menu.menu_all);
 
-        // Troca dinâmica do menu lateral
-        if ("ADMIN".equals(userRole)) {
-            navigationView.getMenu().clear();
-            navigationView.inflateMenu(R.menu.menu_adm);
-        } else if ("REPRESENTATIVE".equals(userRole)) {
-            navigationView.getMenu().clear();
-            navigationView.inflateMenu(R.menu.menu_representation);
-        } else if ("CLIENT".equals(userRole)) {
-            navigationView.getMenu().clear();
-            navigationView.inflateMenu(R.menu.menu_clients);
-        }
-
-        // Inicializa o controller (passando o drawer se necessário)
         controller = new WineListController(this, listView, drawerLayout);
 
         SearchView searchView = findViewById(R.id.searchView);
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -69,20 +56,18 @@ public class WineListActivity extends AppCompatActivity {
             }
         });
 
-        // Botão de abrir menu
+        // Botão para abrir menu
         menuButton.setOnClickListener(view -> controller.openMenu());
 
+        // Ao clicar em um vinho da lista
         listView.setOnItemClickListener((parent, view, position, id) -> {
             WineModel wine = (WineModel) parent.getItemAtPosition(position);
-
             Intent intent = new Intent(WineListActivity.this, WineDetailActivity.class);
-            intent.putExtra("wine", wine); // <-- Envia o objeto inteiro
+            intent.putExtra("wine", wine);
             startActivity(intent);
         });
 
-
-
-        // Configuração do comportamento dos cliques no menu
+        // Aplica o controle de permissão e comportamento do menu lateral
         NavigationUtils.setupNavigation(this, navigationView, drawerLayout);
     }
 }

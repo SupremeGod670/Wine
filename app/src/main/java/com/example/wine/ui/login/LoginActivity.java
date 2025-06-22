@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d("LOGIN_DEBUG", "Hash gerado: " + hashed);
 
                 List<AppUserEntity> allUsers = userDao.getAll();
-                LogUtils.logAppUserEntities(allUsers);
+                //LogUtils.logAppUserEntities(allUsers);
 
                 AppUserEntity user = userDao.login(email, hashed);
 

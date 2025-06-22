@@ -79,4 +79,9 @@
     <string name="aging_time">Tempo de Envelhecimento:</string>
     <string name="serving_temperature">Temperatura de Serviço:</string>
     <string name="acidity">Acidez:</string>
+    <string name="visualizar_ADM">Vizualizar ADM</string>
+    <string name="cadastrar_vinicula">Cadastrar Vinículas</string>
+    <string name="visualizar_vinhos">Visualizar Vinhos</string>
+    <string name="visualizar_pedidos">Visualizar Pedidos</string>
+    <string name="cadastrar_Pedido">Cadastrar Pedido</string>
 </resources>
