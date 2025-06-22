@@ -27,6 +27,7 @@ import com.example.wine.domain.model.*;
 import com.example.wine.ui.SaleCreateDisplay.ClientSpinnerModel; // NOVO IMPORT
 import com.example.wine.ui.SaleCreateDisplay.RepresentativeSpinnerModel; // NOVO IMPORT
 import com.example.wine.ui.SaleCreateDisplay.WineSaleItemModel;
+import com.example.wine.ui.representative.RepresentativeDisplayModel;
 
 import java.util.UUID;
 
@@ -61,6 +62,13 @@ public class Mapper {
 //                client.getLongitude()
 //        );
 //    }
+
+    public static RepresentativeDisplayModel toRepresentativeDisplayModel(Representative representative, AppUser appUser) {
+        if (representative == null) return null;
+        String name = (appUser != null) ? appUser.getName() : "Nome Desconhecido";
+        String email = (appUser != null) ? appUser.getEmail() : "Email Desconhecido";
+        return new RepresentativeDisplayModel(representative.getId(), name, representative.getPhone(), email);
+    }
 
     // Wine: Entity to Model
     public static Wine toModel(WineEntity entity) {

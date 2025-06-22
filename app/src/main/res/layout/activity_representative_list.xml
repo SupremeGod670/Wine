@@ -18,22 +18,24 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
-                android:id="@+id/open"
+                android:id="@+id/back_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:padding="5dp"
-                android:src="@drawable/menu_button" />
+                android:src="@drawable/arrow_back_icon"
+                android:contentDescription="Voltar" />
 
         </androidx.appcompat.widget.Toolbar>
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/abramo"
-            android:text="@string/wine"
+            android:text="Representantes"
             android:textAlignment="center"
-            android:textSize="52sp"
+            android:textSize="30sp"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/toolbar"
             app:layout_constraintTop_toTopOf="@+id/toolbar" />
@@ -43,43 +45,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/nome_do_vinho"
-        android:textSize="25sp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Lista de Representantes Cadastrados:"
+        android:textSize="18sp"
+        android:textColor="@color/black"/>
 
-    <Spinner
-        style="@style/EDITTEXT"
-        android:layout_width="306dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@android:drawable/editbox_background" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/forma_de_pagamento"
-        android:textSize="25sp" />
-
-    <Spinner
-        style="@style/EDITTEXT"
-        android:layout_width="306dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@android:drawable/editbox_background" />
-
-    <Button
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewRepresentatives"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="20dp"
-        android:backgroundTint="@color/white"
-        android:text="@string/salvar_pedido"
-        android:textSize="25sp" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:paddingBottom="10dp"
+        android:clipToPadding="false"/>
 
 </LinearLayout>

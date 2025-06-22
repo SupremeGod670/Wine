@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:padding="5dp"
-                android:src="@drawable/menu" />
+                android:src="@drawable/menu_button" />
 
         </androidx.appcompat.widget.Toolbar>
 
