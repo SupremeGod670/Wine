@@ -9,6 +9,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.wine.R;
+import com.example.wine.ui.SaleCreateDisplay.CreateSaleActivity;
 import com.example.wine.ui.admin.RegisterAdminActivity;
 import com.example.wine.ui.admin.RegisterRepresentativeActivity;
 import com.example.wine.ui.client.ClientRegisterActivity;
@@ -33,9 +34,8 @@ public class NavigationUtils {
         MENU_ACTIVITY_MAP.put(R.id.adm, RegisterAdminActivity.class);                       // Cadastro de administradores
         MENU_ACTIVITY_MAP.put(R.id.clientes, ClientRegisterActivity.class);                 // Cadastro de clientes
         MENU_ACTIVITY_MAP.put(R.id.representantes, RegisterRepresentativeActivity.class);   // Cadastro de representantes
-        MENU_ACTIVITY_MAP.put(R.id.cadastro_vinicola, WineryFormActivity.class);   // Cadastro
-        MENU_ACTIVITY_MAP.put(R.id.lista_vinicola, WineryListActivity.class);       // Listagem
-        // MENU_ACTIVITY_MAP.put(R.id.vrepresentantes, ViewRepresentativesActivity.class);  // Futuro
+        MENU_ACTIVITY_MAP.put(R.id.CadastrarVinicula, WineryFormActivity.class);   // Cadastro Vinicula
+        MENU_ACTIVITY_MAP.put(R.id.CadastrarPedido, CreateSaleActivity.class);  // Cadastro Pedido
     }
 
     // Controle de acesso por perfil de usuário
