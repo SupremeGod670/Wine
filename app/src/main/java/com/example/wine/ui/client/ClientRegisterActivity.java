@@ -1,31 +1,41 @@
 package com.example.wine.ui.client;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.wine.R;
-import com.example.wine.ui.login.LoginActivity;
 import com.example.wine.utils.ToastUtils;
 
 public class ClientRegisterActivity extends AppCompatActivity {
+
+    private EditText editTextName, editTextEmail, editTextPassword;
+    private Button buttonFinishRegister;
+    private RegisterClientController controller;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_register);
 
-        Button buttonFinishRegister = findViewById(R.id.buttonFinishRegister);
-        buttonFinishRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastUtils.showShort(ClientRegisterActivity.this,  "Cadastro enviado para análise. Aguarde a aprovação.");
-                Intent intent = new Intent(ClientRegisterActivity.this, LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
+        editTextName = findViewById(R.id.editTextName);
+        editTextEmail = findViewById(R.id.editTextEmail);
+        editTextPassword = findViewById(R.id.etClientPassword);
+        buttonFinishRegister = findViewById(R.id.buttonFinishRegister);
+
+        controller = new RegisterClientController(this);
+
+        buttonFinishRegister.setOnClickListener(v -> {
+            String name = editTextName.getText().toString().trim();
+            String email = editTextEmail.getText().toString().trim();
+            String password = editTextPassword.getText().toString().trim();
+
+            if (controller.validateInput(name, email, password)) {
+                controller.registerClient(name, email, password);
+            } else {
+                ToastUtils.showShort(this, "Preencha todos os campos corretamente.");
             }
         });
     }

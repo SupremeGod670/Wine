@@ -34,7 +34,10 @@ public class AppUserEntity {
     @ColumnInfo(name = "deleted")
     private boolean deleted;
 
-    // Getters e Setters (gerados automaticamente ou inseridos manualmente)
+    @ColumnInfo(name = "is_approved")
+    private boolean isApproved = true;
+
+    // Getters e Setters
     public String getId() {
         return id;
     }
@@ -98,4 +101,13 @@ public class AppUserEntity {
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
+
+    public boolean isApproved() {
+        return isApproved;
+    }
+
+    public void setApproved(boolean approved) {
+        isApproved = approved;
+    }
+
 }

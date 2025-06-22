@@ -1,6 +1,6 @@
 package com.example.wine.ui.admin;
 
-import android.content.Context;
+import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -8,9 +8,8 @@ import com.example.wine.data.datasource.user.AppUserLocalDataSource;
 import com.example.wine.data.local.AppDatabaseProvider;
 import com.example.wine.data.local.dao.AppUserDao;
 import com.example.wine.domain.model.AppUser;
-import com.example.wine.utils.ToastUtils;
 import com.example.wine.utils.HashUtils;
-import com.example.wine.utils.LogUtils;
+import com.example.wine.utils.ToastUtils;
 
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
@@ -18,14 +17,14 @@ import java.util.concurrent.Executors;
 
 public class RegisterAdminController {
 
+    private final Activity activity;
     private final AppUserLocalDataSource dataSource;
-    private final Context context;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private final Handler uiHandler = new Handler(Looper.getMainLooper());
 
-    public RegisterAdminController(Context context) {
-        this.context = context.getApplicationContext();
-        AppUserDao dao = AppDatabaseProvider.getDatabase(context).appUserDao();
+    public RegisterAdminController(Activity activity) {
+        this.activity = activity;
+        AppUserDao dao = AppDatabaseProvider.getDatabase(activity.getApplicationContext()).appUserDao();
         this.dataSource = new AppUserLocalDataSource(dao);
     }
 
@@ -40,24 +39,23 @@ public class RegisterAdminController {
                 user.setId(UUID.randomUUID().toString());
                 user.setName(name);
                 user.setEmail(email);
-                user.setPasswordHash(HashUtils.sha256(password)); // ✅ SHA-256 aplicado
+                user.setPasswordHash(HashUtils.sha256(password));
                 user.setRole("ADMIN");
+                user.setApproved(true);
                 user.setSynced(false);
                 user.setUpdatedAt(System.currentTimeMillis());
                 user.setDeleted(false);
 
                 dataSource.insert(user);
 
-                // Log opcional
-                //LogUtils.logAppUser(user);
+                uiHandler.post(() -> {
+                    ToastUtils.showShort(activity, "Administrador cadastrado com sucesso!");
+                    activity.finish();
+                });
 
-                // Notifica na thread principal
-                uiHandler.post(() ->
-                        ToastUtils.showShort(context, "Administrador cadastrado com sucesso!")
-                );
             } catch (Exception e) {
                 uiHandler.post(() ->
-                        ToastUtils.showLong(context, "Erro ao cadastrar administrador: " + e.getMessage())
+                        ToastUtils.showLong(activity, "Erro ao cadastrar administrador: " + e.getMessage())
                 );
             }
         });

@@ -10,14 +10,14 @@
             android:title="@string/cadastrar_adm" />
 
         <item
-            android:id="@+id/clientes"
-            android:icon="@drawable/group"
-            android:title="@string/cadastrar_clientes" />
-
-        <item
             android:id="@+id/representantes"
             android:icon="@drawable/group"
             android:title="@string/cadastrar_representantes" />
+
+        <item
+            android:id="@+id/clientes"
+            android:icon="@drawable/group"
+            android:title="@string/cadastrar_clientes" />
 
         <item
             android:id="@+id/vinhos"

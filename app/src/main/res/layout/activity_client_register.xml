@@ -50,6 +50,7 @@
 
     <EditText
         style="@style/EDITTEXT"
+        android:id="@+id/editTextName"
         android:layout_width="306dp"
         android:layout_height="54dp"
         android:layout_marginStart="20dp"
@@ -93,11 +94,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="@string/responsavel"
+        android:text="@string/email"
         android:textSize="25sp" />
 
     <EditText
         style="@style/EDITTEXT"
+        android:id="@+id/editTextEmail"
         android:layout_width="306dp"
         android:layout_height="54dp"
         android:layout_marginStart="20dp"
@@ -120,6 +122,23 @@
         android:layout_marginEnd="20dp"
         android:background="@android:drawable/editbox_background" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/senha"
+        android:textSize="25sp" />
+
+    <EditText
+        style="@style/EDITTEXT"
+        android:id="@+id/etClientPassword"
+        android:layout_width="306dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@android:drawable/editbox_background" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -130,6 +149,7 @@
         android:text="@string/criar_cliente"
         android:textAlignment="center"
         android:textSize="25sp"
+        android:textColor="@color/black"
         android:id="@+id/buttonFinishRegister"/>
 
 </LinearLayout>

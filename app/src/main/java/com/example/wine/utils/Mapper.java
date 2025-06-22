@@ -28,6 +28,7 @@ import com.example.wine.ui.SaleCreateDisplay.ClientSpinnerModel; // NOVO IMPORT
 import com.example.wine.ui.SaleCreateDisplay.RepresentativeSpinnerModel; // NOVO IMPORT
 import com.example.wine.ui.SaleCreateDisplay.WineSaleItemModel;
 import com.example.wine.ui.representative.RepresentativeDisplayModel;
+import com.example.wine.ui.adminDisplay.AdminDisplayModel;
 
 import java.util.UUID;
 
@@ -37,7 +38,10 @@ public class Mapper {
         if (client == null) return null;
         return new ClientSpinnerModel(client.getId(), client.getName());
     }
-
+    public static AdminDisplayModel toAdminDisplayModel(AppUser appUser) {
+        if (appUser == null) return null;
+        return new AdminDisplayModel(appUser.getId(), appUser.getName(), appUser.getEmail(), appUser.getRole());
+    }
     // NOVO: Mapear Representative para RepresentativeSpinnerModel
     // Nota: Assumo que o nome do representante virá do AppUser,
     // mas aqui mapeio o ID para um nome simples por enquanto.
