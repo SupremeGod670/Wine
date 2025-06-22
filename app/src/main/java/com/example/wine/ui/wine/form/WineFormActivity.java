@@ -68,54 +68,60 @@ public class WineFormActivity extends AppCompatActivity {
         saveButton = findViewById(R.id.button_salvar_vinho); // ID do botão salvar
 
         saveButton.setOnClickListener(v -> {
-            String name = nameEditText.getText().toString();
-            int year = InputUtils.safeParseInt(yearEditText.getText().toString());
-            String grape = grapeEditText.getText().toString();
-            String category = categoryEditText.getText().toString();
-            double alcoholPercentage = InputUtils.safeParseDouble(alcoholEditText.getText().toString());
-            double price = InputUtils.safeParseDouble(priceEditText.getText().toString());
-            int stock = InputUtils.safeParseInt(stockEditText.getText().toString());
-            String tastingNotes = tastingNotesEditText.getText().toString();
-            double rating = InputUtils.safeParseDouble(ratingEditText.getText().toString());
-            String agingTime = agingEditText.getText().toString();
-            String servingTemperature = tempEditText.getText().toString();
-            String acidity = acidityEditText.getText().toString();
-            String pairing = pairingEditText.getText().toString();
-            String commercialCategory = commercialCategoryEditText.getText().toString();
-
-            // 🔥 Captura a vinícola selecionada
             String selectedWineryName = spinnerWinery.getSelectedItem().toString();
-            String wineryId = getWineryIdByName(selectedWineryName);
 
-            if (wineryId == null) {
-                showErrorMessage("Erro ao obter vinícola selecionada.");
-                return;
-            }
+            Executors.newSingleThreadExecutor().execute(() -> {
+                String wineryId = getWineryIdByName(selectedWineryName);
 
-            Wine wine = new Wine(
-                    null,
-                    wineryId,
-                    name,
-                    year,
-                    grape,
-                    category,
-                    alcoholPercentage,
-                    price,
-                    stock,
-                    tastingNotes,
-                    rating,
-                    agingTime,
-                    servingTemperature,
-                    acidity,
-                    pairing,
-                    commercialCategory,
-                    false,
-                    System.currentTimeMillis(),
-                    false
-            );
+                runOnUiThread(() -> {
+                    if (wineryId == null) {
+                        showErrorMessage("Erro ao obter a vinícola selecionada.");
+                        return;
+                    }
 
-            controller.saveWine(wine);
+                    // Coletar outros dados normalmente (dentro da UI thread)
+                    String name = nameEditText.getText().toString();
+                    int year = InputUtils.safeParseInt(yearEditText.getText().toString());
+                    String grape = grapeEditText.getText().toString();
+                    String category = categoryEditText.getText().toString();
+                    double alcoholPercentage = InputUtils.safeParseDouble(alcoholEditText.getText().toString());
+                    double price = InputUtils.safeParseDouble(priceEditText.getText().toString());
+                    int stock = InputUtils.safeParseInt(stockEditText.getText().toString());
+                    String tastingNotes = tastingNotesEditText.getText().toString();
+                    double rating = InputUtils.safeParseDouble(ratingEditText.getText().toString());
+                    String agingTime = agingEditText.getText().toString();
+                    String servingTemperature = tempEditText.getText().toString();
+                    String acidity = acidityEditText.getText().toString();
+                    String pairing = pairingEditText.getText().toString();
+                    String commercialCategory = commercialCategoryEditText.getText().toString();
+
+                    Wine wine = new Wine(
+                            null,
+                            wineryId,
+                            name,
+                            year,
+                            grape,
+                            category,
+                            alcoholPercentage,
+                            price,
+                            stock,
+                            tastingNotes,
+                            rating,
+                            agingTime,
+                            servingTemperature,
+                            acidity,
+                            pairing,
+                            commercialCategory,
+                            false,
+                            System.currentTimeMillis(),
+                            false
+                    );
+
+                    controller.saveWine(wine);
+                });
+            });
         });
+
     }
 
     private void loadWineries() {

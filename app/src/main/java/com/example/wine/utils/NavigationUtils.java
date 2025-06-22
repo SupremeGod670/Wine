@@ -34,8 +34,9 @@ public class NavigationUtils {
         MENU_ACTIVITY_MAP.put(R.id.adm, RegisterAdminActivity.class);                       // Cadastro de administradores
         MENU_ACTIVITY_MAP.put(R.id.clientes, ClientRegisterActivity.class);                 // Cadastro de clientes
         MENU_ACTIVITY_MAP.put(R.id.representantes, RegisterRepresentativeActivity.class);   // Cadastro de representantes
-        MENU_ACTIVITY_MAP.put(R.id.CadastrarVinicula, WineryFormActivity.class);   // Cadastro Vinicula
         MENU_ACTIVITY_MAP.put(R.id.CadastrarPedido, CreateSaleActivity.class);  // Cadastro Pedido
+        MENU_ACTIVITY_MAP.put(R.id.cadastro_vinicola, WineryFormActivity.class);
+        MENU_ACTIVITY_MAP.put(R.id.lista_vinicola, WineryListActivity.class);
     }
 
     // Controle de acesso por perfil de usuário

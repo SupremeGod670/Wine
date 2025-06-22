@@ -25,7 +25,7 @@
             android:title="@string/cadastrar_vinhos" />
 
         <item
-            android:id="@+id/CadastrarVinicula"
+            android:id="@+id/cadastro_vinicola"
             android:icon="@drawable/wine"
             android:title="@string/cadastrar_vinicula" />
 
@@ -54,6 +54,11 @@
             android:id="@+id/vpedido"
             android:icon="@drawable/group"
             android:title="@string/visualizar_pedidos" />
+
+        <item
+            android:id="@+id/lista_vinicola"
+            android:title="Lista de Vinícolas"
+            android:icon="@drawable/group"/>
 
     </group>
 
