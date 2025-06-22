@@ -66,6 +66,24 @@ public class WineListController {
         });
     }
 
+    public void deleteWine(WineModel wineModel) {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            // Busca o vinho pelo nome (ou outro identificador único)
+            List<Wine> wineList = dataSource.getAll();
+            for (Wine wine : wineList) {
+                if (wine.getName().equals(wineModel.getNome())) {
+                    dataSource.softDelete(wine.getId());
+                    break;
+                }
+            }
+
+            ((WineListActivity) context).runOnUiThread(() -> {
+                ToastUtils.showShort(context, "Vinho deletado com sucesso!");
+                loadWines(); // Atualiza a lista
+            });
+        });
+    }
+
     public void openMenu() {
         if (drawerLayout != null) {
             drawerLayout.openDrawer(androidx.core.view.GravityCompat.START);
