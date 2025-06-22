@@ -41,7 +41,7 @@
 
         <!-- Telas de visualização/listagem -->
         <activity android:name=".ui.wine.list.WineListActivity" /> <!-- Listagem de Vinhos -->
-
+        <activity android:name=".ui.wine.detail.WineDetailActivity" />
 
     </application>
 </manifest>

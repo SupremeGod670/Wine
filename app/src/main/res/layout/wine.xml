@@ -2,18 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/BACKGROUND"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="60dp"
         android:background="@color/white"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:layout_marginBottom="8dp">
 
         <ImageView
             android:id="@+id/wine"
@@ -22,64 +22,90 @@
             android:src="@drawable/wine" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center_vertical"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nome:"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/nome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/nome_do_vinho"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="15sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Varietal / DOC / Safra:"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/varietal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/varietal"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" / "
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/doc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/doc"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" / "
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/safra"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/safra"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
+                    android:textColor="@color/black"/>
             </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Vinícola:"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/vinicola"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="@string/vinicola"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textSize="15sp"/>
 
         </LinearLayout>
-
 
     </LinearLayout>
 
