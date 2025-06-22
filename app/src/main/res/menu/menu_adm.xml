@@ -4,6 +4,16 @@
     <group android:id="@+id/cadastrar">
 
         <item
+            android:id="@+id/cadastro_vinicola"
+            android:title="Cadastro de Vinícola"
+            android:icon="@drawable/wine" />
+
+        <item
+            android:id="@+id/lista_vinicola"
+            android:title="Lista de Vinícolas"
+            android:icon="@drawable/prancheta" />
+
+        <item
             android:id="@+id/adm"
             android:icon="@drawable/person"
             android:title="@string/cadastrar_adm" />

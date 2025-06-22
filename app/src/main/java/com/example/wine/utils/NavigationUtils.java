@@ -15,6 +15,8 @@ import com.example.wine.ui.client.ClientRegisterActivity;
 import com.example.wine.ui.wine.form.WineFormActivity;
 import com.example.wine.ui.wine.list.WineListActivity;
 
+import com.example.wine.ui.winery.form.WineryFormActivity;
+import com.example.wine.ui.winery.list.WineryListActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.HashMap;
@@ -31,6 +33,8 @@ public class NavigationUtils {
         MENU_ACTIVITY_MAP.put(R.id.adm, RegisterAdminActivity.class);                       // Cadastro de administradores
         MENU_ACTIVITY_MAP.put(R.id.clientes, ClientRegisterActivity.class);                 // Cadastro de clientes
         MENU_ACTIVITY_MAP.put(R.id.representantes, RegisterRepresentativeActivity.class);   // Cadastro de representantes
+        MENU_ACTIVITY_MAP.put(R.id.cadastro_vinicola, WineryFormActivity.class);   // Cadastro
+        MENU_ACTIVITY_MAP.put(R.id.lista_vinicola, WineryListActivity.class);       // Listagem
         // MENU_ACTIVITY_MAP.put(R.id.vrepresentantes, ViewRepresentativesActivity.class);  // Futuro
     }
 
