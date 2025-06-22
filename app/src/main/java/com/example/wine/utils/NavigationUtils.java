@@ -11,10 +11,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.wine.R;
 import com.example.wine.ui.SaleCreateDisplay.CreateSaleActivity;
 import com.example.wine.ui.SaleDisplay.RouteOptimizationActivity;
-import com.example.wine.ui.SaleDisplay.SaleDisplayModel;
-import com.example.wine.ui.admin.RegisterAdminActivity;
-import com.example.wine.ui.admin.RegisterClientByAdminActivity;
-import com.example.wine.ui.admin.RegisterRepresentativeActivity;
+import com.example.wine.ui.Users.Admin.RegisterAdminActivity;
+import com.example.wine.ui.Users.Client.RegisterClientByAdminActivity;
+import com.example.wine.ui.Users.Representative.RegisterRepresentativeActivity;
 import com.example.wine.ui.adminDisplay.AdminListActivity;
 import com.example.wine.ui.client.ClientRegisterActivity;
 import com.example.wine.ui.viewmodel.CreateSaleViewModel;
@@ -22,6 +21,7 @@ import com.example.wine.ui.wine.form.WineFormActivity;
 import com.example.wine.ui.wine.list.WineListActivity;
 import com.example.wine.ui.winery.form.WineryFormActivity;
 import com.example.wine.ui.winery.list.WineryListActivity;
+import com.example.wine.ui.representative.RepresentativeListActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.HashMap;
@@ -41,12 +41,10 @@ public class NavigationUtils {
         MENU_ACTIVITY_MAP.put(R.id.CadastrarPedido, CreateSaleActivity.class);
         MENU_ACTIVITY_MAP.put(R.id.cadastro_vinicola, WineryFormActivity.class);
         MENU_ACTIVITY_MAP.put(R.id.lista_vinicola, WineryListActivity.class);
+        MENU_ACTIVITY_MAP.put(R.id.vrepresentantes, RepresentativeListActivity.class);
         MENU_ACTIVITY_MAP.put(R.id.vvinhos, WineListActivity.class);
         MENU_ACTIVITY_MAP.put(R.id.vadm, AdminListActivity.class);
         MENU_ACTIVITY_MAP.put(R.id.otimizaRota, RouteOptimizationActivity.class);
-
-
-
     }
 
     // Controle de acesso por perfil de usuário
@@ -67,9 +65,15 @@ public class NavigationUtils {
         MENU_ACCESS_MAP.put(R.id.representantes, adminOnly);
         MENU_ACCESS_MAP.put(R.id.vrepresentantes, adminOnly);
         MENU_ACCESS_MAP.put(R.id.clientes, adminOnly);
+        MENU_ACCESS_MAP.put(R.id.vadm, adminOnly);
 
         // Acesso compartilhado
         MENU_ACCESS_MAP.put(R.id.vinhos, both);
+        MENU_ACCESS_MAP.put(R.id.CadastrarPedido, both);
+        MENU_ACCESS_MAP.put(R.id.cadastro_vinicola, both);
+        MENU_ACCESS_MAP.put(R.id.lista_vinicola, both);
+        MENU_ACCESS_MAP.put(R.id.vvinhos, both);
+        MENU_ACCESS_MAP.put(R.id.otimizaRota, both);
     }
 
     public static void setupNavigation(final Activity activity, NavigationView navigationView, final DrawerLayout drawerLayout) {

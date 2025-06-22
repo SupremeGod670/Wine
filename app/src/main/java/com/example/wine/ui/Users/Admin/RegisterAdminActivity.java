@@ -1,4 +1,4 @@
-package com.example.wine.ui.admin;
+package com.example.wine.ui.Users.Admin;
 
 import android.os.Bundle;
 import android.widget.Button;
