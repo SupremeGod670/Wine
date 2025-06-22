@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.wine.R;
 import com.example.wine.ui.admin.RegisterAdminActivity;
+import com.example.wine.ui.admin.RegisterRepresentativeActivity;
 import com.example.wine.ui.client.ClientRegisterActivity;
 import com.example.wine.ui.wine.form.WineFormActivity;
 import com.example.wine.ui.wine.list.WineListActivity;
@@ -26,11 +27,11 @@ public class NavigationUtils {
     // Mapeamento dos itens do menu para suas respectivas Activities
     private static final Map<Integer, Class<? extends Activity>> MENU_ACTIVITY_MAP = new HashMap<>();
     static {
-        MENU_ACTIVITY_MAP.put(R.id.vinhos, WineFormActivity.class);                      // Cadastro de vinhos
-        MENU_ACTIVITY_MAP.put(R.id.adm, RegisterAdminActivity.class);                   // Cadastro de administradores
-        MENU_ACTIVITY_MAP.put(R.id.clientes, ClientRegisterActivity.class);             // Cadastro de clientes
-        // MENU_ACTIVITY_MAP.put(R.id.representantes, RegisterRepresentativeActivity.class); // Futuro
-        // MENU_ACTIVITY_MAP.put(R.id.vrepresentantes, ViewRepresentativesActivity.class);   // Futuro
+        MENU_ACTIVITY_MAP.put(R.id.vinhos, WineFormActivity.class);                          // Cadastro de vinhos
+        MENU_ACTIVITY_MAP.put(R.id.adm, RegisterAdminActivity.class);                       // Cadastro de administradores
+        MENU_ACTIVITY_MAP.put(R.id.clientes, ClientRegisterActivity.class);                 // Cadastro de clientes
+        MENU_ACTIVITY_MAP.put(R.id.representantes, RegisterRepresentativeActivity.class);   // Cadastro de representantes
+        // MENU_ACTIVITY_MAP.put(R.id.vrepresentantes, ViewRepresentativesActivity.class);  // Futuro
     }
 
     // Controle de acesso por perfil de usuário
@@ -46,19 +47,22 @@ public class NavigationUtils {
         both.add("ADMIN");
         both.add("REPRESENTATIVE");
 
+        // Acesso exclusivo do admin
         MENU_ACCESS_MAP.put(R.id.adm, adminOnly);
         MENU_ACCESS_MAP.put(R.id.representantes, adminOnly);
         MENU_ACCESS_MAP.put(R.id.vrepresentantes, adminOnly);
 
+        // Acesso exclusivo do representante
         MENU_ACCESS_MAP.put(R.id.clientes, repOnly);
 
+        // Acesso compartilhado
         MENU_ACCESS_MAP.put(R.id.vinhos, both);
     }
 
     public static void setupNavigation(final Activity activity, NavigationView navigationView, final DrawerLayout drawerLayout) {
         String userRole = AccessUtils.getUserRole(activity);
 
-        // Exibe ou oculta itens do menu conforme perfil
+        // Exibe ou oculta itens do menu conforme o papel do usuário
         for (int i = 0; i < navigationView.getMenu().size(); i++) {
             MenuItem item = navigationView.getMenu().getItem(i);
             Set<String> allowedRoles = MENU_ACCESS_MAP.get(item.getItemId());
@@ -71,7 +75,7 @@ public class NavigationUtils {
                 int itemId = item.getItemId();
                 Set<String> allowedRoles = MENU_ACCESS_MAP.get(itemId);
 
-                // Bloqueia acesso se o papel do usuário não tem permissão
+                // Verifica permissão
                 if (allowedRoles != null && !allowedRoles.contains(userRole)) {
                     ToastUtils.showShort(activity, activity.getString(R.string.acesso_nao_disponivel));
                 }
