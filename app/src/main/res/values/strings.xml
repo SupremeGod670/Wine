@@ -84,4 +84,5 @@
     <string name="visualizar_vinhos">Visualizar Vinhos</string>
     <string name="visualizar_pedidos">Visualizar Pedidos</string>
     <string name="cadastrar_Pedido">Cadastrar Pedido</string>
+    <string name="otimizar_rota">Otimizar Rota</string>
 </resources>
