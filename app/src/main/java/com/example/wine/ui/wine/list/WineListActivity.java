@@ -102,4 +102,10 @@ public class WineListActivity extends AppCompatActivity {
         // Configuração do comportamento dos cliques no menu
         NavigationUtils.setupNavigation(this, navigationView, drawerLayout);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        controller.loadWines();
+    }
 }
