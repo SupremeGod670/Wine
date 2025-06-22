@@ -15,7 +15,7 @@ public interface WineDao {
     @Query("SELECT * FROM wine WHERE id = :id")
     WineEntity getById(String id);
 
-    @Query("SELECT * FROM wine")
+    @Query("SELECT * FROM wine WHERE deleted = 0")
     List<WineEntity> getAll();
 
     @Query("SELECT * FROM wine WHERE is_synced = 0")
