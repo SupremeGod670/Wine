@@ -9,6 +9,8 @@ public class AppUser {
     private String role; // ADMIN, REPRESENTATIVE, PUBLIC
     private boolean isSynced;
     private long updatedAt;
+    private boolean isApproved = true;
+
     private boolean deleted;
 
     public String getId() {
@@ -74,4 +76,12 @@ public class AppUser {
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
+    public boolean isApproved() {
+        return isApproved;
+    }
+
+    public void setApproved(boolean approved) {
+        isApproved = approved;
+    }
+
 }

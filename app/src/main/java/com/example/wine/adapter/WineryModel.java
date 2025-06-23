@@ -1,6 +1,6 @@
 package com.example.wine.adapter;
 
-public class WineryModel {
+public final class WineryModel {
 
     private String nome;
     private String pais;

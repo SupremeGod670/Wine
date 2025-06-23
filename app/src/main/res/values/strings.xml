@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Cadastro de Vinícola -->
     <string name="label_nome_vinicola">Nome da Vinícola</string>
@@ -10,7 +11,7 @@
     <string name="msg_campos_obrigatorios">Por favor, preencha todos os campos obrigatórios.</string>
     <string name="msg_vinicola_cadastrada_sucesso">Vinícola cadastrada com sucesso!</string>
 
-    <!-- Campos gerais do app (do seu exemplo) -->
+    <!-- Campos gerais do app -->
     <string name="app_name">Wine</string>
     <string name="harmonizacoes">Harmonizações</string>
     <string name="notas_de_degustacao">Notas de Degustação</string>
@@ -79,4 +80,12 @@
     <string name="aging_time">Tempo de Envelhecimento:</string>
     <string name="serving_temperature">Temperatura de Serviço:</string>
     <string name="acidity">Acidez:</string>
+    <string name="visualizar_ADM">Vizualizar ADM</string>
+    <string name="cadastrar_vinicula">Cadastrar Vinículas</string>
+    <string name="visualizar_vinhos">Visualizar Vinhos</string>
+    <string name="visualizar_pedidos">Visualizar Pedidos</string>
+    <string name="cadastrar_Pedido">Cadastrar Pedido</string>
+    <string name="telefone">Celular</string>
+    <string name="extelefone">987654321</string>
+    <string name="otimizar_rota">Otimizar Rota</string>
 </resources>

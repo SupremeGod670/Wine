@@ -31,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:padding="5dp"
-                    android:src="@drawable/menu" />
+                    android:src="@drawable/menu_icon" />
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -53,7 +53,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <SearchView
+            <androidx.appcompat.widget.SearchView
+
+            android:id="@+id/searchView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"

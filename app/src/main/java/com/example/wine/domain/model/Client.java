@@ -1,15 +1,15 @@
-// Caminho: com.example.wine.domain.model/Client.java
 package com.example.wine.domain.model;
 
 public class Client {
     private String id;
+    private String userId;
     private String name;
     private String phone;
     private String email;
     private String city;
-    private String regionId; // NOVO: Mapeando idregiao
-    private double latitude; // NOVO
-    private double longitude; // NOVO
+    private String regionId;
+    private double latitude;
+    private double longitude;
     private String observation;
     private boolean isApproved;
     private String approvedBy;
@@ -24,6 +24,14 @@ public class Client {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -58,27 +66,27 @@ public class Client {
         this.city = city;
     }
 
-    public String getRegionId() { // NOVO GETTER
+    public String getRegionId() {
         return regionId;
     }
 
-    public void setRegionId(String regionId) { // NOVO SETTER
+    public void setRegionId(String regionId) {
         this.regionId = regionId;
     }
 
-    public double getLatitude() { // NOVO GETTER
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) { // NOVO SETTER
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public double getLongitude() { // NOVO GETTER
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) { // NOVO SETTER
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 

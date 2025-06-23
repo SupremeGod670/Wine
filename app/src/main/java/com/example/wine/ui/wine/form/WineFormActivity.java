@@ -4,9 +4,16 @@ import android.os.Bundle;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.wine.R;
+import com.example.wine.data.datasource.winery.WineryLocalDataSource;
+import com.example.wine.data.local.AppDatabase;
 import com.example.wine.domain.model.Wine;
+import com.example.wine.domain.model.Winery;
 import com.example.wine.utils.InputUtils;
 import com.example.wine.utils.ToastUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executors;
 
 public class WineFormActivity extends AppCompatActivity {
     // Declaração de todos os EditTexts com os IDs do XML
@@ -14,9 +21,23 @@ public class WineFormActivity extends AppCompatActivity {
             alcoholEditText, priceEditText, stockEditText, tastingNotesEditText,
             ratingEditText, agingEditText, tempEditText, acidityEditText,
             pairingEditText, commercialCategoryEditText, wineryIdEditText;
-
+    Spinner spinnerWinery;
+    ArrayAdapter<String> wineryAdapter;
+    List<String> wineryNames = new ArrayList<>();
     private Button saveButton;
     private WineFormController controller;
+    private String getWineryIdByName(String name) {
+        WineryLocalDataSource wineryDataSource = new WineryLocalDataSource(
+                AppDatabase.getDatabase(getApplicationContext()).wineryDao()
+        );
+        List<Winery> wineries = wineryDataSource.getAll();
+        for (Winery w : wineries) {
+            if (w.getName().equals(name)) {
+                return w.getId();
+            }
+        }
+        return null;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,56 +62,85 @@ public class WineFormActivity extends AppCompatActivity {
         acidityEditText = findViewById(R.id.edit_text_acidity);
         pairingEditText = findViewById(R.id.edit_text_harmonizacoes);
         commercialCategoryEditText = findViewById(R.id.edit_text_doc); // Mapeado para doc
-        wineryIdEditText = findViewById(R.id.edit_text_vinicola); // Mapeado para vinícola
+        spinnerWinery = findViewById(R.id.spinnerWinery);
 
+        loadWineries();
         saveButton = findViewById(R.id.button_salvar_vinho); // ID do botão salvar
 
         saveButton.setOnClickListener(v -> {
-            // Coletar dados dos EditTexts
-            String name = nameEditText.getText().toString();
-            int year = InputUtils.safeParseInt(yearEditText.getText().toString());
-            String grape = grapeEditText.getText().toString(); // Varietal
-            String category = categoryEditText.getText().toString();
-            double alcoholPercentage = InputUtils.safeParseDouble(alcoholEditText.getText().toString());
-            double price = InputUtils.safeParseDouble(priceEditText.getText().toString());
-            int stock = InputUtils.safeParseInt(stockEditText.getText().toString());
-            String tastingNotes = tastingNotesEditText.getText().toString();
-            double rating = InputUtils.safeParseDouble(ratingEditText.getText().toString());
-            String agingTime = agingEditText.getText().toString();
-            String servingTemperature = tempEditText.getText().toString();
-            String acidity = acidityEditText.getText().toString();
-            String pairing = pairingEditText.getText().toString();
-            String commercialCategory = commercialCategoryEditText.getText().toString(); // DOC
-            String wineryId = wineryIdEditText.getText().toString(); // Vinícola
+            String selectedWineryName = spinnerWinery.getSelectedItem().toString();
 
-            // TODO: Adicionar validações de campos obrigatórios e formato aqui
+            Executors.newSingleThreadExecutor().execute(() -> {
+                String wineryId = getWineryIdByName(selectedWineryName);
 
-            // Criar um objeto Wine usando o construtor completo do modelo de domínio
-            // O ID será gerado automaticamente pelo construtor do Wine se for um novo vinho (null).
-            // isSynced e updatedAt também serão tratados pelo construtor.
-            Wine wine = new Wine(
-                    null, // ID nulo para um novo vinho, será gerado no construtor de Wine
-                    wineryId,
-                    name,
-                    year,
-                    grape,
-                    category,
-                    alcoholPercentage,
-                    price,
-                    stock,
-                    tastingNotes,
-                    rating,
-                    agingTime,
-                    servingTemperature,
-                    acidity,
-                    pairing,
-                    commercialCategory,
-                    false, // isSynced
-                    System.currentTimeMillis(), // updatedAt
-                    false // deleted
+                runOnUiThread(() -> {
+                    if (wineryId == null) {
+                        showErrorMessage("Erro ao obter a vinícola selecionada.");
+                        return;
+                    }
+
+                    // Coletar outros dados normalmente (dentro da UI thread)
+                    String name = nameEditText.getText().toString();
+                    int year = InputUtils.safeParseInt(yearEditText.getText().toString());
+                    String grape = grapeEditText.getText().toString();
+                    String category = categoryEditText.getText().toString();
+                    double alcoholPercentage = InputUtils.safeParseDouble(alcoholEditText.getText().toString());
+                    double price = InputUtils.safeParseDouble(priceEditText.getText().toString());
+                    int stock = InputUtils.safeParseInt(stockEditText.getText().toString());
+                    String tastingNotes = tastingNotesEditText.getText().toString();
+                    double rating = InputUtils.safeParseDouble(ratingEditText.getText().toString());
+                    String agingTime = agingEditText.getText().toString();
+                    String servingTemperature = tempEditText.getText().toString();
+                    String acidity = acidityEditText.getText().toString();
+                    String pairing = pairingEditText.getText().toString();
+                    String commercialCategory = commercialCategoryEditText.getText().toString();
+
+                    Wine wine = new Wine(
+                            null,
+                            wineryId,
+                            name,
+                            year,
+                            grape,
+                            category,
+                            alcoholPercentage,
+                            price,
+                            stock,
+                            tastingNotes,
+                            rating,
+                            agingTime,
+                            servingTemperature,
+                            acidity,
+                            pairing,
+                            commercialCategory,
+                            false,
+                            System.currentTimeMillis(),
+                            false
+                    );
+
+                    controller.saveWine(wine);
+                });
+            });
+        });
+
+    }
+
+    private void loadWineries() {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            WineryLocalDataSource wineryDataSource = new WineryLocalDataSource(
+                    AppDatabase.getDatabase(getApplicationContext()).wineryDao()
             );
+            List<Winery> wineries = wineryDataSource.getAll();
 
-            controller.saveWine(wine);
+            wineryNames.clear();
+            for (Winery w : wineries) {
+                wineryNames.add(w.getName());
+            }
+
+            runOnUiThread(() -> {
+                wineryAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, wineryNames);
+                wineryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerWinery.setAdapter(wineryAdapter);
+            });
         });
     }
 

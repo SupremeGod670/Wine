@@ -1,6 +1,8 @@
 package com.example.wine.adapter;
 
-public class WineModel {
+import java.io.Serializable;
+
+public class WineModel implements Serializable {
 
     private String nome;
     private String varietal;

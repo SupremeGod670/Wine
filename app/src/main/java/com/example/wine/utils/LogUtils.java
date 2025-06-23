@@ -1,21 +1,27 @@
+// LogUtils.java
 package com.example.wine.utils;
 
 import android.util.Log;
+
 import com.example.wine.data.local.entity.WineryEntity;
-import java.util.List;
+import com.example.wine.domain.model.AppUser;
 import com.example.wine.domain.model.Wine;
+import com.example.wine.data.local.entity.AppUserEntity;
+import java.util.List;
 
 public class LogUtils {
     public static void debug(String tag, String message) {
         Log.d(tag, message);
     }
+
     public static void error(String tag, String message) {
         Log.e(tag, message);
     }
+
     public static void info(String tag, String message) {
         Log.i(tag, message);
     }
-    // Função para imprimir todos os itens de WineryEntity
+
     public static void logWineries(List<WineryEntity> wineries) {
         Log.d("LOG_Wineries", "---- Listando todas as vinícolas ----");
         for (WineryEntity w : wineries) {
@@ -29,6 +35,7 @@ public class LogUtils {
         }
         Log.d("LOG_Wineries", "-------------------------------------");
     }
+
     public static void logWines(List<Wine> wines) {
         Log.d("LOG_Wines", "---- Listando todos os vinhos ----");
         if (wines == null || wines.isEmpty()) {
@@ -49,4 +56,34 @@ public class LogUtils {
         Log.d("LOG_Wines", "-----------------------------------");
     }
 
+    public static void logAppUser(AppUser user) {
+        Log.d("LOG_AppUser", "Novo usuário cadastrado:");
+        Log.d("LOG_AppUser", "ID: " + user.getId()
+                + " | Nome: " + user.getName()
+                + " | Email: " + user.getEmail()
+                + " | SenhaHash: " + user.getPasswordHash()
+                + " | Papel: " + user.getRole()
+                + " | Sincronizado: " + user.isSynced()
+                + " | Deletado: " + user.isDeleted()
+                + " | Atualizado em: " + user.getUpdatedAt());
+    }
+
+    public static void logAppUserEntities(List<AppUserEntity> users) {
+        Log.d("LOG_AppUserEntity", "---- Listando todos os usuários locais ----");
+        if (users == null || users.isEmpty()) {
+            Log.d("LOG_AppUserEntity", "Nenhum usuário encontrado.");
+        } else {
+            for (AppUserEntity user : users) {
+                Log.d("LOG_AppUserEntity", "ID: " + user.getId()
+                        + " | Nome: " + user.getName()
+                        + " | Email: " + user.getEmail()
+                        + " | SenhaHash: " + user.getPasswordHash()
+                        + " | Papel: " + user.getRole()
+                        + " | Sincronizado: " + user.isSynced()
+                        + " | Deletado: " + user.isDeleted()
+                        + " | Atualizado em: " + user.getUpdatedAt());
+            }
+        }
+        Log.d("LOG_AppUserEntity", "-------------------------------------------");
+    }
 }
