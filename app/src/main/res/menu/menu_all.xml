@@ -1,75 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:id="@+id/cadastrar">
-
+    <!-- 🔹 Cadastros -->
+    <group android:id="@+id/group_cadastrar" android:checkableBehavior="none">
 
         <item
-            android:id="@+id/adm"
+            android:id="@+id/adicionar_admin"
             android:icon="@drawable/person"
-            android:title="@string/cadastrar_adm" />
+            android:title="Cadastrar Admin" />
 
         <item
-            android:id="@+id/representantes"
+            android:id="@+id/adicionar_representante"
             android:icon="@drawable/group"
-            android:title="@string/cadastrar_representantes" />
+            android:title="Cadastrar Representante" />
 
         <item
-            android:id="@+id/clientes"
+            android:id="@+id/adicionar_cliente"
             android:icon="@drawable/group"
-            android:title="@string/cadastrar_clientes" />
+            android:title="Cadastrar Cliente" />
 
         <item
-            android:id="@+id/vinhos"
+            android:id="@+id/adicionar_vinho"
             android:icon="@drawable/wine"
-            android:title="@string/cadastrar_vinhos" />
+            android:title="Cadastrar Vinho" />
 
         <item
-            android:id="@+id/cadastro_vinicola"
+            android:id="@+id/adicionar_vinicola"
             android:icon="@drawable/wine"
-            android:title="@string/cadastrar_vinicula" />
+            android:title="Cadastrar Vinícola" />
 
         <item
-            android:id="@+id/CadastrarPedido"
+            android:id="@+id/adicionar_pedido"
             android:icon="@drawable/wine"
-            android:title="@string/cadastrar_Pedido" />
+            android:title="Cadastrar Pedido" />
 
     </group>
 
-    <group android:id="@+id/visualizar">
+    <!-- 🔍 Visualização -->
+    <group android:id="@+id/group_visualizar">
 
         <item
-            android:id="@+id/vrepresentantes"
+            android:id="@+id/visualizar_admins"
             android:icon="@drawable/group"
-            android:title="@string/visualizar_representantes" />
-        <item
-            android:id="@+id/vadm"
-            android:icon="@drawable/group"
-            android:title="@string/visualizar_ADM" />
-        <item
-            android:id="@+id/vvinhos"
-            android:icon="@drawable/group"
-            android:title="@string/visualizar_vinhos" />
-        <item
-            android:id="@+id/vpedido"
-            android:icon="@drawable/group"
-            android:title="@string/visualizar_pedidos" />
+            android:title="Visualizar Admins" />
 
         <item
-            android:id="@+id/lista_vinicola"
-            android:title="Lista de Vinícolas"
-            android:icon="@drawable/group"/>
+            android:id="@+id/visualizar_representantes"
+            android:icon="@drawable/group"
+            android:title="Visualizar Representantes" />
 
+        <item
+            android:id="@+id/visualizar_clientes"
+            android:icon="@drawable/group"
+            android:title="Mapa de Clientes" />
+
+        <item
+            android:id="@+id/visualizar_vinhos"
+            android:icon="@drawable/wine"
+            android:title="Visualizar Vinhos" />
+
+        <item
+            android:id="@+id/visualizar_vinicolas"
+            android:icon="@drawable/wine"
+            android:title="Visualizar Vinícolas" />
+
+        <item
+            android:id="@+id/visualizar_pedidos"
+            android:icon="@drawable/group"
+            android:title="Visualizar Pedidos" />
     </group>
 
-    <group android:id="@+id/rotas">
+    <!-- 🚚 Operações -->
+    <group android:id="@+id/group_operacoes">
 
-        <item android:id="@+id/otimizaRota"
-            android:title="@string/otimizar_rota"
-            android:icon="@drawable/group"/>
-
+        <item
+            android:id="@+id/otimizar_rota"
+            android:icon="@drawable/prancheta"
+            android:title="Otimizar Rotas" />
     </group>
-
-
 
 </menu>

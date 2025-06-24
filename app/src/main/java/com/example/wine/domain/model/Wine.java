@@ -105,4 +105,9 @@ public class Wine {
     public void setSynced(boolean synced) { isSynced = synced; }
     public void setUpdatedAt(long updatedAt) { this.updatedAt = updatedAt; }
     public void setDeleted(boolean deleted) { this.deleted = deleted; }
+
+    @Override
+    public String toString() {
+        return name; // Retorna o nome do vinho para exibição no Spinner
+    }
 }

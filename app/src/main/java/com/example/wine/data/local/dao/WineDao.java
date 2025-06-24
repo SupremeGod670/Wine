@@ -1,5 +1,7 @@
 package com.example.wine.data.local.dao;
 
+import android.util.Log;
+
 import androidx.room.*;
 import com.example.wine.data.local.entity.WineEntity;
 import java.util.List;
@@ -17,6 +19,11 @@ public interface WineDao {
 
     @Query("SELECT * FROM wine WHERE deleted = 0")
     List<WineEntity> getAll();
+    default List<WineEntity> getAllWithLog() {
+        List<WineEntity> result = getAll();
+        Log.d("WineDebug", "WineDao: getAll() retornou " + (result != null ? result.size() : "null") + " entidades.");
+        return result;
+    }
 
     @Query("SELECT * FROM wine WHERE is_synced = 0")
     List<WineEntity> getAllNotSynced();

@@ -16,13 +16,12 @@ import com.example.wine.ui.Users.Admin.RegisterAdminActivity;
 import com.example.wine.ui.Users.Client.RegisterClientByAdminActivity;
 import com.example.wine.ui.Users.Representative.RegisterRepresentativeActivity;
 import com.example.wine.ui.adminDisplay.AdminListActivity;
-import com.example.wine.ui.client.ClientRegisterActivity;
+import com.example.wine.ui.representative.RepresentativeListActivity;
 import com.example.wine.ui.viewmodel.CreateSaleViewModel;
 import com.example.wine.ui.wine.form.WineFormActivity;
 import com.example.wine.ui.wine.list.WineListActivity;
 import com.example.wine.ui.winery.form.WineryFormActivity;
 import com.example.wine.ui.winery.list.WineryListActivity;
-import com.example.wine.ui.representative.RepresentativeListActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.HashMap;
@@ -32,23 +31,29 @@ import java.util.Set;
 
 public class NavigationUtils {
 
-    // Mapeamento dos itens do menu para suas respectivas Activities
+    // 🔗 Mapeamento dos itens do menu para suas Activities correspondentes
     private static final Map<Integer, Class<? extends Activity>> MENU_ACTIVITY_MAP = new HashMap<>();
     static {
-        MENU_ACTIVITY_MAP.put(R.id.vinhos, WineFormActivity.class);
-        MENU_ACTIVITY_MAP.put(R.id.adm, RegisterAdminActivity.class);
-        MENU_ACTIVITY_MAP.put(R.id.clientes, RegisterClientByAdminActivity.class);
-        MENU_ACTIVITY_MAP.put(R.id.representantes, RegisterRepresentativeActivity.class);
-        MENU_ACTIVITY_MAP.put(R.id.CadastrarPedido, CreateSaleActivity.class);
-        MENU_ACTIVITY_MAP.put(R.id.cadastro_vinicola, WineryFormActivity.class);
-        MENU_ACTIVITY_MAP.put(R.id.lista_vinicola, WineryListActivity.class);
-        MENU_ACTIVITY_MAP.put(R.id.vrepresentantes, RepresentativeListActivity.class);
-        MENU_ACTIVITY_MAP.put(R.id.vvinhos, WineListActivity.class);
-        MENU_ACTIVITY_MAP.put(R.id.vadm, AdminListActivity.class);
-        MENU_ACTIVITY_MAP.put(R.id.otimizaRota, RouteOptimizationActivity.class);
+        // Cadastros
+        MENU_ACTIVITY_MAP.put(R.id.adicionar_admin, RegisterAdminActivity.class);
+        MENU_ACTIVITY_MAP.put(R.id.adicionar_representante, RegisterRepresentativeActivity.class);
+        MENU_ACTIVITY_MAP.put(R.id.adicionar_cliente, RegisterClientByAdminActivity.class);
+        MENU_ACTIVITY_MAP.put(R.id.adicionar_vinho, WineFormActivity.class);
+        MENU_ACTIVITY_MAP.put(R.id.adicionar_vinicola, WineryFormActivity.class);
+        MENU_ACTIVITY_MAP.put(R.id.adicionar_pedido, CreateSaleActivity.class);
+
+        // Visualização
+        MENU_ACTIVITY_MAP.put(R.id.visualizar_admins, AdminListActivity.class);
+        MENU_ACTIVITY_MAP.put(R.id.visualizar_representantes, RepresentativeListActivity.class);
+        MENU_ACTIVITY_MAP.put(R.id.visualizar_vinhos, WineListActivity.class);
+        MENU_ACTIVITY_MAP.put(R.id.visualizar_vinicolas, WineryListActivity.class);
+        // Adicione aqui sua activity de lista de pedidos se houver
+
+        // Operações
+        MENU_ACTIVITY_MAP.put(R.id.otimizar_rota, RouteOptimizationActivity.class);
     }
 
-    // Controle de acesso por perfil de usuário
+    // 🔐 Controle de acesso por perfil de usuário
     private static final Map<Integer, Set<String>> MENU_ACCESS_MAP = new HashMap<>();
     static {
         Set<String> adminOnly = new HashSet<>();
@@ -61,50 +66,53 @@ public class NavigationUtils {
         both.add("ADMIN");
         both.add("REPRESENTATIVE");
 
-        // Acesso exclusivo do admin
-        MENU_ACCESS_MAP.put(R.id.adm, adminOnly);
-        MENU_ACCESS_MAP.put(R.id.representantes, adminOnly);
-        MENU_ACCESS_MAP.put(R.id.vrepresentantes, adminOnly);
-        MENU_ACCESS_MAP.put(R.id.clientes, adminOnly);
-        MENU_ACCESS_MAP.put(R.id.vadm, adminOnly);
+        // Cadastros
+        MENU_ACCESS_MAP.put(R.id.adicionar_admin, adminOnly);
+        MENU_ACCESS_MAP.put(R.id.adicionar_representante, adminOnly);
+        MENU_ACCESS_MAP.put(R.id.adicionar_cliente, adminOnly);
 
-        // Acesso compartilhado
-        MENU_ACCESS_MAP.put(R.id.vinhos, both);
-        MENU_ACCESS_MAP.put(R.id.CadastrarPedido, both);
-        MENU_ACCESS_MAP.put(R.id.cadastro_vinicola, both);
-        MENU_ACCESS_MAP.put(R.id.lista_vinicola, both);
-        MENU_ACCESS_MAP.put(R.id.vvinhos, both);
-        MENU_ACCESS_MAP.put(R.id.otimizaRota, both);
+        MENU_ACCESS_MAP.put(R.id.adicionar_vinho, both);
+        MENU_ACCESS_MAP.put(R.id.adicionar_vinicola, both);
+        MENU_ACCESS_MAP.put(R.id.adicionar_pedido, both);
+
+        // Visualizações
+        MENU_ACCESS_MAP.put(R.id.visualizar_admins, adminOnly);
+        MENU_ACCESS_MAP.put(R.id.visualizar_representantes, adminOnly);
+
+        MENU_ACCESS_MAP.put(R.id.visualizar_clientes, both); // 🗺️ Mapa de Clientes
+        MENU_ACCESS_MAP.put(R.id.visualizar_vinhos, both);
+        MENU_ACCESS_MAP.put(R.id.visualizar_vinicolas, both);
+        // Adicione aqui se tiver controle sobre pedidos
+
+        // Operações
+        MENU_ACCESS_MAP.put(R.id.otimizar_rota, both);
     }
 
+    // 🚀 Configura o Navigation Drawer
     public static void setupNavigation(final Activity activity, NavigationView navigationView, final DrawerLayout drawerLayout) {
         String userRole = AccessUtils.getUserRole(activity);
         drawerLayout.setBackgroundColor(R.style.BACKGROUND_MENU);
         navigationView.setBackgroundColor(R.style.BACKGROUND_MENU);
 
-        // Exibe ou oculta itens do menu conforme o papel do usuário
+        // Oculta ou mostra itens do menu conforme o papel do usuário
         for (int i = 0; i < navigationView.getMenu().size(); i++) {
             MenuItem item = navigationView.getMenu().getItem(i);
             Set<String> allowedRoles = MENU_ACCESS_MAP.get(item.getItemId());
             item.setVisible(allowedRoles == null || allowedRoles.contains(userRole));
         }
 
+        // Listener de clique nos itens
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
                 Set<String> allowedRoles = MENU_ACCESS_MAP.get(itemId);
 
-                // Verifica permissão
                 if (allowedRoles != null && !allowedRoles.contains(userRole)) {
                     ToastUtils.showShort(activity, activity.getString(R.string.acesso_nao_disponivel));
-                }
-                // Função ainda não implementada
-                else if (!MENU_ACTIVITY_MAP.containsKey(itemId)) {
+                } else if (!MENU_ACTIVITY_MAP.containsKey(itemId)) {
                     ToastUtils.showShort(activity, activity.getString(R.string.funcao_em_desenvolvimento));
-                }
-                // Abre nova tela
-                else {
+                } else {
                     Class<? extends Activity> targetActivity = MENU_ACTIVITY_MAP.get(itemId);
                     if (!targetActivity.isInstance(activity)) {
                         activity.startActivity(new Intent(activity, targetActivity));
