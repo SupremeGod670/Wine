@@ -1,5 +1,7 @@
 package com.example.wine.data.datasource.wine;
 
+import android.util.Log;
+
 import com.example.wine.data.local.dao.WineDao;
 import com.example.wine.data.local.entity.WineEntity;
 import com.example.wine.domain.datasource.WineDataSource;
@@ -17,11 +19,13 @@ public class WineLocalDataSource implements WineDataSource {
 
     @Override
     public List<Wine> getAll() {
-        List<WineEntity> entities = wineDao.getAll();
+        List<WineEntity> entities = wineDao.getAllWithLog();
+        Log.d("WineDebug", "WineLocalDataSource: Entidades de vinho do DAO: " + (entities != null ? entities.size() : "null"));
         List<Wine> wines = new ArrayList<>();
         for (WineEntity entity : entities) {
             wines.add(Mapper.toModel(entity));
         }
+        Log.d("WineDebug", "WineLocalDataSource: Modelos de vinho mapeados: " + wines.size());
         return wines;
     }
 

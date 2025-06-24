@@ -1,7 +1,9 @@
+// Caminho: com.example.wine.ui.SaleCreateDisplay/CreateSaleActivity.java
 package com.example.wine.ui.SaleCreateDisplay;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,12 +27,20 @@ import com.example.wine.data.datasource.representative.RepresentativeLocalDataSo
 import com.example.wine.data.datasource.sale.SaleLocalDataSource;
 import com.example.wine.data.datasource.saleitem.SaleItemLocalDataSource;
 import com.example.wine.data.datasource.wine.WineLocalDataSource;
-import com.example.wine.domain.model.Wine;
-import com.example.wine.ui.SaleCreateDisplay.SaleItemAdapter;
-import com.example.wine.ui.SaleCreateDisplay.ClientSpinnerModel;
-import com.example.wine.ui.SaleCreateDisplay.RepresentativeSpinnerModel;
-import com.example.wine.ui.SaleCreateDisplay.WineSaleItemModel;
-import com.example.wine.ui.viewmodel.CreateSaleViewModel;
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+// NOVO IMPORT: Você precisa importar o AppUserLocalDataSource aqui!
+import com.example.wine.data.datasource.user.AppUserLocalDataSource;
+// CORREÇÃO DOS IMPORTS DE UI: Se seus arquivos estiverem realmente em 'ui.model' e 'ui.adapter', use estes imports.
+// Caso contrário, se você manteve 'ui.SaleCreateDisplay' para esses modelos/adapters, DESCOMENTE os imports originais
+// e COMENTE estas linhas abaixo:
+import com.example.wine.ui.SaleCreateDisplay.SaleItemAdapter; // Exemplo: com.example.wine.ui.adapter
+import com.example.wine.ui.SaleCreateDisplay.ClientSpinnerModel;   // Exemplo: com.example.wine.ui.model
+import com.example.wine.ui.SaleCreateDisplay.RepresentativeSpinnerModel; // Exemplo: com.example.wine.ui.model
+import com.example.wine.ui.SaleCreateDisplay.WineSaleItemModel;      // Exemplo: com.example.wine.ui.model
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+import com.example.wine.domain.model.Wine; // Note que este já estava correto
+import com.example.wine.ui.viewmodel.CreateSaleViewModel; // Note que este já estava correto
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,10 +80,19 @@ public class CreateSaleActivity extends AppCompatActivity implements SaleItemAda
         WineLocalDataSource wineLocalDataSource = new WineLocalDataSource(AppDatabaseProvider.getDatabase(this).wineDao());
         SaleLocalDataSource saleLocalDataSource = new SaleLocalDataSource(AppDatabaseProvider.getDatabase(this).saleDao());
         SaleItemLocalDataSource saleItemLocalDataSource = new SaleItemLocalDataSource(AppDatabaseProvider.getDatabase(this).saleItemDao());
+        // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        // AQUI ESTAVA FALTANDO A INSTANCIAÇÃO DO AppUserLocalDataSource
+        AppUserLocalDataSource appUserLocalDataSource = new AppUserLocalDataSource(AppDatabaseProvider.getDatabase(this).appUserDao());
+        // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
         viewModel = new ViewModelProvider(this, new CreateSaleViewModel.Factory(
-                clientLocalDataSource, representativeLocalDataSource, wineLocalDataSource,
-                saleLocalDataSource, saleItemLocalDataSource))
+                clientLocalDataSource,
+                representativeLocalDataSource,
+                wineLocalDataSource,
+                saleLocalDataSource,
+                saleItemLocalDataSource,
+                appUserLocalDataSource)) // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                // AGORA, PASSAMOS O SEXTO ARGUMENTO (appUserLocalDataSource) PARA A FACTORY
                 .get(CreateSaleViewModel.class);
 
         // 2. Inicialização dos componentes da UI (Views)
@@ -88,7 +107,8 @@ public class CreateSaleActivity extends AppCompatActivity implements SaleItemAda
         backButton = findViewById(R.id.back_button);
 
         // 3. Configuração da RecyclerView para itens da venda
-        saleItemAdapter = new SaleItemAdapter(new ArrayList<>(), this); // 'this' porque Activity implementa OnItemActionListener
+        // Nota: Garanta que SaleItemAdapter está no pacote correto, senão o import acima precisará ser ajustado.
+        saleItemAdapter = new SaleItemAdapter(new ArrayList<>(), this);
         recyclerViewSaleItems.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewSaleItems.setAdapter(saleItemAdapter);
 
@@ -107,10 +127,18 @@ public class CreateSaleActivity extends AppCompatActivity implements SaleItemAda
                     android.R.layout.simple_spinner_item, representativesList);
             repAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinnerRepresentative.setAdapter(repAdapter);
+            // Opcional: selecione o primeiro item se a lista não for vazia
+            if (!representativesList.isEmpty() && selectedRepresentativeId == null) {
+                spinnerRepresentative.setSelection(0);
+                selectedRepresentativeId = representativesList.get(0).getId();
+            }
         });
 
         viewModel.availableWines.observe(this, wines -> {
             availableWines = wines;
+            Log.d("WineDebug", "CreateSaleActivity: Vinhos observados no ViewModel: " + availableWines.size());
+            // Opcional: Log para depuração de vinhos, como discutimos anteriormente
+            // android.util.Log.d("CreateSaleActivity_Wine", "Vinhos recebidos na Activity: " + availableWines.size());
         });
 
         viewModel.currentSaleItems.observe(this, items -> {
@@ -121,7 +149,10 @@ public class CreateSaleActivity extends AppCompatActivity implements SaleItemAda
             // Adiciona o frete ao total exibido
             double freight = 0.0;
             try {
-                freight = Double.parseDouble(editTextFreight.getText().toString());
+                String freightText = editTextFreight.getText().toString();
+                if (!freightText.isEmpty()) {
+                    freight = Double.parseDouble(freightText);
+                }
             } catch (NumberFormatException e) {
                 // Ignora, frete permanece 0.0
             }

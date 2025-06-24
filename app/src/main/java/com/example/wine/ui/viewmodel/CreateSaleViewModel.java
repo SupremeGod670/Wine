@@ -1,6 +1,7 @@
+// Caminho: package com.example.wine.ui.viewmodel/CreateSaleViewModel.java
 package com.example.wine.ui.viewmodel;
 
-import android.util.Log;
+import android.util.Log; // Importação para Log.d/w
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -12,17 +13,22 @@ import com.example.wine.data.datasource.client.ClientLocalDataSource;
 import com.example.wine.data.datasource.representative.RepresentativeLocalDataSource;
 import com.example.wine.data.datasource.sale.SaleLocalDataSource;
 import com.example.wine.data.datasource.saleitem.SaleItemLocalDataSource;
-import com.example.wine.data.datasource.wine.WineLocalDataSource; // Para buscar vinhos
+import com.example.wine.data.datasource.wine.WineLocalDataSource;
+import com.example.wine.data.datasource.user.AppUserLocalDataSource; // Importe o AppUserLocalDataSource
+import com.example.wine.domain.model.AppUser; // Importe AppUser
 import com.example.wine.domain.model.Client;
 import com.example.wine.domain.model.Representative;
 import com.example.wine.domain.model.Sale;
 import com.example.wine.domain.model.SaleItem;
 import com.example.wine.domain.model.Wine;
+// Os pacotes abaixo foram corrigidos para o padrão 'ui.model' e 'ui.adapter'
+// Se os seus arquivos ClientSpinnerModel, RepresentativeSpinnerModel, WineSaleItemModel
+// ainda estiverem em 'ui.SaleCreateDisplay', ajuste estes imports:
 import com.example.wine.ui.SaleCreateDisplay.ClientSpinnerModel;
 import com.example.wine.ui.SaleCreateDisplay.RepresentativeSpinnerModel;
 import com.example.wine.ui.SaleCreateDisplay.WineSaleItemModel;
 
-import com.example.wine.utils.Mapper; // Será necessário ajustar este Mapper
+import com.example.wine.utils.Mapper;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,6 +43,7 @@ public class CreateSaleViewModel extends ViewModel {
     private final WineLocalDataSource wineLocalDataSource;
     private final SaleLocalDataSource saleLocalDataSource;
     private final SaleItemLocalDataSource saleItemLocalDataSource;
+    private final AppUserLocalDataSource appUserLocalDataSource; // << NOVO: VARIÁVEL DE INSTÂNCIA
     private final ExecutorService executorService;
 
     private final MutableLiveData<List<ClientSpinnerModel>> _clients = new MutableLiveData<>();
@@ -63,12 +70,14 @@ public class CreateSaleViewModel extends ViewModel {
             RepresentativeLocalDataSource representativeLocalDataSource,
             WineLocalDataSource wineLocalDataSource,
             SaleLocalDataSource saleLocalDataSource,
-            SaleItemLocalDataSource saleItemLocalDataSource) {
+            SaleItemLocalDataSource saleItemLocalDataSource,
+            AppUserLocalDataSource appUserLocalDataSource) { // << NOVO: RECEBENDO NO CONSTRUTOR
         this.clientLocalDataSource = clientLocalDataSource;
         this.representativeLocalDataSource = representativeLocalDataSource;
         this.wineLocalDataSource = wineLocalDataSource;
         this.saleLocalDataSource = saleLocalDataSource;
         this.saleItemLocalDataSource = saleItemLocalDataSource;
+        this.appUserLocalDataSource = appUserLocalDataSource; // << NOVO: ATRIBUINDO
         this.executorService = Executors.newSingleThreadExecutor();
     }
 
@@ -82,22 +91,31 @@ public class CreateSaleViewModel extends ViewModel {
             }
             _clients.postValue(clientModels);
 
-            // Carrega representantes (assumindo que o nome do representante vem do AppUser associado)
+            // Carrega representantes e busca o nome do AppUser associado
             List<Representative> representativeEntities = representativeLocalDataSource.getAll();
+            Log.d("CreateSaleVM_Rep", "Representantes do DB (contagem): " + representativeEntities.size());
+
             List<RepresentativeSpinnerModel> representativeModels = new ArrayList<>();
-            // Isso é um pouco mais complexo, pois Representative tem userId, mas não o nome diretamente
-            // Idealmente, você buscaria o AppUser para pegar o nome
-            // Por simplicidade, vou usar o ID como nome por enquanto, ou você precisaria de um ClientLocalDataSource.getById() para AppUserEntity
             for (Representative rep : representativeEntities) {
-                // Aqui você precisaria buscar o AppUser pelo rep.getUserId() e pegar o nome
-                // Por agora, vou usar o ID ou um placeholder
-                representativeModels.add(new RepresentativeSpinnerModel(rep.getId(), "Rep. " + rep.getUserId().substring(0,4))); // Placeholder
+                // AQUI o appUserLocalDataSource será usado, e agora ele é uma variável de instância válida
+                AppUser appUser = appUserLocalDataSource.getById(rep.getUserId());
+                String repName;
+                if (appUser != null) {
+                    repName = appUser.getName();
+                    Log.d("CreateSaleVM_Rep", "AppUser encontrado para ID " + rep.getUserId() + ": Nome = " + repName);
+                } else {
+                    // Melhorar o placeholder para que seja mais descritivo se o AppUser não for encontrado
+                    repName = "Representante Desconhecido (ID: " + (rep.getUserId() != null ? rep.getUserId().substring(0, Math.min(4, rep.getUserId().length())) : "N/A") + ")";
+                    Log.w("CreateSaleVM_Rep", "AppUser NÃO encontrado para ID " + rep.getUserId());
+                }
+                representativeModels.add(new RepresentativeSpinnerModel(rep.getId(), repName));
             }
-            Log.d("CreateSaleVM", "Modelos de Representantes para o Spinner: " + representativeModels.size());
+            Log.d("CreateSaleVM_Rep", "Modelos de Representantes para Spinner (final): " + representativeModels.size());
             _representatives.postValue(representativeModels);
 
             // Carrega vinhos disponíveis
             List<Wine> wines = wineLocalDataSource.getAll();
+            Log.d("CreateSaleVM_Wine", "Vinhos carregados: " + wines.size()); // Adicionado log para vinhos
             _availableWines.postValue(wines);
         });
     }
@@ -166,12 +184,14 @@ public class CreateSaleViewModel extends ViewModel {
         executorService.execute(() -> {
             if (clientId == null || clientId.isEmpty() || representativeId == null || representativeId.isEmpty()) {
                 _saleSaved.postValue(false); // Indica falha por dados incompletos
+                Log.e("CreateSaleVM", "Erro ao salvar venda: Cliente ou Representante não selecionado.");
                 return;
             }
 
             List<WineSaleItemModel> itemsToSave = _currentSaleItems.getValue();
             if (itemsToSave == null || itemsToSave.isEmpty()) {
                 _saleSaved.postValue(false); // Indica falha por não ter itens
+                Log.e("CreateSaleVM", "Erro ao salvar venda: Nenhum item adicionado.");
                 return;
             }
 
@@ -191,6 +211,7 @@ public class CreateSaleViewModel extends ViewModel {
                 newSale.setDeleted(false);
 
                 saleLocalDataSource.insert(newSale);
+                Log.d("CreateSaleVM", "Venda salva com ID: " + saleId);
 
                 // 2. Criar e salvar os Itens de Venda (SaleItem)
                 for (WineSaleItemModel itemModel : itemsToSave) {
@@ -204,10 +225,11 @@ public class CreateSaleViewModel extends ViewModel {
                     saleItem.setUpdatedAt(new Date().getTime());
                     saleItem.setDeleted(false);
                     saleItemLocalDataSource.insert(saleItem);
+                    Log.d("CreateSaleVM", "Item de venda salvo: Vinho ID " + itemModel.getWineId() + ", Qtd " + itemModel.getQuantity());
                 }
                 _saleSaved.postValue(true); // Indica sucesso
             } catch (Exception e) {
-                // Log do erro: Log.e("CreateSaleVM", "Erro ao salvar venda", e);
+                Log.e("CreateSaleVM", "Erro ao salvar venda: " + e.getMessage(), e); // Log mais detalhado
                 _saleSaved.postValue(false); // Indica falha
             }
         });
@@ -226,17 +248,20 @@ public class CreateSaleViewModel extends ViewModel {
         private final WineLocalDataSource wineLocalDataSource;
         private final SaleLocalDataSource saleLocalDataSource;
         private final SaleItemLocalDataSource saleItemLocalDataSource;
+        private final AppUserLocalDataSource appUserLocalDataSource; // << NOVO: DEPENDÊNCIA NA FACTORY
 
         public Factory(ClientLocalDataSource clientLocalDataSource,
                        RepresentativeLocalDataSource representativeLocalDataSource,
                        WineLocalDataSource wineLocalDataSource,
                        SaleLocalDataSource saleLocalDataSource,
-                       SaleItemLocalDataSource saleItemLocalDataSource) {
+                       SaleItemLocalDataSource saleItemLocalDataSource,
+                       AppUserLocalDataSource appUserLocalDataSource) { // << NOVO: CONSTRUTOR DA FACTORY
             this.clientLocalDataSource = clientLocalDataSource;
             this.representativeLocalDataSource = representativeLocalDataSource;
             this.wineLocalDataSource = wineLocalDataSource;
             this.saleLocalDataSource = saleLocalDataSource;
             this.saleItemLocalDataSource = saleItemLocalDataSource;
+            this.appUserLocalDataSource = appUserLocalDataSource; // << NOVO: ATRIBUIÇÃO
         }
 
         @NonNull
@@ -248,7 +273,8 @@ public class CreateSaleViewModel extends ViewModel {
                         representativeLocalDataSource,
                         wineLocalDataSource,
                         saleLocalDataSource,
-                        saleItemLocalDataSource);
+                        saleItemLocalDataSource,
+                        appUserLocalDataSource); // << NOVO: PASSANDO PARA O VIEWMODEL
             }
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

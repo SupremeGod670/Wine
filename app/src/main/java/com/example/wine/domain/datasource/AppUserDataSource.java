@@ -18,4 +18,5 @@ public interface AppUserDataSource {
     // Métodos adicionados
     List<AppUser> getAllAdmins();
     AppUser login(String email, String passwordHash);
+
 }
