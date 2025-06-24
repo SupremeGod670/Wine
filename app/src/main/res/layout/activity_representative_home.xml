@@ -18,7 +18,6 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/menu_header"
         app:itemIconPadding="20dp"
-        app:itemIconSize="80dp"
-        app:menu="@menu/menu_representation" />
+        app:itemIconSize="80dp"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

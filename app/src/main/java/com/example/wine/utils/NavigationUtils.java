@@ -1,5 +1,6 @@
 package com.example.wine.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.MenuItem;
@@ -78,6 +79,8 @@ public class NavigationUtils {
 
     public static void setupNavigation(final Activity activity, NavigationView navigationView, final DrawerLayout drawerLayout) {
         String userRole = AccessUtils.getUserRole(activity);
+        drawerLayout.setBackgroundColor(R.style.BACKGROUND_MENU);
+        navigationView.setBackgroundColor(R.style.BACKGROUND_MENU);
 
         // Exibe ou oculta itens do menu conforme o papel do usuário
         for (int i = 0; i < navigationView.getMenu().size(); i++) {
@@ -109,7 +112,6 @@ public class NavigationUtils {
                         ToastUtils.showShort(activity, activity.getString(R.string.nao_pode_abrir_tela_repetida));
                     }
                 }
-
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }

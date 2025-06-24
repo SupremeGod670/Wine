@@ -6,9 +6,8 @@
     style="@style/BACKGROUND"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:openDrawer="start">
-
-    <include layout="@layout/issuing_orders" />
+    tools:openDrawer="start"
+    tools:context=".utils.NavigationUtils">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
@@ -17,8 +16,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/menu_header"
-        app:itemIconPadding="20dp"
-        app:itemIconSize="80dp"
-        app:menu="@menu/menu_representation" />
+        app:itemIconPadding="5dp"
+        app:itemIconSize="30dp"
+        app:menu="@menu/menu_all" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
