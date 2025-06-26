@@ -48,6 +48,7 @@
         <activity android:name=".ui.representative.RepresentativeListActivity" />
         <activity android:name=".ui.adminDisplay.AdminListActivity" />
         <activity android:name=".ui.SaleDisplay.RouteOptimizationActivity" />
+        <activity android:name=".ui.winery.list.WineryListActivity" />
 
     </application>
 </manifest>
