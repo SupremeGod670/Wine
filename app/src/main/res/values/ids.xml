@@ -2,4 +2,5 @@
 <resources>
     <item name="editTextName" type="id" />
     <item name="editTextFilterDate" type="id" />
+    <item name="editTextCity" type="id" />
 </resources>
