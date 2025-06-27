@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,41 +24,34 @@ import java.util.List;
 import java.util.concurrent.Executors;
 
 public class WineFormActivity extends AppCompatActivity {
-    // Declaração de todos os EditTexts com os IDs do XML
+
     private EditText nameEditText, yearEditText, grapeEditText, categoryEditText,
             alcoholEditText, priceEditText, stockEditText, tastingNotesEditText,
             ratingEditText, agingEditText, tempEditText, acidityEditText,
-            pairingEditText, commercialCategoryEditText, wineryIdEditText;
-    Spinner spinnerWinery;
-    ArrayAdapter<String> wineryAdapter;
-    List<String> wineryNames = new ArrayList<>();
+            pairingEditText, commercialCategoryEditText;
+
+    private Spinner spinnerWinery;
+    private ArrayAdapter<String> wineryAdapter;
+    private List<String> wineryNames = new ArrayList<>();
     private Button saveButton;
     private WineFormController controller;
-    private String getWineryIdByName(String name) {
-        WineryLocalDataSource wineryDataSource = new WineryLocalDataSource(
-                AppDatabase.getDatabase(getApplicationContext()).wineryDao()
-        );
-        List<Winery> wineries = wineryDataSource.getAll();
-        for (Winery w : wineries) {
-            if (w.getName().equals(name)) {
-                return w.getId();
-            }
-        }
-        return null;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_wine_form);
 
-        setContentView(R.layout.activity_wine_form); // Certifique-se que o nome do layout está correto
+        // 🔙 Botão de voltar
+        ImageButton backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(v -> finish());
+
+        // Verifica se há vinícolas cadastradas
         Executors.newSingleThreadExecutor().execute(() -> {
             WineryLocalDataSource wineryDataSource = new WineryLocalDataSource(
                     AppDatabase.getDatabase(getApplicationContext()).wineryDao()
             );
 
             List<Winery> wineries = wineryDataSource.getAll();
-
             if (wineries == null || wineries.isEmpty()) {
                 runOnUiThread(() -> {
                     new AlertDialog.Builder(WineFormActivity.this)
@@ -68,22 +62,19 @@ public class WineFormActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
                             })
-                            .setNegativeButton("Cancelar", (dialog, which) -> {
-                                finish(); // volta para a tela anterior
-                            })
-                            .setCancelable(false) // impede o usuário de ignorar o diálogo
+                            .setNegativeButton("Cancelar", (dialog, which) -> finish())
+                            .setCancelable(false)
                             .show();
                 });
             }
         });
 
-        // Inicializar o controller
         controller = new WineFormController(this);
 
-        // Inicializar os elementos da UI com os IDs atualizados do XML
+        // Inicialização dos componentes
         nameEditText = findViewById(R.id.edit_text_nome_vinho);
         yearEditText = findViewById(R.id.edit_text_safra);
-        grapeEditText = findViewById(R.id.edit_text_varietal); // Mapeado para varietal
+        grapeEditText = findViewById(R.id.edit_text_varietal);
         categoryEditText = findViewById(R.id.edit_text_tipo);
         alcoholEditText = findViewById(R.id.edit_text_teor_alcoolico);
         priceEditText = findViewById(R.id.edit_text_price);
@@ -94,11 +85,11 @@ public class WineFormActivity extends AppCompatActivity {
         tempEditText = findViewById(R.id.edit_text_serving_temperature);
         acidityEditText = findViewById(R.id.edit_text_acidity);
         pairingEditText = findViewById(R.id.edit_text_harmonizacoes);
-        commercialCategoryEditText = findViewById(R.id.edit_text_doc); // Mapeado para doc
+        commercialCategoryEditText = findViewById(R.id.edit_text_doc);
         spinnerWinery = findViewById(R.id.spinnerWinery);
+        saveButton = findViewById(R.id.button_salvar_vinho);
 
         loadWineries();
-        saveButton = findViewById(R.id.button_salvar_vinho); // ID do botão salvar
 
         saveButton.setOnClickListener(v -> {
             Object selectedItem = spinnerWinery.getSelectedItem();
@@ -117,39 +108,23 @@ public class WineFormActivity extends AppCompatActivity {
                         return;
                     }
 
-                    // Coletar outros dados normalmente (dentro da UI thread)
-                    String name = nameEditText.getText().toString();
-                    int year = InputUtils.safeParseInt(yearEditText.getText().toString());
-                    String grape = grapeEditText.getText().toString();
-                    String category = categoryEditText.getText().toString();
-                    double alcoholPercentage = InputUtils.safeParseDouble(alcoholEditText.getText().toString());
-                    double price = InputUtils.safeParseDouble(priceEditText.getText().toString());
-                    int stock = InputUtils.safeParseInt(stockEditText.getText().toString());
-                    String tastingNotes = tastingNotesEditText.getText().toString();
-                    double rating = InputUtils.safeParseDouble(ratingEditText.getText().toString());
-                    String agingTime = agingEditText.getText().toString();
-                    String servingTemperature = tempEditText.getText().toString();
-                    String acidity = acidityEditText.getText().toString();
-                    String pairing = pairingEditText.getText().toString();
-                    String commercialCategory = commercialCategoryEditText.getText().toString();
-
                     Wine wine = new Wine(
                             null,
                             wineryId,
-                            name,
-                            year,
-                            grape,
-                            category,
-                            alcoholPercentage,
-                            price,
-                            stock,
-                            tastingNotes,
-                            rating,
-                            agingTime,
-                            servingTemperature,
-                            acidity,
-                            pairing,
-                            commercialCategory,
+                            nameEditText.getText().toString(),
+                            InputUtils.safeParseInt(yearEditText.getText().toString()),
+                            grapeEditText.getText().toString(),
+                            categoryEditText.getText().toString(),
+                            InputUtils.safeParseDouble(alcoholEditText.getText().toString()),
+                            InputUtils.safeParseDouble(priceEditText.getText().toString()),
+                            InputUtils.safeParseInt(stockEditText.getText().toString()),
+                            tastingNotesEditText.getText().toString(),
+                            InputUtils.safeParseDouble(ratingEditText.getText().toString()),
+                            agingEditText.getText().toString(),
+                            tempEditText.getText().toString(),
+                            acidityEditText.getText().toString(),
+                            pairingEditText.getText().toString(),
+                            commercialCategoryEditText.getText().toString(),
                             false,
                             System.currentTimeMillis(),
                             false
@@ -159,7 +134,6 @@ public class WineFormActivity extends AppCompatActivity {
                 });
             });
         });
-
     }
 
     private void loadWineries() {
@@ -182,9 +156,22 @@ public class WineFormActivity extends AppCompatActivity {
         });
     }
 
+    private String getWineryIdByName(String name) {
+        WineryLocalDataSource wineryDataSource = new WineryLocalDataSource(
+                AppDatabase.getDatabase(getApplicationContext()).wineryDao()
+        );
+        List<Winery> wineries = wineryDataSource.getAll();
+        for (Winery w : wineries) {
+            if (w.getName().equals(name)) {
+                return w.getId();
+            }
+        }
+        return null;
+    }
+
     public void showSuccessMessage() {
         ToastUtils.showShort(this, getString(R.string.wine_saved_success));
-        finish(); // Fechar a Activity após salvar
+        finish();
     }
 
     public void showErrorMessage(String error) {

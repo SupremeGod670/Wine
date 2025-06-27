@@ -38,7 +38,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/abramo"
-                android:text="vinhos"
+                android:text="vinícolas"
                 android:textAlignment="center"
                 android:textSize="80sp"
                 android:textColor="@color/black"
@@ -81,6 +81,5 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:menu="@menu/menu_all"
-        android:background="@color/vinho_claro" />
+        app:menu="@menu/menu_all" />
 </androidx.drawerlayout.widget.DrawerLayout>
