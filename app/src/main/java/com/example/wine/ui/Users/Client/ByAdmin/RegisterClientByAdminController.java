@@ -40,14 +40,16 @@ public class RegisterClientByAdminController {
     }
 
     public void registerClient(String name, String email, String password,
+                               String phone, String city, String observation,
                                double latitude, double longitude) {
+
         executor.execute(() -> {
             try {
                 String userId = UUID.randomUUID().toString();
                 long now = System.currentTimeMillis();
                 String approverId = AccessUtils.getLoggedUserId(activity);
 
-                // Criação do AppUser
+                // Criar usuário
                 AppUser user = new AppUser();
                 user.setId(userId);
                 user.setName(name);
@@ -60,18 +62,18 @@ public class RegisterClientByAdminController {
                 user.setDeleted(false);
                 userDataSource.insert(user);
 
-                // Criação do Client
+                // Criar cliente
                 Client client = new Client();
                 client.setId(UUID.randomUUID().toString());
                 client.setUserId(userId);
                 client.setName(name);
                 client.setEmail(email);
-                client.setPhone("");
-                client.setCity("");
+                client.setPhone(phone);
+                client.setCity(city);
                 client.setRegionId(null);
                 client.setLatitude(latitude);
                 client.setLongitude(longitude);
-                client.setObservation("");
+                client.setObservation(observation);
                 client.setApproved(true);
                 client.setApprovedBy(approverId);
                 client.setApprovedAt(now);

@@ -21,8 +21,10 @@ import com.google.android.gms.location.LocationServices;
 public class ClientRegisterActivity extends AppCompatActivity {
 
     private EditText editTextName, editTextEmail, editTextPassword;
+    private EditText editTextPhone, editTextCity, editTextObservation;
     private TextView textLatitude, textLongitude;
     private Button buttonFinishRegister;
+    private ImageButton backButton;
 
     private FusedLocationProviderClient fusedLocationClient;
     private double currentLatitude = 0.0;
@@ -35,31 +37,40 @@ public class ClientRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_register);
 
+        // Inicialização das views
         editTextName = findViewById(R.id.editTextName);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.etClientPassword);
+        editTextPhone = findViewById(R.id.editTextPhone);
+        editTextCity = findViewById(R.id.editTextCity);
+        editTextObservation = findViewById(R.id.editTextObservation);
         textLatitude = findViewById(R.id.textLatitude);
         textLongitude = findViewById(R.id.textLongitude);
         buttonFinishRegister = findViewById(R.id.buttonFinishRegister);
-        ImageButton backButton = findViewById(R.id.open);
+        backButton = findViewById(R.id.open);
 
+        // Controller e localização
         controller = new RegisterClientController(this);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         backButton.setOnClickListener(v -> finish());
-        // solicitarLocalizacao();
 
         buttonFinishRegister.setOnClickListener(v -> {
             String name = editTextName.getText().toString().trim();
             String email = editTextEmail.getText().toString().trim();
             String password = editTextPassword.getText().toString().trim();
+            String phone = editTextPhone.getText().toString().trim();
+            String city = editTextCity.getText().toString().trim();
+            String observation = editTextObservation.getText().toString().trim();
 
             if (controller.validateInput(name, email, password)) {
-                controller.registerClient(name, email, password, currentLatitude, currentLongitude);
+                controller.registerClient(name, email, password, phone, city, observation, currentLatitude, currentLongitude);
             } else {
-                ToastUtils.showShort(this, "Preencha todos os campos corretamente.");
+                ToastUtils.showShort(this, "Preencha todos os campos obrigatórios corretamente.");
             }
         });
+
+        solicitarLocalizacao();
     }
 
     private void solicitarLocalizacao() {
@@ -87,7 +98,6 @@ public class ClientRegisterActivity extends AppCompatActivity {
                         textLatitude.setText(String.valueOf(currentLatitude));
                         textLongitude.setText(String.valueOf(currentLongitude));
 
-                        ToastUtils.showShort(ClientRegisterActivity.this, "Localização capturada com sucesso!");
                         fusedLocationClient.removeLocationUpdates(this);
                     }
                 },
@@ -101,7 +111,7 @@ public class ClientRegisterActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 100 && grantResults.length > 0 &&
                 grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            // solicitarLocalizacao();
+            solicitarLocalizacao();
         } else {
             ToastUtils.showLong(this, "Permissão de localização negada.");
         }

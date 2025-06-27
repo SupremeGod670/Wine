@@ -92,4 +92,7 @@
     <string name="aprovar_clientes">Aprovar Clientes</string>
     <string name="observacoes">Observações</string>
     <string name="representantes">Representantes</string>
+    <string name="informa_es_extras">Informações extras</string>
+    <string name="observação">Observação</string>
+    <string name="ex_cidade">Ex: Florianópolis</string>
 </resources>
