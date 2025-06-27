@@ -1,4 +1,4 @@
-package com.example.wine.ui.Users.Client;
+package com.example.wine.ui.Users.Client.controller;
 
 import android.app.Activity;
 import android.os.Handler;
@@ -11,6 +11,7 @@ import com.example.wine.data.local.dao.AppUserDao;
 import com.example.wine.data.local.dao.ClientDao;
 import com.example.wine.domain.model.AppUser;
 import com.example.wine.domain.model.Client;
+import com.example.wine.utils.AccessUtils;
 import com.example.wine.utils.HashUtils;
 import com.example.wine.utils.ToastUtils;
 
@@ -28,21 +29,25 @@ public class RegisterClientByAdminController {
 
     public RegisterClientByAdminController(Activity activity) {
         this.activity = activity;
-        AppUserDao userDao = AppDatabaseProvider.getDatabase(activity.getApplicationContext()).appUserDao();
-        ClientDao clientDao = AppDatabaseProvider.getDatabase(activity.getApplicationContext()).clientDao();
+        AppUserDao userDao = AppDatabaseProvider.getDatabase(activity).appUserDao();
+        ClientDao clientDao = AppDatabaseProvider.getDatabase(activity).clientDao();
         this.userDataSource = new AppUserLocalDataSource(userDao);
         this.clientDataSource = new ClientLocalDataSource(clientDao);
     }
 
-    public boolean validateInput(String name, String email, String password, String phone) {
-        return !name.isEmpty() && !email.isEmpty() && !password.isEmpty() && !phone.isEmpty();
+    public boolean validateInput(String name, String email, String password) {
+        return !name.isEmpty() && !email.isEmpty() && !password.isEmpty();
     }
 
-    public void registerClient(String name, String email, String password, String phone) {
+    public void registerClient(String name, String email, String password,
+                               double latitude, double longitude) {
         executor.execute(() -> {
             try {
-                // Criação do AppUser
                 String userId = UUID.randomUUID().toString();
+                long now = System.currentTimeMillis();
+                String approverId = AccessUtils.getLoggedUserId(activity);
+
+                // Criação do AppUser
                 AppUser user = new AppUser();
                 user.setId(userId);
                 user.setName(name);
@@ -51,9 +56,8 @@ public class RegisterClientByAdminController {
                 user.setRole("CLIENT");
                 user.setApproved(true);
                 user.setSynced(false);
-                user.setUpdatedAt(System.currentTimeMillis());
+                user.setUpdatedAt(now);
                 user.setDeleted(false);
-
                 userDataSource.insert(user);
 
                 // Criação do Client
@@ -62,30 +66,28 @@ public class RegisterClientByAdminController {
                 client.setUserId(userId);
                 client.setName(name);
                 client.setEmail(email);
-                client.setPhone(phone);
+                client.setPhone("");
                 client.setCity("");
                 client.setRegionId(null);
-                client.setLatitude(0.0);
-                client.setLongitude(0.0);
+                client.setLatitude(latitude);
+                client.setLongitude(longitude);
                 client.setObservation("");
-                client.setApproved(false);
-                client.setApprovedBy(null);
-                client.setApprovedAt(null);
+                client.setApproved(true);
+                client.setApprovedBy(approverId);
+                client.setApprovedAt(now);
                 client.setSynced(false);
-                client.setUpdatedAt(System.currentTimeMillis());
+                client.setUpdatedAt(now);
                 client.setDeleted(false);
-
                 clientDataSource.insert(client);
 
                 uiHandler.post(() -> {
-                    ToastUtils.showShort(activity, "Cliente cadastrado com sucesso!");
+                    ToastUtils.showShort(activity, "Cliente aprovado e cadastrado com sucesso!");
                     activity.finish();
                 });
 
             } catch (Exception e) {
                 uiHandler.post(() ->
-                        ToastUtils.showLong(activity, "Erro ao cadastrar cliente: " + e.getMessage())
-                );
+                        ToastUtils.showLong(activity, "Erro ao cadastrar cliente: " + e.getMessage()));
             }
         });
     }

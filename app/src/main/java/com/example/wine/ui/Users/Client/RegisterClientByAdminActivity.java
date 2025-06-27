@@ -3,8 +3,6 @@ package com.example.wine.ui.Users.Client;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -16,47 +14,34 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.wine.R;
-import com.example.wine.data.datasource.client.ClientLocalDataSource;
-import com.example.wine.data.datasource.user.AppUserLocalDataSource;
-import com.example.wine.data.local.AppDatabaseProvider;
-import com.example.wine.data.local.dao.AppUserDao;
-import com.example.wine.data.local.dao.ClientDao;
-import com.example.wine.domain.model.AppUser;
-import com.example.wine.domain.model.Client;
-import com.example.wine.utils.HashUtils;
+import com.example.wine.ui.Users.Client.controller.RegisterClientByAdminController;
 import com.example.wine.utils.ToastUtils;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 
-import java.util.UUID;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
+@android.annotation.SuppressLint("MissingPermission")
 public class RegisterClientByAdminActivity extends AppCompatActivity {
 
     private EditText editTextName, editTextEmail, editTextPassword;
-    private Button buttonFinishRegister;
     private TextView textLatitude, textLongitude;
+    private Button buttonFinishRegister;
 
     private FusedLocationProviderClient fusedLocationClient;
+    private RegisterClientByAdminController controller;
+
     private double currentLatitude = 0.0;
     private double currentLongitude = 0.0;
-
-    private AppUserLocalDataSource userDataSource;
-    private ClientLocalDataSource clientDataSource;
-    private final ExecutorService executor = Executors.newSingleThreadExecutor();
-    private final Handler uiHandler = new Handler(Looper.getMainLooper());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_register);
 
-        // Botão de voltar
+        // Voltar
         ImageButton backButton = findViewById(R.id.open);
         backButton.setOnClickListener(v -> finish());
 
-        // Inputs e TextViews
+        // Views
         editTextName = findViewById(R.id.editTextName);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.etClientPassword);
@@ -64,32 +49,25 @@ public class RegisterClientByAdminActivity extends AppCompatActivity {
         textLongitude = findViewById(R.id.textLongitude);
         buttonFinishRegister = findViewById(R.id.buttonFinishRegister);
 
-        // DAO/DataSources
-        AppUserDao userDao = AppDatabaseProvider.getDatabase(this).appUserDao();
-        ClientDao clientDao = AppDatabaseProvider.getDatabase(this).clientDao();
-        userDataSource = new AppUserLocalDataSource(userDao);
-        clientDataSource = new ClientLocalDataSource(clientDao);
+        // Controller
+        controller = new RegisterClientByAdminController(this);
 
-//         Localização
+        // Localização
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         solicitarLocalizacao();
 
-        // Clique do botão de cadastro
+        // Cadastro
         buttonFinishRegister.setOnClickListener(v -> {
             String name = editTextName.getText().toString().trim();
             String email = editTextEmail.getText().toString().trim();
             String password = editTextPassword.getText().toString().trim();
 
-            if (validateInput(name, email, password)) {
-                registerClient(name, email, password);
+            if (controller.validateInput(name, email, password)) {
+                controller.registerClient(name, email, password, currentLatitude, currentLongitude);
             } else {
                 ToastUtils.showShort(this, "Preencha todos os campos corretamente.");
             }
         });
-    }
-
-    private boolean validateInput(String name, String email, String password) {
-        return !name.isEmpty() && !email.isEmpty() && !password.isEmpty();
     }
 
     private void solicitarLocalizacao() {
@@ -100,29 +78,15 @@ public class RegisterClientByAdminActivity extends AppCompatActivity {
             return;
         }
 
-        fusedLocationClient.requestLocationUpdates(
-                com.google.android.gms.location.LocationRequest.create()
-                        .setPriority(com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY)
-                        .setInterval(5000)
-                        .setFastestInterval(2000),
-                new com.google.android.gms.location.LocationCallback() {
-                    @Override
-                    public void onLocationResult(com.google.android.gms.location.LocationResult locationResult) {
-                        if (locationResult == null || locationResult.getLastLocation() == null) return;
-
-                        android.location.Location location = locationResult.getLastLocation();
-                        currentLatitude = location.getLatitude();
-                        currentLongitude = location.getLongitude();
-
-                        textLatitude.setText(String.valueOf(currentLatitude));
-                        textLongitude.setText(String.valueOf(currentLongitude));
-
-                        ToastUtils.showShort(RegisterClientByAdminActivity.this, "Localização capturada com sucesso!");
-                        fusedLocationClient.removeLocationUpdates(this);
-                    }
-                },
-                Looper.getMainLooper()
-        );
+        fusedLocationClient.getLastLocation().addOnSuccessListener(location -> {
+            if (location != null) {
+                currentLatitude = location.getLatitude();
+                currentLongitude = location.getLongitude();
+                textLatitude.setText(String.valueOf(currentLatitude));
+                textLongitude.setText(String.valueOf(currentLongitude));
+                ToastUtils.showShort(this, "Localização capturada com sucesso!");
+            }
+        });
     }
 
     @Override
@@ -135,54 +99,5 @@ public class RegisterClientByAdminActivity extends AppCompatActivity {
         } else {
             ToastUtils.showLong(this, "Permissão de localização negada.");
         }
-    }
-
-    private void registerClient(String name, String email, String password) {
-        executor.execute(() -> {
-            try {
-                String userId = UUID.randomUUID().toString();
-
-                AppUser user = new AppUser();
-                user.setId(userId);
-                user.setName(name);
-                user.setEmail(email);
-                user.setPasswordHash(HashUtils.sha256(password));
-                user.setRole("CLIENT");
-                user.setApproved(false);
-                user.setSynced(false);
-                user.setUpdatedAt(System.currentTimeMillis());
-                user.setDeleted(false);
-
-                userDataSource.insert(user);
-
-                Client client = new Client();
-                client.setId(UUID.randomUUID().toString());
-                client.setUserId(userId);
-                client.setName(name);
-                client.setEmail(email);
-                client.setPhone("");
-                client.setCity("");
-                client.setRegionId(null);
-                client.setLatitude(currentLatitude);
-                client.setLongitude(currentLongitude);
-                client.setObservation("");
-                client.setApproved(false);
-                client.setApprovedBy(null);
-                client.setApprovedAt(null);
-                client.setSynced(false);
-                client.setUpdatedAt(System.currentTimeMillis());
-                client.setDeleted(false);
-
-                clientDataSource.insert(client);
-
-                uiHandler.post(() -> {
-                    ToastUtils.showShort(this, "Cadastro enviado para análise.");
-                    finish();
-                });
-
-            } catch (Exception e) {
-                uiHandler.post(() -> ToastUtils.showLong(this, "Erro ao cadastrar cliente: " + e.getMessage()));
-            }
-        });
     }
 }
