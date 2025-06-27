@@ -41,6 +41,7 @@
         <activity android:name=".ui.wine.form.WineFormActivity" />
         <activity android:name=".ui.winery.form.WineryFormActivity" />
         <activity android:name=".ui.SaleCreateDisplay.CreateSaleActivity" />
+        <activity android:name=".ui.Users.Client.UnapprovedUsersActivity" />
 
         <!-- Telas de visualização/listagem -->
         <activity android:name=".ui.wine.list.WineListActivity" />

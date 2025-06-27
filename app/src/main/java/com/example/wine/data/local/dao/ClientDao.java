@@ -43,4 +43,6 @@ public interface ClientDao {
 
     @Query("UPDATE client SET deleted = 1 WHERE id = :id")
     void softDelete(String id);
+    @Query("SELECT * FROM client WHERE is_approved = 0")
+    List<ClientEntity> getAllNotApprovedClients();
 }

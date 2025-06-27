@@ -34,6 +34,11 @@
             android:icon="@drawable/wine"
             android:title="Cadastrar Pedido" />
 
+        <item
+            android:id="@+id/aprovar_clientes"
+            android:icon="@drawable/group"
+            android:title="@string/aprovar_clientes" />
+
     </group>
 
     <!-- 🔍 Visualização -->

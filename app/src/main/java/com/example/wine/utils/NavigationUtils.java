@@ -1,6 +1,6 @@
 package com.example.wine.utils;
 
-import android.annotation.SuppressLint;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.view.MenuItem;
@@ -14,6 +14,7 @@ import com.example.wine.ui.SaleCreateDisplay.CreateSaleActivity;
 import com.example.wine.ui.SaleDisplay.RouteOptimizationActivity;
 import com.example.wine.ui.Users.Admin.RegisterAdminActivity;
 import com.example.wine.ui.Users.Client.RegisterClientByAdminActivity;
+import com.example.wine.ui.Users.Client.UnapprovedUsersActivity;
 import com.example.wine.ui.Users.Representative.RegisterRepresentativeActivity;
 import com.example.wine.ui.adminDisplay.AdminListActivity;
 import com.example.wine.ui.representative.RepresentativeListActivity;
@@ -38,6 +39,7 @@ public class NavigationUtils {
         MENU_ACTIVITY_MAP.put(R.id.adicionar_admin, RegisterAdminActivity.class);
         MENU_ACTIVITY_MAP.put(R.id.adicionar_representante, RegisterRepresentativeActivity.class);
         MENU_ACTIVITY_MAP.put(R.id.adicionar_cliente, RegisterClientByAdminActivity.class);
+        MENU_ACTIVITY_MAP.put(R.id.aprovar_clientes, UnapprovedUsersActivity.class);
         MENU_ACTIVITY_MAP.put(R.id.adicionar_vinho, WineFormActivity.class);
         MENU_ACTIVITY_MAP.put(R.id.adicionar_vinicola, WineryFormActivity.class);
         MENU_ACTIVITY_MAP.put(R.id.adicionar_pedido, CreateSaleActivity.class);
@@ -70,6 +72,7 @@ public class NavigationUtils {
         MENU_ACCESS_MAP.put(R.id.adicionar_admin, adminOnly);
         MENU_ACCESS_MAP.put(R.id.adicionar_representante, adminOnly);
         MENU_ACCESS_MAP.put(R.id.adicionar_cliente, adminOnly);
+        MENU_ACCESS_MAP.put(R.id.aprovar_clientes, both);
 
         MENU_ACCESS_MAP.put(R.id.adicionar_vinho, both);
         MENU_ACCESS_MAP.put(R.id.adicionar_vinicola, both);
@@ -78,11 +81,9 @@ public class NavigationUtils {
         // Visualizações
         MENU_ACCESS_MAP.put(R.id.visualizar_admins, adminOnly);
         MENU_ACCESS_MAP.put(R.id.visualizar_representantes, adminOnly);
-
-        MENU_ACCESS_MAP.put(R.id.visualizar_clientes, both); // 🗺️ Mapa de Clientes
+        MENU_ACCESS_MAP.put(R.id.visualizar_clientes, both);
         MENU_ACCESS_MAP.put(R.id.visualizar_vinhos, both);
         MENU_ACCESS_MAP.put(R.id.visualizar_vinicolas, both);
-        // Adicione aqui se tiver controle sobre pedidos
 
         // Operações
         MENU_ACCESS_MAP.put(R.id.otimizar_rota, both);
