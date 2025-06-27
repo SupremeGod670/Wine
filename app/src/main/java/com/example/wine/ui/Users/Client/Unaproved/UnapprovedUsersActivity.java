@@ -1,4 +1,4 @@
-package com.example.wine.ui.Users.Client;
+package com.example.wine.ui.Users.Client.Unaproved;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,10 +17,8 @@ import com.example.wine.data.local.dao.AppUserDao;
 import com.example.wine.data.local.dao.ClientDao;
 import com.example.wine.domain.model.AppUser;
 import com.example.wine.domain.model.Client;
-import com.example.wine.ui.Users.Client.adapter.UnapprovedUserAdapter;
-import com.example.wine.ui.Users.Client.controller.ApproveClientController;
+import com.example.wine.ui.Users.Client.Unaproved.adapter.UnapprovedUserAdapter;
 import com.example.wine.utils.LogUtils;
-import com.example.wine.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,8 +53,6 @@ public class UnapprovedUsersActivity extends AppCompatActivity {
         clientDataSource = new ClientLocalDataSource(clientDao);
         approveController = new ApproveClientController(this, clientDataSource, userDataSource);
 
-        loadUnapprovedUsers();
-        logAllUsersToLogcat();
     }
 
     private void loadUnapprovedUsers() {

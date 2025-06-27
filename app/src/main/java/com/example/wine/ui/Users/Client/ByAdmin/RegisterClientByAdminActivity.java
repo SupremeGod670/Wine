@@ -1,4 +1,4 @@
-package com.example.wine.ui.Users.Client;
+package com.example.wine.ui.Users.Client.ByAdmin;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -14,7 +14,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.wine.R;
-import com.example.wine.ui.Users.Client.controller.RegisterClientByAdminController;
 import com.example.wine.utils.ToastUtils;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;

@@ -37,11 +37,11 @@
         <activity android:name=".ui.Users.Admin.RegisterAdminActivity" />
         <activity android:name=".ui.client.ClientRegisterActivity" />
         <activity android:name=".ui.Users.Representative.RegisterRepresentativeActivity" />
-        <activity android:name=".ui.Users.Client.RegisterClientByAdminActivity" />
+        <activity android:name=".ui.Users.Client.ByAdmin.RegisterClientByAdminActivity" />
         <activity android:name=".ui.wine.form.WineFormActivity" />
         <activity android:name=".ui.winery.form.WineryFormActivity" />
         <activity android:name=".ui.SaleCreateDisplay.CreateSaleActivity" />
-        <activity android:name=".ui.Users.Client.UnapprovedUsersActivity" />
+        <activity android:name=".ui.Users.Client.Unaproved.UnapprovedUsersActivity" />
 
         <!-- Telas de visualização/listagem -->
         <activity android:name=".ui.wine.list.WineListActivity" />
@@ -50,6 +50,7 @@
         <activity android:name=".ui.adminDisplay.AdminListActivity" />
         <activity android:name=".ui.SaleDisplay.RouteOptimizationActivity" />
         <activity android:name=".ui.winery.list.WineryListActivity" />
+        <activity android:name=".ui.client.View.ClientListActivity" />
 
     </application>
 </manifest>

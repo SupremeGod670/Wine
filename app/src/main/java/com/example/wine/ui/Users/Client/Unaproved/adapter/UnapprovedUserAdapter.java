@@ -1,4 +1,4 @@
-package com.example.wine.ui.Users.Client.adapter;
+package com.example.wine.ui.Users.Client.Unaproved.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
