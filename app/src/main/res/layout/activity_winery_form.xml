@@ -11,12 +11,13 @@
         android:layout_height="wrap_content">
 
         <ImageButton
-            android:id="@+id/open"
+            android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:padding="5dp"
-            android:src="@drawable/menu_icon" />
+            android:src="@drawable/arrow_back_icon"
+            android:contentDescription="Voltar" />
     </androidx.appcompat.widget.Toolbar>
 
     <ImageView
