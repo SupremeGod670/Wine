@@ -2,13 +2,16 @@ package com.example.wine.ui.winery.list;
 
 import android.os.Bundle;
 import android.widget.ListView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.wine.R;
 import com.example.wine.adapter.WineryAdapter;
 import com.example.wine.adapter.WineryModel;
 import com.example.wine.data.datasource.winery.WineryLocalDataSource;
 import com.example.wine.data.local.AppDatabase;
 import com.example.wine.domain.model.Winery;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;

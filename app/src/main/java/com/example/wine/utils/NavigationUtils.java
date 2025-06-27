@@ -1,6 +1,5 @@
 package com.example.wine.utils;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.MenuItem;
@@ -17,7 +16,6 @@ import com.example.wine.ui.Users.Client.RegisterClientByAdminActivity;
 import com.example.wine.ui.Users.Representative.RegisterRepresentativeActivity;
 import com.example.wine.ui.adminDisplay.AdminListActivity;
 import com.example.wine.ui.representative.RepresentativeListActivity;
-import com.example.wine.ui.viewmodel.CreateSaleViewModel;
 import com.example.wine.ui.wine.form.WineFormActivity;
 import com.example.wine.ui.wine.list.WineListActivity;
 import com.example.wine.ui.winery.form.WineryFormActivity;

@@ -6,12 +6,13 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+
 import com.example.wine.data.datasource.representative.RepresentativeLocalDataSource;
-import com.example.wine.data.datasource.user.AppUserLocalDataSource; // Para buscar o nome/email do AppUser
-import com.example.wine.domain.model.Representative;
+import com.example.wine.data.datasource.user.AppUserLocalDataSource;
 import com.example.wine.domain.model.AppUser;
+import com.example.wine.domain.model.Representative;
 import com.example.wine.ui.representative.RepresentativeDisplayModel;
-import com.example.wine.utils.Mapper; // Precisaremos adicionar métodos de mapeamento aqui
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;

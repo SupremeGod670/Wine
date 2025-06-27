@@ -8,7 +8,6 @@ import com.example.wine.domain.model.Wine;
 import com.example.wine.domain.repository.wine.WineRepository;
 import com.example.wine.domain.repository.wine.WineRepositoryImpl;
 import com.example.wine.utils.InputUtils;
-import java.util.List;
 
 public class WineFormController {
     private final WineFormActivity activity;

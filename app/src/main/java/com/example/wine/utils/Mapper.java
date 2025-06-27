@@ -1,12 +1,28 @@
 package com.example.wine.utils;
 
-import com.example.wine.data.local.entity.*;
-import com.example.wine.domain.model.*;
+import com.example.wine.data.local.entity.AppUserEntity;
+import com.example.wine.data.local.entity.ClientEntity;
+import com.example.wine.data.local.entity.RegionEntity;
+import com.example.wine.data.local.entity.RepresentativeEntity;
+import com.example.wine.data.local.entity.SaleEntity;
+import com.example.wine.data.local.entity.SaleItemEntity;
+import com.example.wine.data.local.entity.WineEntity;
+import com.example.wine.data.local.entity.WineStockEntity;
+import com.example.wine.data.local.entity.WineryEntity;
+import com.example.wine.domain.model.AppUser;
+import com.example.wine.domain.model.Client;
+import com.example.wine.domain.model.Region;
+import com.example.wine.domain.model.Representative;
+import com.example.wine.domain.model.Sale;
+import com.example.wine.domain.model.SaleItem;
+import com.example.wine.domain.model.Wine;
+import com.example.wine.domain.model.WineStock;
+import com.example.wine.domain.model.Winery;
 import com.example.wine.ui.SaleCreateDisplay.ClientSpinnerModel;
 import com.example.wine.ui.SaleCreateDisplay.RepresentativeSpinnerModel;
 import com.example.wine.ui.SaleDisplay.SaleDisplayModel;
-import com.example.wine.ui.representative.RepresentativeDisplayModel;
 import com.example.wine.ui.adminDisplay.AdminDisplayModel;
+import com.example.wine.ui.representative.RepresentativeDisplayModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

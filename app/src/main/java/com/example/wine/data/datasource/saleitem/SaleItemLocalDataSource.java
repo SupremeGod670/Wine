@@ -4,7 +4,8 @@ package com.example.wine.data.datasource.saleitem; // Nova subpasta 'saleitem'
 import com.example.wine.data.local.dao.SaleItemDao;
 import com.example.wine.data.local.entity.SaleItemEntity;
 import com.example.wine.domain.model.SaleItem;
-import com.example.wine.utils.Mapper; // Será necessário estender Mapper para SaleItem
+import com.example.wine.utils.Mapper;
+
 import java.util.ArrayList;
 import java.util.List;
 

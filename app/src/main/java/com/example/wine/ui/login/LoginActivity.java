@@ -2,7 +2,6 @@ package com.example.wine.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -16,7 +15,6 @@ import com.example.wine.ui.client.ClientRegisterActivity;
 import com.example.wine.ui.wine.list.WineListActivity;
 import com.example.wine.utils.AccessUtils;
 import com.example.wine.utils.HashUtils;
-import com.example.wine.utils.LogUtils;
 import com.example.wine.utils.ToastUtils;
 
 import java.util.List;

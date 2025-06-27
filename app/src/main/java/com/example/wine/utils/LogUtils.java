@@ -3,10 +3,11 @@ package com.example.wine.utils;
 
 import android.util.Log;
 
+import com.example.wine.data.local.entity.AppUserEntity;
 import com.example.wine.data.local.entity.WineryEntity;
 import com.example.wine.domain.model.AppUser;
 import com.example.wine.domain.model.Wine;
-import com.example.wine.data.local.entity.AppUserEntity;
+
 import java.util.List;
 
 public class LogUtils {

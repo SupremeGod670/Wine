@@ -1,8 +1,14 @@
 package com.example.wine.ui.wine.form;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.wine.R;
 import com.example.wine.data.datasource.winery.WineryLocalDataSource;
 import com.example.wine.data.local.AppDatabase;
@@ -42,7 +48,24 @@ public class WineFormActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_wine_form); // Certifique-se que o nome do layout está correto
+        Executors.newSingleThreadExecutor().execute(() -> {
+            WineryLocalDataSource wineryDataSource = new WineryLocalDataSource(
+                    AppDatabase.getDatabase(getApplicationContext()).wineryDao()
+            );
+
+            List<Winery> wineries = wineryDataSource.getAll();
+
+            if (wineries == null || wineries.isEmpty()) {
+                runOnUiThread(() -> {
+                    ToastUtils.showLong(this, "É necessário cadastrar uma vinícola antes de adicionar um vinho.");
+                    Intent intent = new Intent(this, com.example.wine.ui.winery.form.WineryFormActivity.class);
+                    startActivity(intent);
+                    finish();
+                });
+            }
+        });
 
         // Inicializar o controller
         controller = new WineFormController(this);
@@ -68,7 +91,12 @@ public class WineFormActivity extends AppCompatActivity {
         saveButton = findViewById(R.id.button_salvar_vinho); // ID do botão salvar
 
         saveButton.setOnClickListener(v -> {
-            String selectedWineryName = spinnerWinery.getSelectedItem().toString();
+            Object selectedItem = spinnerWinery.getSelectedItem();
+            if (selectedItem == null) {
+                ToastUtils.showLong(this, "Por favor, selecione uma vinícola válida.");
+                return;
+            }
+            String selectedWineryName = selectedItem.toString();
 
             Executors.newSingleThreadExecutor().execute(() -> {
                 String wineryId = getWineryIdByName(selectedWineryName);

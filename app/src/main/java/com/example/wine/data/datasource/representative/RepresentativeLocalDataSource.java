@@ -4,7 +4,8 @@ package com.example.wine.data.datasource.representative; // Nova subpasta 'repre
 import com.example.wine.data.local.dao.RepresentativeDao;
 import com.example.wine.data.local.entity.RepresentativeEntity;
 import com.example.wine.domain.model.Representative;
-import com.example.wine.utils.Mapper; // Será necessário estender Mapper para Representative
+import com.example.wine.utils.Mapper;
+
 import java.util.ArrayList;
 import java.util.List;
 

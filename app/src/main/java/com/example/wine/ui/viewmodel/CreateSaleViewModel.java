@@ -1,7 +1,7 @@
 // Caminho: package com.example.wine.ui.viewmodel/CreateSaleViewModel.java
 package com.example.wine.ui.viewmodel;
 
-import android.util.Log; // Importação para Log.d/w
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -13,22 +13,19 @@ import com.example.wine.data.datasource.client.ClientLocalDataSource;
 import com.example.wine.data.datasource.representative.RepresentativeLocalDataSource;
 import com.example.wine.data.datasource.sale.SaleLocalDataSource;
 import com.example.wine.data.datasource.saleitem.SaleItemLocalDataSource;
+import com.example.wine.data.datasource.user.AppUserLocalDataSource;
 import com.example.wine.data.datasource.wine.WineLocalDataSource;
-import com.example.wine.data.datasource.user.AppUserLocalDataSource; // Importe o AppUserLocalDataSource
-import com.example.wine.domain.model.AppUser; // Importe AppUser
+import com.example.wine.domain.model.AppUser;
 import com.example.wine.domain.model.Client;
 import com.example.wine.domain.model.Representative;
 import com.example.wine.domain.model.Sale;
 import com.example.wine.domain.model.SaleItem;
 import com.example.wine.domain.model.Wine;
-// Os pacotes abaixo foram corrigidos para o padrão 'ui.model' e 'ui.adapter'
-// Se os seus arquivos ClientSpinnerModel, RepresentativeSpinnerModel, WineSaleItemModel
-// ainda estiverem em 'ui.SaleCreateDisplay', ajuste estes imports:
 import com.example.wine.ui.SaleCreateDisplay.ClientSpinnerModel;
 import com.example.wine.ui.SaleCreateDisplay.RepresentativeSpinnerModel;
 import com.example.wine.ui.SaleCreateDisplay.WineSaleItemModel;
-
 import com.example.wine.utils.Mapper;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
