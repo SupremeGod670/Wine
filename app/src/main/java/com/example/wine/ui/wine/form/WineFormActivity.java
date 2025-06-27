@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
 
 import com.example.wine.R;
 import com.example.wine.data.datasource.winery.WineryLocalDataSource;
@@ -59,10 +60,19 @@ public class WineFormActivity extends AppCompatActivity {
 
             if (wineries == null || wineries.isEmpty()) {
                 runOnUiThread(() -> {
-                    ToastUtils.showLong(this, "É necessário cadastrar uma vinícola antes de adicionar um vinho.");
-                    Intent intent = new Intent(this, com.example.wine.ui.winery.form.WineryFormActivity.class);
-                    startActivity(intent);
-                    finish();
+                    new AlertDialog.Builder(WineFormActivity.this)
+                            .setTitle("Nenhuma vinícola cadastrada")
+                            .setMessage("Você precisa cadastrar uma vinícola antes de adicionar um vinho. Deseja ir para o cadastro agora?")
+                            .setPositiveButton("Cadastrar", (dialog, which) -> {
+                                Intent intent = new Intent(WineFormActivity.this, com.example.wine.ui.winery.form.WineryFormActivity.class);
+                                startActivity(intent);
+                                finish();
+                            })
+                            .setNegativeButton("Cancelar", (dialog, which) -> {
+                                finish(); // volta para a tela anterior
+                            })
+                            .setCancelable(false) // impede o usuário de ignorar o diálogo
+                            .show();
                 });
             }
         });
