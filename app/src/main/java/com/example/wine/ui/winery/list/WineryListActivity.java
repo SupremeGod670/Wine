@@ -1,12 +1,12 @@
 package com.example.wine.ui.winery.list;
 
 import android.os.Bundle;
-import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wine.R;
-import com.example.wine.adapter.WineryAdapter;
 import com.example.wine.adapter.WineryModel;
 import com.example.wine.data.datasource.winery.WineryLocalDataSource;
 import com.example.wine.data.local.AppDatabase;
@@ -18,8 +18,8 @@ import java.util.concurrent.Executors;
 
 public class WineryListActivity extends AppCompatActivity {
 
-    private ListView listView;
-    private WineryAdapter adapter;
+    private RecyclerView recyclerView;
+    private WineryCardAdapter adapter;
     private WineryLocalDataSource dataSource;
 
     @Override
@@ -27,8 +27,13 @@ public class WineryListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_winery_list);
 
-        listView = findViewById(R.id.lista);
+        // Inicializa componentes
+        recyclerView = findViewById(R.id.lista);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new WineryCardAdapter(new ArrayList<>());
+        recyclerView.setAdapter(adapter);
 
+        // Fonte de dados
         dataSource = new WineryLocalDataSource(
                 AppDatabase.getDatabase(getApplicationContext()).wineryDao()
         );
@@ -45,10 +50,7 @@ public class WineryListActivity extends AppCompatActivity {
                 models.add(new WineryModel(w.getName(), w.getCountry(), w.getRegion()));
             }
 
-            runOnUiThread(() -> {
-                adapter = new WineryAdapter(this, models);
-                listView.setAdapter(adapter);
-            });
+            runOnUiThread(() -> adapter.updateList(models));
         });
     }
 }

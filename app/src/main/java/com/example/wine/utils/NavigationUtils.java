@@ -12,8 +12,8 @@ import com.example.wine.R;
 import com.example.wine.ui.SaleCreateDisplay.CreateSaleActivity;
 import com.example.wine.ui.SaleDisplay.RouteOptimizationActivity;
 import com.example.wine.ui.Users.Admin.RegisterAdminActivity;
-import com.example.wine.ui.Users.Client.RegisterClientByAdminActivity;
-import com.example.wine.ui.Users.Client.UnapprovedUsersActivity;
+import com.example.wine.ui.Users.Client.ByAdmin.RegisterClientByAdminActivity;
+import com.example.wine.ui.Users.Client.Unaproved.UnapprovedUsersActivity;
 import com.example.wine.ui.Users.Representative.RegisterRepresentativeActivity;
 import com.example.wine.ui.adminDisplay.AdminListActivity;
 import com.example.wine.ui.representative.RepresentativeListActivity;
@@ -22,6 +22,7 @@ import com.example.wine.ui.wine.list.WineListActivity;
 import com.example.wine.ui.winery.form.WineryFormActivity;
 import com.example.wine.ui.winery.list.WineryListActivity;
 import com.google.android.material.navigation.NavigationView;
+import com.example.wine.ui.client.View.ClientListActivity;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -45,6 +46,7 @@ public class NavigationUtils {
         // Visualização
         MENU_ACTIVITY_MAP.put(R.id.visualizar_admins, AdminListActivity.class);
         MENU_ACTIVITY_MAP.put(R.id.visualizar_representantes, RepresentativeListActivity.class);
+        MENU_ACTIVITY_MAP.put(R.id.visualizar_clientes, ClientListActivity.class);
         MENU_ACTIVITY_MAP.put(R.id.visualizar_vinhos, WineListActivity.class);
         MENU_ACTIVITY_MAP.put(R.id.visualizar_vinicolas, WineryListActivity.class);
         // Adicione aqui sua activity de lista de pedidos se houver
@@ -79,6 +81,7 @@ public class NavigationUtils {
         // Visualizações
         MENU_ACCESS_MAP.put(R.id.visualizar_admins, adminOnly);
         MENU_ACCESS_MAP.put(R.id.visualizar_representantes, adminOnly);
+        MENU_ACCESS_MAP.put(R.id.visualizar_clientes, both);
         MENU_ACCESS_MAP.put(R.id.visualizar_clientes, both);
         MENU_ACCESS_MAP.put(R.id.visualizar_vinhos, both);
         MENU_ACCESS_MAP.put(R.id.visualizar_vinicolas, both);

@@ -1,4 +1,4 @@
-package com.example.wine.ui.client;
+package com.example.wine.ui.Users.Client.ByAdmin;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -18,37 +18,44 @@ import com.example.wine.utils.ToastUtils;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 
-public class ClientRegisterActivity extends AppCompatActivity {
+@android.annotation.SuppressLint("MissingPermission")
+public class RegisterClientByAdminActivity extends AppCompatActivity {
 
     private EditText editTextName, editTextEmail, editTextPassword;
     private TextView textLatitude, textLongitude;
     private Button buttonFinishRegister;
 
     private FusedLocationProviderClient fusedLocationClient;
+    private RegisterClientByAdminController controller;
+
     private double currentLatitude = 0.0;
     private double currentLongitude = 0.0;
-
-    private RegisterClientController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_register);
 
+        // Voltar
+        ImageButton backButton = findViewById(R.id.open);
+        backButton.setOnClickListener(v -> finish());
+
+        // Views
         editTextName = findViewById(R.id.editTextName);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.etClientPassword);
         textLatitude = findViewById(R.id.textLatitude);
         textLongitude = findViewById(R.id.textLongitude);
         buttonFinishRegister = findViewById(R.id.buttonFinishRegister);
-        ImageButton backButton = findViewById(R.id.open);
 
-        controller = new RegisterClientController(this);
+        // Controller
+        controller = new RegisterClientByAdminController(this);
+
+        // Localização
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        solicitarLocalizacao();
 
-        backButton.setOnClickListener(v -> finish());
-        // solicitarLocalizacao();
-
+        // Cadastro
         buttonFinishRegister.setOnClickListener(v -> {
             String name = editTextName.getText().toString().trim();
             String email = editTextEmail.getText().toString().trim();
@@ -70,29 +77,15 @@ public class ClientRegisterActivity extends AppCompatActivity {
             return;
         }
 
-        fusedLocationClient.requestLocationUpdates(
-                com.google.android.gms.location.LocationRequest.create()
-                        .setPriority(com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY)
-                        .setInterval(5000)
-                        .setFastestInterval(2000),
-                new com.google.android.gms.location.LocationCallback() {
-                    @Override
-                    public void onLocationResult(com.google.android.gms.location.LocationResult locationResult) {
-                        if (locationResult == null || locationResult.getLastLocation() == null) return;
-
-                        android.location.Location location = locationResult.getLastLocation();
-                        currentLatitude = location.getLatitude();
-                        currentLongitude = location.getLongitude();
-
-                        textLatitude.setText(String.valueOf(currentLatitude));
-                        textLongitude.setText(String.valueOf(currentLongitude));
-
-                        ToastUtils.showShort(ClientRegisterActivity.this, "Localização capturada com sucesso!");
-                        fusedLocationClient.removeLocationUpdates(this);
-                    }
-                },
-                getMainLooper()
-        );
+        fusedLocationClient.getLastLocation().addOnSuccessListener(location -> {
+            if (location != null) {
+                currentLatitude = location.getLatitude();
+                currentLongitude = location.getLongitude();
+                textLatitude.setText(String.valueOf(currentLatitude));
+                textLongitude.setText(String.valueOf(currentLongitude));
+                ToastUtils.showShort(this, "Localização capturada com sucesso!");
+            }
+        });
     }
 
     @Override
@@ -101,7 +94,7 @@ public class ClientRegisterActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 100 && grantResults.length > 0 &&
                 grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            // solicitarLocalizacao();
+            solicitarLocalizacao();
         } else {
             ToastUtils.showLong(this, "Permissão de localização negada.");
         }

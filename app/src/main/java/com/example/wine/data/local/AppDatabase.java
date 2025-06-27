@@ -28,7 +28,7 @@ import com.example.wine.data.local.entity.WineryEntity;
 
 // ATENÇÃO: A versão do banco de dados foi incrementada.
 // Para produção, você precisaria implementar uma Migration.
-@Database(entities = {WineryEntity.class, WineEntity.class, AppUserEntity.class, RepresentativeEntity.class, ClientEntity.class, SaleEntity.class, SaleItemEntity.class, RegionEntity.class, WineStockEntity.class}, version = 14) // VERSÃO ATUALIZADA
+@Database(entities = {WineryEntity.class, WineEntity.class, AppUserEntity.class, RepresentativeEntity.class, ClientEntity.class, SaleEntity.class, SaleItemEntity.class, RegionEntity.class, WineStockEntity.class}, version = 16) // VERSÃO ATUALIZADA
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;

@@ -8,28 +8,35 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "client",
         foreignKeys = {
-                @ForeignKey(entity = AppUserEntity.class,
+                @ForeignKey(
+                        entity = AppUserEntity.class,
                         parentColumns = "id",
                         childColumns = "approved_by",
-                        onDelete = ForeignKey.SET_NULL),
-                @ForeignKey(entity = RegionEntity.class,
+                        onDelete = ForeignKey.SET_NULL
+                ),
+                @ForeignKey(
+                        entity = RegionEntity.class,
                         parentColumns = "idregiao",
                         childColumns = "id_regiao",
-                        onDelete = ForeignKey.SET_NULL),
-                @ForeignKey(entity = AppUserEntity.class,
+                        onDelete = ForeignKey.SET_NULL
+                ),
+                @ForeignKey(
+                        entity = AppUserEntity.class,
                         parentColumns = "id",
                         childColumns = "user_id",
-                        onDelete = ForeignKey.CASCADE)
-        })
+                        onDelete = ForeignKey.CASCADE
+                )
+        }
+)
 public class ClientEntity {
+
     @PrimaryKey
-    @NonNull
+    @NonNull // ✅ Obrigatório para Room
     @ColumnInfo(name = "id")
     private String id;
 
     @ColumnInfo(name = "user_id", index = true)
-    @NonNull
-    private String userId;
+    private String userId; // ✅ Agora pode ser null
 
     @ColumnInfo(name = "name")
     private String name;
@@ -45,6 +52,9 @@ public class ClientEntity {
 
     @ColumnInfo(name = "id_regiao", index = true)
     private String regionId;
+
+    @ColumnInfo(name = "representative_id", index = true) // ✅ adiciona índice sugerido no aviso
+    private String representativeId;
 
     @ColumnInfo(name = "latitude")
     private double latitude;
@@ -75,7 +85,7 @@ public class ClientEntity {
 
     // Getters e Setters
     public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public void setId(@NonNull String id) { this.id = id; }
 
     public String getUserId() { return userId; }
     public void setUserId(String userId) { this.userId = userId; }
@@ -94,6 +104,9 @@ public class ClientEntity {
 
     public String getRegionId() { return regionId; }
     public void setRegionId(String regionId) { this.regionId = regionId; }
+
+    public String getRepresentativeId() { return representativeId; }
+    public void setRepresentativeId(String representativeId) { this.representativeId = representativeId; }
 
     public double getLatitude() { return latitude; }
     public void setLatitude(double latitude) { this.latitude = latitude; }

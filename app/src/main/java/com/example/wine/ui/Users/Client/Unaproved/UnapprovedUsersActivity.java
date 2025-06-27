@@ -1,4 +1,4 @@
-package com.example.wine.ui.Users.Client;
+package com.example.wine.ui.Users.Client.Unaproved;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,9 +17,8 @@ import com.example.wine.data.local.dao.AppUserDao;
 import com.example.wine.data.local.dao.ClientDao;
 import com.example.wine.domain.model.AppUser;
 import com.example.wine.domain.model.Client;
-import com.example.wine.ui.Users.Client.adapter.UnapprovedUserAdapter;
+import com.example.wine.ui.Users.Client.Unaproved.adapter.UnapprovedUserAdapter;
 import com.example.wine.utils.LogUtils;
-import com.example.wine.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +27,6 @@ import java.util.concurrent.Executors;
 
 public class UnapprovedUsersActivity extends AppCompatActivity {
 
-    private ImageButton backButton;
     private RecyclerView recyclerView;
     private UnapprovedUserAdapter adapter;
 
@@ -37,51 +35,44 @@ public class UnapprovedUsersActivity extends AppCompatActivity {
 
     private AppUserLocalDataSource userDataSource;
     private ClientLocalDataSource clientDataSource;
+    private ApproveClientController approveController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unapproved_users);
 
-        backButton = findViewById(R.id.open);
+        ImageButton backButton = findViewById(R.id.open);
         recyclerView = findViewById(R.id.recyclerUnapprovedUsers);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         backButton.setOnClickListener(v -> finish());
 
-        // Inicializa os data sources
         AppUserDao userDao = AppDatabaseProvider.getDatabase(getApplicationContext()).appUserDao();
         ClientDao clientDao = AppDatabaseProvider.getDatabase(getApplicationContext()).clientDao();
         userDataSource = new AppUserLocalDataSource(userDao);
         clientDataSource = new ClientLocalDataSource(clientDao);
+        approveController = new ApproveClientController(this, clientDataSource, userDataSource);
 
-        // Carrega e exibe
-        loadUnapprovedUsers();
-        logAllUsersToLogcat(); // <- Mostra todos os usuários no Logcat
     }
 
     private void loadUnapprovedUsers() {
         executor.execute(() -> {
-            List<Client> unapprovedClients = clientDataSource.getAllNotApproved(); // ✅ novo método correto
+            List<Client> unapprovedClients = clientDataSource.getAllNotApproved();
             List<AppUser> users = new ArrayList<>();
 
             for (Client client : unapprovedClients) {
                 AppUser user = userDataSource.getById(client.getUserId());
-                if (user != null) {
-                    users.add(user);
-                }
+                if (user != null) users.add(user);
             }
 
             uiHandler.post(() -> {
                 adapter = new UnapprovedUserAdapter(unapprovedClients, users, (client, user) -> {
-                    ToastUtils.showShort(this, "Aprovar: " + client.getName());
+                    approveController.approve(client, user, this::loadUnapprovedUsers); // atualiza após aprovar
                 });
                 recyclerView.setAdapter(adapter);
             });
         });
     }
-
-
 
     private void logAllUsersToLogcat() {
         executor.execute(() -> {
