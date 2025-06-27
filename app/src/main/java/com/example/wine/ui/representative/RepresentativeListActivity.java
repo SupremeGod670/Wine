@@ -2,16 +2,16 @@ package com.example.wine.ui.representative;
 
 import android.os.Bundle;
 import android.widget.ImageButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wine.R; // Para acessar os recursos de layout e IDs
-import com.example.wine.data.local.AppDatabaseProvider;
+import com.example.wine.R;
 import com.example.wine.data.datasource.representative.RepresentativeLocalDataSource;
 import com.example.wine.data.datasource.user.AppUserLocalDataSource;
-import com.example.wine.ui.representative.RepresentativeAdapter;
+import com.example.wine.data.local.AppDatabaseProvider;
 import com.example.wine.ui.viewmodel.RepresentativeListViewModel;
 
 import java.util.ArrayList;

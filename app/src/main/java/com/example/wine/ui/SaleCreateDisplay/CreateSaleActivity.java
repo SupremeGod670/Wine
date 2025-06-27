@@ -20,27 +20,16 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wine.R; // Para acessar os recursos de layout e IDs
-import com.example.wine.data.local.AppDatabaseProvider;
+import com.example.wine.R;
 import com.example.wine.data.datasource.client.ClientLocalDataSource;
 import com.example.wine.data.datasource.representative.RepresentativeLocalDataSource;
 import com.example.wine.data.datasource.sale.SaleLocalDataSource;
 import com.example.wine.data.datasource.saleitem.SaleItemLocalDataSource;
-import com.example.wine.data.datasource.wine.WineLocalDataSource;
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-// NOVO IMPORT: Você precisa importar o AppUserLocalDataSource aqui!
 import com.example.wine.data.datasource.user.AppUserLocalDataSource;
-// CORREÇÃO DOS IMPORTS DE UI: Se seus arquivos estiverem realmente em 'ui.model' e 'ui.adapter', use estes imports.
-// Caso contrário, se você manteve 'ui.SaleCreateDisplay' para esses modelos/adapters, DESCOMENTE os imports originais
-// e COMENTE estas linhas abaixo:
-import com.example.wine.ui.SaleCreateDisplay.SaleItemAdapter; // Exemplo: com.example.wine.ui.adapter
-import com.example.wine.ui.SaleCreateDisplay.ClientSpinnerModel;   // Exemplo: com.example.wine.ui.model
-import com.example.wine.ui.SaleCreateDisplay.RepresentativeSpinnerModel; // Exemplo: com.example.wine.ui.model
-import com.example.wine.ui.SaleCreateDisplay.WineSaleItemModel;      // Exemplo: com.example.wine.ui.model
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-import com.example.wine.domain.model.Wine; // Note que este já estava correto
-import com.example.wine.ui.viewmodel.CreateSaleViewModel; // Note que este já estava correto
+import com.example.wine.data.datasource.wine.WineLocalDataSource;
+import com.example.wine.data.local.AppDatabaseProvider;
+import com.example.wine.domain.model.Wine;
+import com.example.wine.ui.viewmodel.CreateSaleViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

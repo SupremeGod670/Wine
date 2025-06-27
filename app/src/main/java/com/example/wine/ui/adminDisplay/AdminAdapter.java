@@ -4,10 +4,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.wine.R; // Referencia os layouts e drawables em res/
-import com.example.wine.ui.adminDisplay.AdminDisplayModel;
+
+import com.example.wine.R;
+
 import java.util.List;
 
 public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.AdminViewHolder> {

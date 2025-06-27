@@ -3,6 +3,7 @@ package com.example.wine.ui.Users.Representative;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,10 +12,7 @@ import com.example.wine.utils.ToastUtils;
 
 public class RegisterRepresentativeActivity extends AppCompatActivity {
 
-    private EditText editTextName;
-    private EditText editTextEmail;
-    private EditText editTextPassword;
-    private EditText editTextPhone;
+    private EditText editTextName, editTextEmail, editTextPassword, editTextPhone;
     private Button buttonRegister;
 
     private RegisterRepresentativeController controller;
@@ -32,11 +30,15 @@ public class RegisterRepresentativeActivity extends AppCompatActivity {
 
         controller = new RegisterRepresentativeController(this);
 
+        // Botão de voltar (finaliza a Activity)
+        ImageButton buttonGoBack = findViewById(R.id.buttonGoBack);
+        buttonGoBack.setOnClickListener(view -> finish());
+
         buttonRegister.setOnClickListener(v -> {
             String name = editTextName.getText().toString().trim();
             String email = editTextEmail.getText().toString().trim();
             String password = editTextPassword.getText().toString().trim();
-            String phone = editTextPhone.getText().toString().trim(); // 🆕
+            String phone = editTextPhone.getText().toString().trim();
 
             if (!controller.validateInput(name, email, password, phone)) {
                 ToastUtils.showShort(this, "Preencha todos os campos.");

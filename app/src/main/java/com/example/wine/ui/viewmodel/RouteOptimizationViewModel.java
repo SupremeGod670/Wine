@@ -6,19 +6,21 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+
 import com.example.wine.data.datasource.client.ClientLocalDataSource;
 import com.example.wine.data.datasource.sale.SaleLocalDataSource;
-import com.example.wine.domain.model.Sale;
 import com.example.wine.domain.model.Client;
+import com.example.wine.domain.model.Sale;
 import com.example.wine.ui.SaleDisplay.SaleDisplayModel;
-import com.example.wine.utils.Mapper; // Precisaremos adicionar métodos de mapeamento aqui
+import com.example.wine.utils.Mapper;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 public class RouteOptimizationViewModel extends ViewModel {
 

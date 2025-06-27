@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/BACKGROUND"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    style="@style/BACKGROUND"> <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <!-- TOPO COM TOOLBAR -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -26,8 +24,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:padding="5dp"
-                android:src="@drawable/menu_icon" />
-
+                android:src="@drawable/arrow_back_icon" />
         </androidx.appcompat.widget.Toolbar>
 
         <TextView
@@ -38,11 +35,12 @@
             android:textAlignment="center"
             android:textSize="100sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/toolbar"
             app:layout_constraintTop_toTopOf="@+id/toolbar" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- Nome -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,45 +56,10 @@
         android:layout_height="54dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@android:drawable/editbox_background" />
-
-    <TextView
-        android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/cnpj_cpf"
-        android:textSize="25sp" />
-
-    <EditText
-        android:id="@+id/editTextCpfCnpj"
-        style="@style/EDITTEXT"
-        android:layout_width="306dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:background="@android:drawable/editbox_background"
-        android:inputType="text" />
+        android:hint="Seu nome" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/endereco"
-        android:textSize="25sp" />
-
-    <EditText
-        android:id="@+id/editTextAddress"
-        style="@style/EDITTEXT"
-        android:layout_width="306dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@android:drawable/editbox_background"
-        android:inputType="textPostalAddress" />
-
+    <!-- Email -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -106,32 +69,16 @@
         android:textSize="25sp" />
 
     <EditText
-        style="@style/EDITTEXT"
         android:id="@+id/editTextEmail"
-        android:layout_width="306dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@android:drawable/editbox_background" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/telefone"
-        android:textSize="25sp" />
-
-    <EditText
-        android:id="@+id/editTextPhone"
+        style="@style/EDITTEXT"
         android:layout_width="306dp"
         android:layout_height="54dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:background="@android:drawable/editbox_background"
-        android:inputType="phone"
-        style="@style/EDITTEXT" />
+        android:hint="@string/exemail" />
 
+    <!-- Senha -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -141,15 +88,51 @@
         android:textSize="25sp" />
 
     <EditText
-        style="@style/EDITTEXT"
         android:id="@+id/etClientPassword"
+        style="@style/EDITTEXT"
         android:layout_width="306dp"
         android:layout_height="54dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@android:drawable/editbox_background" />
+        android:background="@android:drawable/editbox_background"
+        android:hint="@string/exsenha"
+        android:inputType="textPassword" />
 
+    <!-- Latitude -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Latitude:"
+        android:textSize="20sp" />
+    <TextView
+        android:id="@+id/textLatitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="--"
+        android:textSize="18sp" />
+
+    <!-- Longitude -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Longitude:"
+        android:textSize="20sp" />
+    <TextView
+        android:id="@+id/textLongitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="--"
+        android:textSize="18sp" />
+
+    <!-- Botão -->
     <Button
+        android:id="@+id/buttonFinishRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -159,8 +142,5 @@
         android:text="@string/criar_cliente"
         android:textAlignment="center"
         android:textSize="25sp"
-        android:textColor="@color/black"
-        android:id="@+id/buttonFinishRegister"/>
-
+        android:textColor="@color/black" />
 </LinearLayout>
-</ScrollView>

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!-- TOPO COM BOTÃO DE VOLTAR E TÍTULO -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -18,12 +19,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
-                android:id="@+id/buttonOpenMenu"
+                android:id="@+id/buttonGoBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:padding="5dp"
-                android:src="@drawable/menu_icon" />
+                android:src="@drawable/arrow_back_icon" />
         </androidx.appcompat.widget.Toolbar>
 
         <TextView
@@ -36,99 +37,106 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/toolbar"
             app:layout_constraintTop_toTopOf="@+id/toolbar" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Nome -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/nome_do_representante"
-        android:textSize="25sp" />
-
-    <EditText
-        android:id="@+id/editTextName"
-        style="@style/EDITTEXT"
-        android:layout_width="306dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@android:drawable/editbox_background"
-        android:hint="@string/nome_do_representante" />
-
-    <!-- E-mail -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/email"
-        android:textSize="25sp" />
-
-    <EditText
-        android:id="@+id/editTextEmail"
-        style="@style/EDITTEXT"
-        android:layout_width="306dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@android:drawable/editbox_background"
-        android:hint="@string/exemail"
-        android:inputType="textEmailAddress" />
-
-    <!-- Senha -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/senha"
-        android:textSize="25sp" />
-
-    <EditText
-        android:id="@+id/editTextPassword"
-        style="@style/EDITTEXT"
-        android:layout_width="306dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@android:drawable/editbox_background"
-        android:hint="@string/exsenha"
-        android:inputType="textPassword" />
-
-    <!-- Telefone -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/telefone"
-        android:textSize="25sp" />
-
-    <EditText
-        android:id="@+id/editTextPhone"
-        style="@style/EDITTEXT"
-        android:layout_width="306dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@android:drawable/editbox_background"
-        android:hint="@string/extelefone"
-        android:inputType="phone" />
-
-    <!-- Botão -->
-    <Button
-        android:id="@+id/buttonRegister"
+    <!-- FORMULÁRIO DE REPRESENTANTE -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="20dp"
-        android:backgroundTint="@color/white"
-        android:text="@string/criar_representante"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="25sp" />
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/nome_do_representante"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/editTextName"
+                style="@style/EDITTEXT"
+                android:layout_width="306dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/nome_do_representante" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/email"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/editTextEmail"
+                style="@style/EDITTEXT"
+                android:layout_width="306dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/exemail"
+                android:inputType="textEmailAddress" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/senha"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/editTextPassword"
+                style="@style/EDITTEXT"
+                android:layout_width="306dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/exsenha"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/telefone"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/editTextPhone"
+                style="@style/EDITTEXT"
+                android:layout_width="306dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/extelefone"
+                android:inputType="phone" />
+
+            <Button
+                android:id="@+id/buttonRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="@color/white"
+                android:text="@string/criar_representante"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

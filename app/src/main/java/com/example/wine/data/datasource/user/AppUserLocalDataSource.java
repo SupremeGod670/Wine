@@ -2,7 +2,7 @@ package com.example.wine.data.datasource.user;
 
 import com.example.wine.data.local.dao.AppUserDao;
 import com.example.wine.data.local.entity.AppUserEntity;
-import com.example.wine.domain.datasource.AppUserDataSource; // Importe a nova interface
+import com.example.wine.domain.datasource.AppUserDataSource;
 import com.example.wine.domain.model.AppUser;
 import com.example.wine.utils.Mapper;
 

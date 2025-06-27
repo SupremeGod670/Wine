@@ -1,6 +1,7 @@
 package com.example.wine.domain.datasource;
 
 import com.example.wine.domain.model.AppUser;
+
 import java.util.List;
 
 public interface AppUserDataSource {

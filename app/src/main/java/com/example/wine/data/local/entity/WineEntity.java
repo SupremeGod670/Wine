@@ -1,9 +1,10 @@
 package com.example.wine.data.local.entity;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.ColumnInfo;
-import androidx.annotation.NonNull;
+
 import java.util.UUID;
 
 @Entity(tableName = "wine")

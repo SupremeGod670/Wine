@@ -2,6 +2,7 @@ package com.example.wine.utils;
 
 import android.util.Log;
 
+import com.example.wine.data.local.entity.AppUserEntity;
 import com.example.wine.data.local.entity.WineryEntity;
 import com.example.wine.data.local.entity.AppUserEntity;
 import com.example.wine.domain.model.AppUser;

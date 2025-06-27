@@ -1,8 +1,15 @@
 package com.example.wine.ui.wine.form;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+
 import com.example.wine.R;
 import com.example.wine.data.datasource.winery.WineryLocalDataSource;
 import com.example.wine.data.local.AppDatabase;
@@ -42,7 +49,33 @@ public class WineFormActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_wine_form); // Certifique-se que o nome do layout está correto
+        Executors.newSingleThreadExecutor().execute(() -> {
+            WineryLocalDataSource wineryDataSource = new WineryLocalDataSource(
+                    AppDatabase.getDatabase(getApplicationContext()).wineryDao()
+            );
+
+            List<Winery> wineries = wineryDataSource.getAll();
+
+            if (wineries == null || wineries.isEmpty()) {
+                runOnUiThread(() -> {
+                    new AlertDialog.Builder(WineFormActivity.this)
+                            .setTitle("Nenhuma vinícola cadastrada")
+                            .setMessage("Você precisa cadastrar uma vinícola antes de adicionar um vinho. Deseja ir para o cadastro agora?")
+                            .setPositiveButton("Cadastrar", (dialog, which) -> {
+                                Intent intent = new Intent(WineFormActivity.this, com.example.wine.ui.winery.form.WineryFormActivity.class);
+                                startActivity(intent);
+                                finish();
+                            })
+                            .setNegativeButton("Cancelar", (dialog, which) -> {
+                                finish(); // volta para a tela anterior
+                            })
+                            .setCancelable(false) // impede o usuário de ignorar o diálogo
+                            .show();
+                });
+            }
+        });
 
         // Inicializar o controller
         controller = new WineFormController(this);
@@ -68,7 +101,12 @@ public class WineFormActivity extends AppCompatActivity {
         saveButton = findViewById(R.id.button_salvar_vinho); // ID do botão salvar
 
         saveButton.setOnClickListener(v -> {
-            String selectedWineryName = spinnerWinery.getSelectedItem().toString();
+            Object selectedItem = spinnerWinery.getSelectedItem();
+            if (selectedItem == null) {
+                ToastUtils.showLong(this, "Por favor, selecione uma vinícola válida.");
+                return;
+            }
+            String selectedWineryName = selectedItem.toString();
 
             Executors.newSingleThreadExecutor().execute(() -> {
                 String wineryId = getWineryIdByName(selectedWineryName);

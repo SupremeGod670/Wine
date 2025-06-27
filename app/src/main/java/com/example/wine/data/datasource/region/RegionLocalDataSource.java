@@ -4,7 +4,8 @@ package com.example.wine.data.datasource.region; // Nova subpasta 'region'
 import com.example.wine.data.local.dao.RegionDao;
 import com.example.wine.data.local.entity.RegionEntity;
 import com.example.wine.domain.model.Region;
-import com.example.wine.utils.Mapper; // Será necessário estender Mapper para Region
+import com.example.wine.utils.Mapper;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.wine.R;
-import com.example.wine.ui.SaleCreateDisplay.WineSaleItemModel;
+
 import java.util.List;
 import java.util.Locale;
 
