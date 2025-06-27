@@ -22,6 +22,7 @@ import com.google.android.gms.location.LocationServices;
 public class RegisterClientByAdminActivity extends AppCompatActivity {
 
     private EditText editTextName, editTextEmail, editTextPassword;
+    private EditText editTextPhone, editTextCity, editTextObservation;
     private TextView textLatitude, textLongitude;
     private Button buttonFinishRegister;
 
@@ -36,7 +37,7 @@ public class RegisterClientByAdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_register);
 
-        // Voltar
+        // Botão de voltar
         ImageButton backButton = findViewById(R.id.open);
         backButton.setOnClickListener(v -> finish());
 
@@ -44,27 +45,32 @@ public class RegisterClientByAdminActivity extends AppCompatActivity {
         editTextName = findViewById(R.id.editTextName);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.etClientPassword);
+        editTextPhone = findViewById(R.id.editTextPhone);
+        editTextCity = findViewById(R.id.editTextCity);
+        editTextObservation = findViewById(R.id.editTextObservation);
         textLatitude = findViewById(R.id.textLatitude);
         textLongitude = findViewById(R.id.textLongitude);
         buttonFinishRegister = findViewById(R.id.buttonFinishRegister);
 
-        // Controller
         controller = new RegisterClientByAdminController(this);
 
         // Localização
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         solicitarLocalizacao();
 
-        // Cadastro
+        // Ação de cadastro
         buttonFinishRegister.setOnClickListener(v -> {
             String name = editTextName.getText().toString().trim();
             String email = editTextEmail.getText().toString().trim();
             String password = editTextPassword.getText().toString().trim();
+            String phone = editTextPhone.getText().toString().trim();
+            String city = editTextCity.getText().toString().trim();
+            String observation = editTextObservation.getText().toString().trim();
 
             if (controller.validateInput(name, email, password)) {
-                controller.registerClient(name, email, password, currentLatitude, currentLongitude);
+                controller.registerClient(name, email, password, phone, city, observation, currentLatitude, currentLongitude);
             } else {
-                ToastUtils.showShort(this, "Preencha todos os campos corretamente.");
+                ToastUtils.showShort(this, "Preencha todos os campos obrigatórios.");
             }
         });
     }

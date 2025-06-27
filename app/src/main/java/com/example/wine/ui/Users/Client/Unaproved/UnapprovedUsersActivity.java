@@ -3,6 +3,7 @@ package com.example.wine.ui.Users.Client.Unaproved;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +19,6 @@ import com.example.wine.data.local.dao.ClientDao;
 import com.example.wine.domain.model.AppUser;
 import com.example.wine.domain.model.Client;
 import com.example.wine.ui.Users.Client.Unaproved.adapter.UnapprovedUserAdapter;
-import com.example.wine.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +53,8 @@ public class UnapprovedUsersActivity extends AppCompatActivity {
         clientDataSource = new ClientLocalDataSource(clientDao);
         approveController = new ApproveClientController(this, clientDataSource, userDataSource);
 
+        // ✅ Carrega usuários pendentes ao abrir a tela
+        loadUnapprovedUsers();
     }
 
     private void loadUnapprovedUsers() {
@@ -67,17 +69,12 @@ public class UnapprovedUsersActivity extends AppCompatActivity {
 
             uiHandler.post(() -> {
                 adapter = new UnapprovedUserAdapter(unapprovedClients, users, (client, user) -> {
-                    approveController.approve(client, user, this::loadUnapprovedUsers); // atualiza após aprovar
+                    approveController.approve(client, user, this::loadUnapprovedUsers);
                 });
                 recyclerView.setAdapter(adapter);
-            });
-        });
-    }
 
-    private void logAllUsersToLogcat() {
-        executor.execute(() -> {
-            List<AppUser> allUsers = userDataSource.getAll();
-            LogUtils.logAppUsers(allUsers);
+                Log.d("DEBUG_CLIENTS", "Total de clientes pendentes: " + unapprovedClients.size());
+            });
         });
     }
 }

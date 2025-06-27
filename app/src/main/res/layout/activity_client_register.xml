@@ -1,146 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/BACKGROUND"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:fillViewport="true">
 
-    <!-- TOPO COM TOOLBAR -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <!-- TOPO COM TOOLBAR -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@+id/open"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:padding="5dp"
-                android:src="@drawable/arrow_back_icon" />
-        </androidx.appcompat.widget.Toolbar>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
+                <ImageButton
+                    android:id="@+id/open"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:padding="5dp"
+                    android:src="@drawable/arrow_back_icon" />
+            </androidx.appcompat.widget.Toolbar>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/abramo"
+                android:text="@string/wine"
+                android:textAlignment="center"
+                android:textSize="100sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/toolbar"
+                app:layout_constraintTop_toTopOf="@+id/toolbar" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Nome -->
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/nome_do_cliente"
+            android:textSize="25sp" />
+
+        <EditText
+            style="@style/EDITTEXT"
+            android:id="@+id/editTextName"
+            android:layout_width="306dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@android:drawable/editbox_background"
+            android:hint="Seu nome" />
+
+        <!-- Email -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/email"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            style="@style/EDITTEXT"
+            android:layout_width="306dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@android:drawable/editbox_background"
+            android:hint="@string/exemail" />
+
+        <!-- Senha -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/senha"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/etClientPassword"
+            style="@style/EDITTEXT"
+            android:layout_width="306dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@android:drawable/editbox_background"
+            android:hint="@string/exsenha"
+            android:inputType="textPassword" />
+
+        <!-- Telefone -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Telefone"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/editTextPhone"
+            style="@style/EDITTEXT"
+            android:layout_width="306dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@android:drawable/editbox_background"
+            android:hint="@string/extelefone"
+            android:inputType="phone" />
+
+        <!-- Cidade -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/cidade"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/editTextCity"
+            style="@style/EDITTEXT"
+            android:layout_width="306dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@android:drawable/editbox_background"
+            android:hint="@string/ex_cidade"
+            android:inputType="textCapWords" />
+
+        <!-- Observação -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/observação"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/editTextObservation"
+            style="@style/EDITTEXT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/abramo"
-            android:text="@string/wine"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@android:drawable/editbox_background"
+            android:hint="@string/informa_es_extras"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:maxLines="5" />
+
+        <!-- Latitude -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Latitude:"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/textLatitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="--"
+            android:textSize="18sp" />
+
+        <!-- Longitude -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Longitude:"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/textLongitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="--"
+            android:textSize="18sp" />
+
+        <!-- Botão -->
+        <Button
+            android:id="@+id/buttonFinishRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="@color/white"
+            android:text="@string/criar_cliente"
             android:textAlignment="center"
-            android:textSize="100sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/toolbar"
-            app:layout_constraintTop_toTopOf="@+id/toolbar" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:textSize="25sp"
+            android:textColor="@color/black" />
 
-    <!-- Nome -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/nome_do_cliente"
-        android:textSize="25sp" />
-
-    <EditText
-        style="@style/EDITTEXT"
-        android:id="@+id/editTextName"
-        android:layout_width="306dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@android:drawable/editbox_background"
-        android:hint="Seu nome" />
-
-    <!-- Email -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/email"
-        android:textSize="25sp" />
-
-    <EditText
-        android:id="@+id/editTextEmail"
-        style="@style/EDITTEXT"
-        android:layout_width="306dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@android:drawable/editbox_background"
-        android:hint="@string/exemail" />
-
-    <!-- Senha -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/senha"
-        android:textSize="25sp" />
-
-    <EditText
-        android:id="@+id/etClientPassword"
-        style="@style/EDITTEXT"
-        android:layout_width="306dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@android:drawable/editbox_background"
-        android:hint="@string/exsenha"
-        android:inputType="textPassword" />
-
-    <!-- Latitude -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Latitude:"
-        android:textSize="20sp" />
-    <TextView
-        android:id="@+id/textLatitude"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:text="--"
-        android:textSize="18sp" />
-
-    <!-- Longitude -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:text="Longitude:"
-        android:textSize="20sp" />
-    <TextView
-        android:id="@+id/textLongitude"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:text="--"
-        android:textSize="18sp" />
-
-    <!-- Botão -->
-    <Button
-        android:id="@+id/buttonFinishRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="20dp"
-        android:backgroundTint="@color/white"
-        android:text="@string/criar_cliente"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        android:textColor="@color/black" />
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
