@@ -30,4 +30,9 @@ public class AccessUtils {
         SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         prefs.edit().clear().apply();
     }
+
+    public static String getLoggedUserId(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("wine_prefs", Context.MODE_PRIVATE);
+        return prefs.getString("logged_user_id", null);
+    }
 }

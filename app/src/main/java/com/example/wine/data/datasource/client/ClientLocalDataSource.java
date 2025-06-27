@@ -86,4 +86,13 @@ public class ClientLocalDataSource {
     public void updateSyncStatus(String id, boolean isSynced) {
         clientDao.updateSyncStatus(id, isSynced);
     }
+
+    public List<Client> getAllNotApproved() {
+        List<ClientEntity> entities = clientDao.getAllNotApprovedClients();
+        List<Client> clients = new ArrayList<>();
+        for (ClientEntity entity : entities) {
+            clients.add(Mapper.toModel(entity));
+        }
+        return clients;
+    }
 }

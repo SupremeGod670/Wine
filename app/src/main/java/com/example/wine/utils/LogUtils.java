@@ -1,16 +1,18 @@
-// LogUtils.java
 package com.example.wine.utils;
 
 import android.util.Log;
 
 import com.example.wine.data.local.entity.AppUserEntity;
 import com.example.wine.data.local.entity.WineryEntity;
+import com.example.wine.data.local.entity.AppUserEntity;
 import com.example.wine.domain.model.AppUser;
+import com.example.wine.domain.model.Client;
 import com.example.wine.domain.model.Wine;
 
 import java.util.List;
 
 public class LogUtils {
+
     public static void debug(String tag, String message) {
         Log.d(tag, message);
     }
@@ -58,15 +60,27 @@ public class LogUtils {
     }
 
     public static void logAppUser(AppUser user) {
-        Log.d("LOG_AppUser", "Novo usuário cadastrado:");
         Log.d("LOG_AppUser", "ID: " + user.getId()
                 + " | Nome: " + user.getName()
                 + " | Email: " + user.getEmail()
                 + " | SenhaHash: " + user.getPasswordHash()
                 + " | Papel: " + user.getRole()
+                + " | Aprovado: " + user.isApproved()
                 + " | Sincronizado: " + user.isSynced()
                 + " | Deletado: " + user.isDeleted()
                 + " | Atualizado em: " + user.getUpdatedAt());
+    }
+
+    public static void logAppUsers(List<AppUser> users) {
+        Log.d("LOG_AppUser", "---- Listando todos os AppUsers ----");
+        if (users == null || users.isEmpty()) {
+            Log.d("LOG_AppUser", "Nenhum AppUser encontrado.");
+        } else {
+            for (AppUser user : users) {
+                logAppUser(user);
+            }
+        }
+        Log.d("LOG_AppUser", "------------------------------------");
     }
 
     public static void logAppUserEntities(List<AppUserEntity> users) {
@@ -86,5 +100,24 @@ public class LogUtils {
             }
         }
         Log.d("LOG_AppUserEntity", "-------------------------------------------");
+    }
+
+    public static void logClients(List<Client> clients) {
+        Log.d("LOG_Client", "---- Listando todos os clientes ----");
+        if (clients == null || clients.isEmpty()) {
+            Log.d("LOG_Client", "Nenhum cliente cadastrado.");
+        } else {
+            for (Client c : clients) {
+                Log.d("LOG_Client", "ID: " + c.getId()
+                        + " | Nome: " + c.getName()
+                        + " | Email: " + c.getEmail()
+                        + " | Telefone: " + c.getPhone()
+                        + " | Cidade: " + c.getCity()
+                        + " | Aprovado: " + c.isApproved()
+                        + " | Aprovado por: " + c.getApprovedBy()
+                        + " | Atualizado em: " + c.getUpdatedAt());
+            }
+        }
+        Log.d("LOG_Client", "-------------------------------------");
     }
 }

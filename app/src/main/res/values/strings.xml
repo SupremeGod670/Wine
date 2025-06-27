@@ -88,4 +88,7 @@
     <string name="telefone">Celular</string>
     <string name="extelefone">987654321</string>
     <string name="otimizar_rota">Otimizar Rota</string>
+    <string name="UsuáriosPendentes">Usuários Pendentes</string>
+    <string name="aprovar_clientes">Aprovar Clientes</string>
+    <string name="observacoes">Observações</string>
 </resources>

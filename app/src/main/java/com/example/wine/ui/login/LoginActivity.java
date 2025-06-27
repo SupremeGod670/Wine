@@ -53,9 +53,6 @@ public class LoginActivity extends AppCompatActivity {
             String hashed = HashUtils.sha256(password);
 
             Executors.newSingleThreadExecutor().execute(() -> {
-                /*List<AppUserEntity> allUsers = userDao.getAll();
-                LogUtils.logAppUserEntities(allUsers);*/
-
                 AppUserEntity user = userDao.login(email, hashed);
 
                 runOnUiThread(() -> {
@@ -64,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                         return;
                     }
 
+                    // ✅ Salva a sessão do usuário logado
                     AccessUtils.saveUserSession(this, user.getId(), user.getRole());
 
                     Intent intent = new Intent(this, WineListActivity.class);
